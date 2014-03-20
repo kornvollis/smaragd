@@ -1,0 +1,36 @@
+#footer {
+	background-color: #464646;
+	text-align: center;
+	color: #ffffff;
+}
+
+#footer .footer-column {
+	text-align: left;
+	display: inline-block;
+	width: 240px;
+	margin-top: 15px;
+	margin-right: 70px;
+}
+
+#footer .footer-column span {
+	float: right;
+}
+
+#footer .footer-bottomline {
+	text-align: center;
+	font-size: 11px;
+	background-color: #202020;	
+	padding: 6px;
+	margin-top: 12px;
+}
+
+#footer .footer-facebook {
+	text-align: center;
+	font-size: 14px;
+	background-color: #009421;	
+	padding: 6px;
+	margin-top: 12px;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}

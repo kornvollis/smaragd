@@ -1,0 +1,117 @@
+#admin-page h1 {
+	display: block;
+	font-size: 25px;
+	margin-left: 0px;
+	margin-top: 0px;
+	padding-top: 20px;
+}
+
+#admin-page #left-column {
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	background-color: #f8f8f8;
+	vertical-align: top;
+	width: 310px;
+	height: 100%;
+	border: 1px solid #e7e7e7;
+}
+
+#admin-page #right-column {
+	margin-left: 310px;
+	height: 100%;
+}
+
+#admin-page #left-column ol {
+	padding-left: 14px;
+}
+
+#admin-page nav {
+	margin-bottom: 0px; 	
+}
+
+#admin-page #admin-products-edit {
+	padding: 40px;
+	padding-top: 0px;
+	width: 700;
+}
+
+table th.description {
+	width: 500px;
+}
+
+table th.price, table th.netto_price, table th.profit_key {
+	width: 80px;
+}
+
+/*
+#categories {
+	float: left;
+}
+*/
+
+#categories_wrapper a {
+	cursor: pointer;	
+}
+
+.inventory-items {
+	width: 700px;
+	display: inline-block;
+	float: left;	
+}
+
+ol li {
+	list-style: none;
+}
+
+#confirmationModal .confirmationModal-input {
+	display: block;	
+}
+
+.category-arrows {
+	margin-right: 2px;
+	width: 28px;
+	display: inline-block;
+}	
+
+.up-arrow {
+	color: #00FF0A;	
+}
+
+.down-arrow {
+	color: #00FF0A;
+}
+
+.remove-icon {
+	margin-left: 10px;
+	color: #FF0000;
+}
+
+.edit-icon {
+	margin-left: 5px;
+	color: #00FF00;
+}
+
+.editlock {
+	margin-top: 8px;
+	font-size: 25px;
+	color: #5683BB;
+	cursor: pointer;
+}
+
+.editlock-disabled {
+	color: #CED4D8;	
+}
+
+.category-new {
+	color: #094104;
+	cursor: pointer;
+}	
+
+#addCategoryButton {
+	vertical-align: top;
+	font-size: 12px;
+	margin-top: 3px;
+	margin-left: 38px;
+	margin-bottom: 18px;	
+}

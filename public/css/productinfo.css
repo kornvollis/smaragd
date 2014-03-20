@@ -1,0 +1,27 @@
+.productInfo {
+	display: inline-block;
+	width: 344px;
+	float: right;
+}
+
+.productInfo-img {
+	display: inline-block;
+	
+}
+
+.productInfoImageContainer {
+	display: inline-block;
+	width: 350px;
+	height: 350px;
+	border: 1px solid #000;
+	text-align: center;
+	margin-left: 15px;
+	margin-top: 24px;
+}
+
+.vertical-middle {
+	width: 350px;
+	height: 350px;
+	display: table-cell;
+	vertical-align: middle;	
+}
