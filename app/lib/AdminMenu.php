@@ -3,25 +3,24 @@
 class AdminMenu  {
 
     private $categories = [];
+	public $lastCategory;
+	public $firstCategory;
 	
 	function __construct($categories)
 	{
 		foreach ($categories as $cat) {
 			$this->categories[$cat->lft] = $cat;
+			
+			if(!isset($this->lastCategory))
+			{
+				$this->lastCategory = $cat;
+				$this->firstCategory = $cat;
+			} else if($this->lastCategory->rgt + 1 == $cat->lft) {
+				$this->lastCategory = $cat;
+			}
 		}
     }
-	/*
-	public function getSubCats($left, $right, [])
-	{
-		
-		{
-			return 
-		} else {
-			return [];
-		}
-	}
-	*/
-	
+
 	public function getFirstChildCategories($lft, $rgt)
 	{
 		if(!isset($this->categories[$lft+1])) return [];
@@ -48,6 +47,24 @@ class AdminMenu  {
 		return $rootCategories ;
 	}
 	
+	public function size() { return count($this->categories);}
+	
+	public function addCategoryToEnd($category)
+	{
+		if($this->isEmpty()) {
+			$category->lft = 1;
+			$category->rgt = 2;
+			$this->categories[1] = $category;
+			$this->firstCategory = $category;
+			$this->lastCategory = $category;
+		} else {
+			$category->lft = $this->lastCategory->rgt + 1;
+			$category->rgt = $category->lft + 1;
+			$this->categories[$category->lft] = $category;
+			$this->lastCategory = $category;
+		}
+	}
+	
 	private function nextCategory($category, $accu) 
 	{
 		//Log::info('$category: ' . $category . '  $accu: ' . count($accu) );
@@ -62,6 +79,10 @@ class AdminMenu  {
 		}
 		
 		return $accu;
+	}
+	
+	private function isEmpty() {
+		return ( count($this->categories) == 0 );
 	}
 	
 }

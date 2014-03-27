@@ -1,9 +1,9 @@
-﻿<li>{{$category->name}}
-	@if ($category->hasChild() )
-		</ul>
-			@foreach ($menu->getChildren($category) as $child)
-				@include ('admin.menu_item', array('category'=>$child))
-			@endforeach
-		<ul>
-	@endif
+<li>{{$category->name}}
+@if ($category->hasChild() )
+<ol>
+@foreach ($menu->getFirstChildCategories($category->lft, $category->rgt) as $child)
+	@include ('admin.menu_item', array('category'=>$child))
+@endforeach
+</ol>
+@endif
 </li>
