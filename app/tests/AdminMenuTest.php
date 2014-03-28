@@ -70,15 +70,11 @@ class AdminMenuTest extends TestCase
 		$this->assertEquals(21, $this->adminMenu->lastCategory->lft);
 		$this->assertEquals(22, $this->adminMenu->lastCategory->rgt);
 		
-		//$category_from_db = Category::find(5000);
-		
-		
-		/* EMPTY MENU 
+		/* EMPTY MENU */
 		$this->emptyAdminMenu->addCategoryToEnd($category);
 		$this->assertEquals(1, $this->emptyAdminMenu->size());
 		$this->assertEquals("new cat", $this->emptyAdminMenu->lastCategory->name);
 		$this->assertEquals(1, $this->emptyAdminMenu->lastCategory->lft);
 		$this->assertEquals(2, $this->emptyAdminMenu->lastCategory->rgt);
-		*/
 	}
 }

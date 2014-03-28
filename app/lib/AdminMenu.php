@@ -63,6 +63,8 @@ class AdminMenu  {
 			$this->categories[$category->lft] = $category;
 			$this->lastCategory = $category;
 		}
+		
+		$category->save();
 	}
 	
 	private function nextCategory($category, $accu) 
