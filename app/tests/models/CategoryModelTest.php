@@ -9,8 +9,8 @@ class CategoryModelTest extends TestCase
 	{
 		parent::setUp();
 	 
-		$this->category_no_child = new Category("My cat", 1, 2);
-		$this->category_has_child = new Category("My cat with child", 1, 4);
+		$this->category_no_child =  new Category(array("name" => "My cat" , "lft" => 1, "rgt" => 2));
+        $this->category_has_child =  new Category(array("name" => "My cat with childt" , "lft" => 1, "rgt" => 4));
 	}
 	
 	public function testHasChild() 

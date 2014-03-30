@@ -12,17 +12,3 @@
 */
 
 Route::get('/admin', 'AdminController@show');
-
-Route::get('/', function()
-{
-	//return View::make('hello');
-    $users = Product::all();
-
-    $resp = "";
-    foreach($users as $user)
-    {
-        $resp = $resp . $user->name;
-    }
-    return View::make('admin');
-    //return "kukubenko" . $resp;
-});

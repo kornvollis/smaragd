@@ -10,16 +10,23 @@ class AdminController extends Controller {
     /**
      * Show the profile for the given user.
      */
-    public function show()
-    {
-        //$user = User::find($id);
-        $products = Product::all();
-        
-		$categories = Category::all();
-		
-        return View::make('admin.index', array("products" => $products, "menu" => new AdminMenu($categories)));
+    private $adminMenu;
+
+    function __construct() {
+        $this->adminMenu = App::make('AdminMenu');
+        $this->adminMenu->init();
     }
 
+    public function show()
+    {
+        $products = Product::all();
+		
+        return View::make('admin.index', array("products" => $products, "menu" => $this->adminMenu));
+    }
+
+    public function addCategory($name) {
+       // $this->adminMenu->addCategoryToEnd()
+    }
 }
 
 ?>

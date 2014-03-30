@@ -1,19 +1,10 @@
 <?php
 
 class Category extends Eloquent {
+
+    protected $fillable = array('id', 'name', 'lft', 'rgt');
+
     public $timestamps = false;
-	
-	function __construct($name="", $lft=0, $rgt=0) 
-	{
-		parent::__construct();
-		
-		if($name != "" && $lft != 0 && $rgt != 0)
-		{
-			$this->name = $name;
-			$this->lft = $lft;
-			$this->rgt = $rgt;
-		}
-    }
    
 	public function hasChild() 
 	{

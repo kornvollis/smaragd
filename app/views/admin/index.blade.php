@@ -46,6 +46,13 @@
 			@include ('admin.menu_item', array('category'=>$category))
 		@endforeach	
 		</ol>
+
+        <form action="#">
+            Új kategória
+            <input type="text" name="new_category">
+            <input type="submit" value="Submit">
+        </form>
+
 	</div>
 	<div id="right-column">
 		<h1 id="selectedCategory">TITLE</h1> <br>

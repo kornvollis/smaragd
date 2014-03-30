@@ -23,16 +23,17 @@ class AdminMenuTest extends TestCase
 	 
 		$categories = Array();
 		
-		array_push($categories,  new Category("Root", 1, 10));
-		array_push($categories,  new Category("Sub1", 2, 3));
-		array_push($categories,  new Category("Sub2", 4, 9));
-		array_push($categories,  new Category("Sub2Sub1", 5,  6));
-		array_push($categories,  new Category("Sub2Sub2", 7, 8));
-		array_push($categories,  new Category("Root2", 11, 12));
-		array_push($categories,  new Category("Root3", 13, 20));
+		array_push($categories,  new Category(array("name" => "Root" ,     "lft" => 1, "rgt" => 10)));
+        array_push($categories,  new Category(array("name" => "Sub1" ,     "lft" => 2, "rgt" => 3)));
+        array_push($categories,  new Category(array("name" => "Sub2" ,     "lft" => 4, "rgt" => 9)));
+        array_push($categories,  new Category(array("name" => "Sub2Sub1" , "lft" => 5, "rgt" => 6)));
+        array_push($categories,  new Category(array("name" => "Sub2Sub2" , "lft" => 7, "rgt" => 8)));
+        array_push($categories,  new Category(array("name" => "Root2" ,    "lft" => 11, "rgt" => 12)));
+        array_push($categories,  new Category(array("name" => "Root3" ,    "lft" => 13, "rgt" => 20)));
 
-		$this->adminMenu = new AdminMenu($categories);
-		$this->emptyAdminMenu = new AdminMenu(Array());
+		$this->adminMenu = new AdminMenu();
+        $this->adminMenu->categories = $categories;
+        $this->adminMenu->init();
 	}
 	
 	public function testAdminMenuNotNull()
@@ -61,7 +62,7 @@ class AdminMenuTest extends TestCase
 		$category = new Category();
 		$category->name = "new cat";
 		$category->id = 5000;
-	
+
 		$size_before = $this->adminMenu->size();
 		$this->adminMenu->addCategoryToEnd($category);
 		$size_after = $this->adminMenu->size();
@@ -69,12 +70,8 @@ class AdminMenuTest extends TestCase
 		$this->assertEquals("new cat", $this->adminMenu->lastCategory->name);
 		$this->assertEquals(21, $this->adminMenu->lastCategory->lft);
 		$this->assertEquals(22, $this->adminMenu->lastCategory->rgt);
-		
-		/* EMPTY MENU */
-		$this->emptyAdminMenu->addCategoryToEnd($category);
-		$this->assertEquals(1, $this->emptyAdminMenu->size());
-		$this->assertEquals("new cat", $this->emptyAdminMenu->lastCategory->name);
-		$this->assertEquals(1, $this->emptyAdminMenu->lastCategory->lft);
-		$this->assertEquals(2, $this->emptyAdminMenu->lastCategory->rgt);
+        $category->forceDelete();
+
+        Category::find(5000)->delete();
 	}
 }

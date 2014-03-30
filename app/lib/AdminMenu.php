@@ -2,13 +2,17 @@
 
 class AdminMenu  {
 
-    private $categories = [];
+    public $categories;
 	public $lastCategory;
 	public $firstCategory;
-	
-	function __construct($categories)
+
+	function init()
 	{
-		foreach ($categories as $cat) {
+        if(!isset($this->categories)) {
+           $this->categories = Category::all();
+        }
+
+		foreach ($this->categories as $cat) {
 			$this->categories[$cat->lft] = $cat;
 			
 			if(!isset($this->lastCategory))
