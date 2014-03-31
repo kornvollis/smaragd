@@ -50,6 +50,17 @@
 		{{ Form::open(array('action' => 'AdminController@addCategory')) }}
 			{{ Form::label('name', 'Új kategória') }}
 			{{ Form::text('name', 'barackfavirag') }}
+
+            {{ Form::label('position', 'Pozíció') }}
+            {{ Form::radio('position', 'first') }} Első
+            {{ Form::radio('position', 'last', true) }} Utolsó
+
+            {{ Form::label('panda_colour', 'Hova') }}
+            {{ Form::select('panda_colour', array(
+                'default' => AdminMenu::ROOT_CATEGORY
+               ), 'default')
+            }}
+
 			{{ Form::submit('Hozzáad!') }}
 		{{ Form::close() }}
         

@@ -23,7 +23,7 @@ class AdminController extends Controller {
     }
 
 	public function addCategory() {
-	
+
 		$name = Input::get('name');
 
 		$newCategory = new Category(array("name" => $name));

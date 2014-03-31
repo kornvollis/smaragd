@@ -2,6 +2,8 @@
 
 class AdminMenu  {
 
+    const ROOT_CATEGORY = "Fő kategória";
+
     public $categories;
 	public $lastCategory;
 	public $firstCategory;
