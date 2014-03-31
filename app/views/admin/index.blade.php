@@ -47,11 +47,12 @@
 		@endforeach	
 		</ol>
 
-        <form action="#">
-            Új kategória
-            <input type="text" name="new_category">
-            <input type="submit" value="Submit">
-        </form>
+		{{ Form::open(array('action' => 'AdminController@addCategory')) }}
+			{{ Form::label('name', 'Új kategória') }}
+			{{ Form::text('name', 'barackfavirag') }}
+			{{ Form::submit('Hozzáad!') }}
+		{{ Form::close() }}
+        
 
 	</div>
 	<div id="right-column">

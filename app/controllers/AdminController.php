@@ -19,14 +19,18 @@ class AdminController extends Controller {
 
     public function show()
     {
-        $products = Product::all();
-		
-        return View::make('admin.index', array("products" => $products, "menu" => $this->adminMenu));
+        return View::make('admin.index', array("products" => Product::all(), "menu" => $this->adminMenu));
     }
 
-    public function addCategory($name) {
-       // $this->adminMenu->addCategoryToEnd()
-    }
+	public function addCategory() {
+	
+		$name = Input::get('name');
+
+		$newCategory = new Category(array("name" => $name));
+		$this->adminMenu->addCategoryToEnd($newCategory);
+		
+		return Redirect::to('/admin');
+	}
 }
 
 ?>

@@ -12,3 +12,4 @@
 */
 
 Route::get('/admin', 'AdminController@show');
+Route::post('add-category', array('uses' => 'AdminController@addCategory'));
