@@ -14,7 +14,7 @@ class AdminController extends Controller {
 
     function __construct() {
         $this->adminMenu = App::make('AdminMenu');
-        $this->adminMenu->init();
+        $this->adminMenu->categories = Category::all();//->toArray();
     }
 
     public function show()
@@ -23,12 +23,25 @@ class AdminController extends Controller {
     }
 
 	public function addCategory() {
-
 		$name = Input::get('name');
-
-		$newCategory = new Category(array("name" => $name));
-		$this->adminMenu->addCategoryToEnd($newCategory);
+		$parent_id = Input::get('parent_id');
+		if($parent_id == -1) $pranet_id = null;
+	
+		$this->adminMenu->addCategory(new Category(array("name" => $name)), $this->adminMenu->findCategoryById($parent_id));
 		
+		return Redirect::to('/admin');
+	}
+	
+	public function removeCategory($id) 
+	{
+		$this->adminMenu->removeCategory($id);
+		
+		return Redirect::to('/admin');
+	}
+	
+	public function editCategory() 
+	{
+		$this->adminMenu->editCategory(Input::get('id'), Input::get('name'));
 		return Redirect::to('/admin');
 	}
 }

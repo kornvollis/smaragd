@@ -13,3 +13,5 @@
 
 Route::get('/admin', 'AdminController@show');
 Route::post('add-category', array('uses' => 'AdminController@addCategory'));
+Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCategory'));
+Route::post('edit-category/{id}', array('uses' => 'AdminController@editCategory'));

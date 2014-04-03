@@ -44,26 +44,29 @@
 		<ol>
 		@foreach ($menu->getRootCategories() as $category)
 			@include ('admin.menu_item', array('category'=>$category))
-		@endforeach	
+		@endforeach
 		</ol>
 
 		{{ Form::open(array('action' => 'AdminController@addCategory')) }}
 			{{ Form::label('name', 'Új kategória') }}
 			{{ Form::text('name', 'barackfavirag') }}
-
+			<br>
             {{ Form::label('position', 'Pozíció') }}
             {{ Form::radio('position', 'first') }} Első
             {{ Form::radio('position', 'last', true) }} Utolsó
-
-            {{ Form::label('panda_colour', 'Hova') }}
-            {{ Form::select('panda_colour', array(
-                'default' => AdminMenu::ROOT_CATEGORY
-               ), 'default')
-            }}
+			<br>
+            {{ Form::label('parent_id', 'Hova') }}
+            {{ Form::select('parent_id', $menu->selectArray(), '-1') }}
 
 			{{ Form::submit('Hozzáad!') }}
 		{{ Form::close() }}
-        
+        <br><br><br>
+        {{ Form::open(array('action' => 'AdminController@editCategory')) }}
+			{{ Form::label('id', 'Átnevez') }}
+        	{{ Form::select('id', $menu->selectArray(false)) }}
+			{{ Form::text('name', '') }}
+			{{ Form::submit('Átnevez!') }}
+		{{ Form::close() }}
 
 	</div>
 	<div id="right-column">
@@ -81,6 +84,7 @@
 				<th>Kategória</th>
 				<th>Muveletek</th>
 			</tr>
+
 			@foreach ($products as $product)		
 				<tr>
 					<th><input type="checkbox" name="select" ></th>

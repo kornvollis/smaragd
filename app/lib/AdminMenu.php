@@ -1,92 +1,229 @@
 <?php
 
+use Illuminate\Support\Collection;
+
 class AdminMenu  {
 
-    const ROOT_CATEGORY = "Fő kategória";
+    const ROOT_CATEGORY = "Fo kategoria";
 
     public $categories;
-	public $lastCategory;
-	public $firstCategory;
 
-	function init()
-	{
-        if(!isset($this->categories)) {
-           $this->categories = Category::all();
-        }
-
+	public function selectArray($withRoot = true) {
+		if($withRoot) $result = array("-1" => AdminMenu::ROOT_CATEGORY);
+		
 		foreach ($this->categories as $cat) {
-			$this->categories[$cat->lft] = $cat;
-			
-			if(!isset($this->lastCategory))
+			$result[$cat->id] = $cat->name;
+		}
+		return $result;
+	}
+	
+	public function getAllChildren($parent)
+	{
+		$children = new Collection();
+		foreach ($this->categories as $child) 
+		{
+			if($child->lft > $parent->left && $child->rgt < $parent->rgt)
 			{
-				$this->lastCategory = $cat;
-				$this->firstCategory = $cat;
-			} else if($this->lastCategory->rgt + 1 == $cat->lft) {
-				$this->lastCategory = $cat;
+				$children->push($child);
 			}
 		}
-    }
-
-	public function getFirstChildCategories($lft, $rgt)
-	{
-		if(!isset($this->categories[$lft+1])) return [];
-		
-		$childCategories = [];
-		$firstCategory = $this->categories[$lft+1];
-		array_push($childCategories, $firstCategory);
-		
-		$childCategories = $this->nextCategory($firstCategory, $childCategories);
-		
-		return $childCategories ;
+		return $children;
 	}
 	
-	public function getRootCategories() 
+	public function getFirstChildCategories($parent)
 	{
-		if(!isset($this->categories[1])) return [];
-		
-		$rootCategories = [];
-		$firstCategory = $this->categories[1];
-		array_push($rootCategories, $firstCategory);
-		
-		$rootCategories = $this->nextCategory($firstCategory, $rootCategories);
-		
-		return $rootCategories ;
+		if(!isset($parent) || !$parent->hasChild()) return new Collection();
+		$result = new Collection();
+		return $this->getNeighbours($this->firstChildOf($parent), $result) ;
 	}
 	
-	public function size() { return count($this->categories);}
-	
-	public function addCategoryToEnd($category)
+	private function firstChildOf($category) 
 	{
-		if($this->isEmpty()) {
-			$category->lft = 1;
-			$category->rgt = 2;
-			$this->categories[1] = $category;
-			$this->firstCategory = $category;
-			$this->lastCategory = $category;
-		} else {
-			$category->lft = $this->lastCategory->rgt + 1;
-			$category->rgt = $category->lft + 1;
-			$this->categories[$category->lft] = $category;
-			$this->lastCategory = $category;
+		if(isset($category))
+		{
+			return $this->findCategoryByLft($category->lft + 1);
 		}
-		
-		$category->save();
+		return null;
 	}
 	
-	private function nextCategory($category, $accu) 
+	private function getNeighbours($node, &$accu)
 	{
-		//Log::info('$category: ' . $category . '  $accu: ' . count($accu) );
-	
-		if(isset($this->categories[$category->rgt + 1]))
-		{	
-			$next = $this->categories[$category->rgt + 1];
-			
-			array_push($accu, $next);
-			
-			return $this->nextCategory($next, $accu);
+		if($node != null)
+		{
+			$accu->push($node);
+			$this->getLeftNeighbours($node, $accu);
+			$this->getRightNeighbours($node, $accu);
 		}
 		
 		return $accu;
+	}
+	
+	private function getLeftNeighbours($node, &$accu)
+	{
+		$x = is_null($node);
+		$y = ($node == null);
+		$z = isset($node);
+		if(!is_null($node))
+		{
+			Log::info(" Left: " + $node->name + " , " + $node->left + " , "  + $node->rgt);
+			$leftNeighbour = $this->findCategoryByRgt($node->lft - 1);
+			
+			if(isset( $leftNeighbour))
+			{
+				$accu->push($leftNeighbour);
+				return $this->getLeftNeighbours($leftNeighbour, $accu);
+			} 			
+		}
+		return $accu;
+	}
+	
+	private function getRightNeighbours($node, &$accu)
+	{
+		$x = is_null($node);
+		$y = ($node == null);
+		$z = isset($node);
+		if(!is_null($node))
+		{
+			$leftNeighbour = $this->findCategoryByLft($node->rgt + 1);
+			
+			if(isset( $leftNeighbour))
+			{
+				$accu->push($leftNeighbour);
+				return $this->getRightNeighbours($leftNeighbour, $accu);
+			} 			
+		}
+		return $accu;
+	}
+
+	public function getRootCategories() 
+	{
+		$rootCategories = new Collection();
+		$this->getNeighbours($this->findCategoryByLft(1), $rootCategories);
+		return $rootCategories;
+	}
+	
+	public function findCategoryByLft($lft) 
+	{
+		foreach ($this->categories as $cat) {
+			if($cat->lft == $lft) return $cat;
+		}
+		return null;
+	}
+	
+	public function findCategoryByRgt($rgt) 
+	{
+		foreach ($this->categories as $cat) {
+			if($cat->rgt == $rgt) return $cat;
+		}
+		return null;
+	}
+	
+	public function findCategoryById($id) 
+	{
+		foreach ($this->categories as $cat) {
+			if($cat->id == $id) return $cat;
+		}
+		return null;
+	}
+	
+	public function addCategory($category, $parentCategory = null)
+	{
+		if($parentCategory == null )
+		{
+			if($this->isEmpty()) {
+				$category->lft = 1;
+				$category->rgt = 2;
+			} else {
+				$category->lft = $this->categories->count() * 2 + 1;
+				$category->rgt = $category->lft + 1;
+			}
+		} else { 
+			$this->updateRgtLftAfterAddNewCat($parentCategory);
+			$category->rgt =  $parentCategory->rgt - 1;
+			$category->lft = $category->rgt - 1;
+		}		
+		
+		$this->categories->push($category);
+
+		if (!App::environment('testing')) {$this->saveAll();}
+	}
+	
+	public function removeCategory($id)
+	{
+		$cat_marked_for_delete = $this->findCategoryById($id);
+		
+		$deletedItems = 0;
+		foreach ($this->categories as $key=>$category)
+		{
+			if($category->lft >= $cat_marked_for_delete->lft && $category->rgt <= $cat_marked_for_delete->rgt)
+			{
+				if (!App::environment('testing')) { $category->delete(); }
+				$this->categories->forget($key);
+				$deletedItems++;
+				
+			}
+		}
+		
+		foreach ($this->categories as $category)
+		{
+			if($category->rgt > $cat_marked_for_delete->rgt)
+			{
+				$category->rgt -= $deletedItems * 2;
+				if($category->lft > $cat_marked_for_delete->lft)
+				{
+					$category->lft -= $deletedItems * 2;
+				} 
+			}
+		}
+		
+		if (!App::environment('testing')) {	$this->saveAll(); }
+	}
+	
+	public function editCategory($id, $name)
+	{
+		$category = $this->findCategoryById($id);
+		$category->name = $name;
+		$category->save();
+	}
+	
+	private function findKey($item) 
+	{
+		$index = 0;
+		foreach ($this->categories as $category) 	
+		{
+			if($category->id == $item->id) {
+				return $index;				
+			} 
+			$index++;
+		}
+		return -1;
+	}
+	
+	private function saveAll()
+	{
+		foreach ($this->categories as $category) 	
+		{
+			$category->save();
+		}
+	}
+	
+	private function updateRgtLftAfterAddNewCat(&$parentCategory) 
+	{
+		if($parentCategory != null)
+		{
+			foreach ($this->categories as $category) 	
+			{
+				if($category->rgt > $parentCategory->rgt)
+				{
+					$category->rgt = $category->rgt + 2;
+					if($category->lft > $parentCategory->lft)
+					{
+						$category->lft = $category->lft + 2;
+					}
+				}
+			}
+			$parentCategory->rgt +=2;
+		}
 	}
 	
 	private function isEmpty() {
