@@ -15,7 +15,7 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="/smaragd/resources/js/bootstrap.min.js"></script>
     <script src="/smaragd/resources/js/jquery.validate.js"></script>
-
+	<script src="{{ URL::asset('js/admin.js') }}"></script>
 </head>
 
 <body>
@@ -73,7 +73,6 @@
 		<h1 id="selectedCategory">TITLE</h1> <br>
 		<table class="inventory-items table">
 			<tr>
-				<th>Kiválaszt</th>
 				<th>Kép</th>
 				<th>Név</th>
 				<th class="description">Leírás</th>
@@ -82,12 +81,11 @@
 				<th class="sell_price">Eladási ár</th>
 				<th class="profit_key">Haszon kulcs</th>
 				<th>Kategória</th>
-				<th>Muveletek</th>
+				<th>Müveletek</th>
 			</tr>
 
 			@foreach ($products as $product)		
 				<tr>
-					<th><input type="checkbox" name="select" ></th>
 					<th><img style="width: 50px;" src="{{asset('images/p/' . $product->image)}}" /></th>
 					<th>{{ $product->name}}</th>
 					<th class="description">{{ $product->description}}</th>
@@ -95,8 +93,8 @@
 					<th class="price">{{ $product->price}}</th>
 					<th class="sell_price">{{ $product->price}}</th>
 					<th class="profit_key">profit key</th>
-					<th>$product->category->name</th>
-					<th>Muveletek</th>
+					<th>{{{ $product->category->name or '---' }}}</th>
+					<th><a href="edit-product/{{$product->id}}">Módosít</a></th>
 				</tr>
 			@endforeach
 		</table>

@@ -9,6 +9,7 @@ class AdminMenu  {
     public $categories;
 
 	public function selectArray($withRoot = true) {
+		$result = array();
 		if($withRoot) $result = array("-1" => AdminMenu::ROOT_CATEGORY);
 		
 		foreach ($this->categories as $cat) {
@@ -157,7 +158,11 @@ class AdminMenu  {
 		{
 			if($category->lft >= $cat_marked_for_delete->lft && $category->rgt <= $cat_marked_for_delete->rgt)
 			{
-				if (!App::environment('testing')) { $category->delete(); }
+				if (!App::environment('testing')) {
+					Product::where('category_id', '=', $category->id)->update(array('category_id' => -1)); 
+					$category->delete(); 
+				}
+					
 				$this->categories->forget($key);
 				$deletedItems++;
 				

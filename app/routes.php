@@ -11,7 +11,13 @@
 |
 */
 
-Route::get('/admin', 'AdminController@show');
 Route::post('add-category', array('uses' => 'AdminController@addCategory'));
-Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCategory'));
 Route::post('edit-category/{id}', array('uses' => 'AdminController@editCategory'));
+
+Route::get('/admin', 'AdminController@show');
+Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCategory'));
+Route::get('edit-product/{id}', function($id) 
+{
+    return View::make('admin.product_edit', array("product" => Product::find($id)) );
+    //return "mamsamas" + $id;
+});

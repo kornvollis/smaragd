@@ -7,6 +7,11 @@ class Product extends Eloquent {
     {
         return $this->hasOne('Category', 'id', 'category_id');
     }
+    
+    public function images()
+    {
+    	return "images";
+    }
 }
 
 ?>
