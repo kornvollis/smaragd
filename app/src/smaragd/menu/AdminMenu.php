@@ -1,12 +1,17 @@
-<?php
+<?php namespace smaragd\menu;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 
-class AdminMenu  {
+class AdminMenu {
 
     const ROOT_CATEGORY = "Fo kategoria";
 
     public $categories;
+
+    protected static function getFacadeAccessor() { return 'AdminMenu'; }
+
+    public function facedeDebug() { return "kacsa"; }
 
 	public function selectArray($withRoot = true) {
 		$result = array();
@@ -30,7 +35,9 @@ class AdminMenu  {
 		}
 		return $children;
 	}
-	
+
+    public function count() { return $this->categories->count(); }
+
 	public function getFirstChildCategories($parent)
 	{
 		if(!isset($parent) || !$parent->hasChild()) return new Collection();
@@ -66,7 +73,7 @@ class AdminMenu  {
 		$z = isset($node);
 		if(!is_null($node))
 		{
-			Log::info(" Left: " + $node->name + " , " + $node->left + " , "  + $node->rgt);
+			//Log::info(" Left: " + $node->name + " , " + $node->left + " , "  + $node->rgt);
 			$leftNeighbour = $this->findCategoryByRgt($node->lft - 1);
 			
 			if(isset( $leftNeighbour))
@@ -184,10 +191,11 @@ class AdminMenu  {
 		if (!App::environment('testing')) {	$this->saveAll(); }
 	}
 	
-	public function editCategory($id, $name)
+	public function editCategory($id, $name, $description)
 	{
 		$category = $this->findCategoryById($id);
 		$category->name = $name;
+        $category->description = $description;
 		$category->save();
 	}
 	

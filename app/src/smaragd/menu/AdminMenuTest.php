@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Collection;
+use smaragd\menu\AdminMenu;
 
 class AdminMenuTest extends TestCase 
 {
@@ -45,7 +46,11 @@ class AdminMenuTest extends TestCase
 		$this->adminMenu = new AdminMenu();
         $this->adminMenu->categories = $categories;
 	}
-	
+
+    public function testFacedeDebug() {
+        $this->assertEquals("kacsa", Menu::facedeDebug());
+    }
+
 	public function testAdminMenuNotNull()
 	{
 		$this->assertTrue(isset($this->adminMenu));

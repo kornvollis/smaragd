@@ -1,10 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omli
- * Date: 2014.03.16.
- * Time: 17:53
- */
+
+use smaragd\menu\AdminMenu;
+
 class AdminController extends Controller {
 
     /**
@@ -13,8 +10,9 @@ class AdminController extends Controller {
     private $adminMenu;
 
     function __construct() {
-        $this->adminMenu = App::make('AdminMenu');
-        $this->adminMenu->categories = Category::all();//->toArray();
+        //$this->adminMenu = App::make('AdminMenu');
+        //$this->adminMenu->categories = Category::all();//->toArray();
+        $this->adminMenu = Menu::getFacadeRoot();
     }
 
     public function show()
@@ -39,10 +37,14 @@ class AdminController extends Controller {
 		return Redirect::to('/admin');
 	}
 	
-	public function editCategory() 
+	public function updateProduct()
 	{
-		$this->adminMenu->editCategory(Input::get('id'), Input::get('name'));
-		return Redirect::to('/admin');
+		//$this->adminMenu->editCategory(Input::get('id'), Input::get('name'), Input::get('description'));
+		$product = Product::find(Input::get('id'));
+        $product->name = "kak";
+        $product->save();
+
+        return Redirect::to('/admin');
 	}
 }
 

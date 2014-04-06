@@ -13,6 +13,7 @@
 
 Route::post('add-category', array('uses' => 'AdminController@addCategory'));
 Route::post('edit-category/{id}', array('uses' => 'AdminController@editCategory'));
+Route::post('update-product', array('uses' => 'AdminController@updateProduct'));
 
 Route::get('/admin', 'AdminController@show');
 Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCategory'));
