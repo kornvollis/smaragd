@@ -11,10 +11,11 @@
 |
 */
 
-Route::post('add-category', array('uses' => 'AdminController@addCategory'));
+Route::post('add-category', array('uses' => 'AdminController@addCategory', 'files'=> true));
 Route::post('edit-category/{id}', array('uses' => 'AdminController@editCategory'));
 Route::post('update-product', array('uses' => 'AdminController@updateProduct'));
-
+Route::post('upload-product-image', array('uses' => 'AdminController@uploadProductImage'));
+Route::get('delete-product-image', array('as' => 'delete-product', 'uses' => 'AdminController@deleteProductImage'));
 Route::get('/admin', 'AdminController@show');
 Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCategory'));
 Route::get('edit-product/{id}', function($id) 

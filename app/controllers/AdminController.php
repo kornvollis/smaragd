@@ -38,13 +38,34 @@ class AdminController extends Controller {
 	}
 	
 	public function updateProduct()
-	{
-		//$this->adminMenu->editCategory(Input::get('id'), Input::get('name'), Input::get('description'));
+	{		
 		$product = Product::find(Input::get('id'));
-        $product->name = "kak";
+        $product->fill(Input::all());
         $product->save();
 
         return Redirect::to('/admin');
+	}
+	
+	public function uploadProductImage()
+	{
+		$file = Input::file('image');
+		$id = Input::get('id');
+		$destinationPath = 'images/p/';
+		
+		$prodImage = new ProductImage(array('path' => $file->getClientOriginalName(), 'product_id' => $id));
+		$prodImage->save();
+		
+		Input::file('image')->move($destinationPath, $file->getClientOriginalName());
+		return Redirect::to('edit-product/' . $id);
+	}
+	
+	public function deleteProductImage()
+	{
+		$id = Input::get('id'); 
+		$product_id = Input::get('product_id');
+		
+		ProductImage::find($id)->delete();
+		return Redirect::to('edit-product/' . $product_id);
 	}
 }
 

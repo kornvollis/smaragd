@@ -86,7 +86,7 @@
 
 			@foreach ($products as $product)		
 				<tr>
-					<th><img style="width: 50px;" src="{{asset('images/p/' . $product->image)}}" /></th>
+					<th><img style="width: 50px;" src="{{$product->getFirstImage()}}" /></th>
 					<th>{{ $product->name}}</th>
 					<th class="description">{{ $product->description}}</th>
 					<th class="netto_price">{{ $product->price}}</th>
