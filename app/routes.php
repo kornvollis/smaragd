@@ -16,10 +16,19 @@ Route::post('edit-category/{id}', array('uses' => 'AdminController@editCategory'
 Route::post('update-product', array('uses' => 'AdminController@updateProduct'));
 Route::post('upload-product-image', array('uses' => 'AdminController@uploadProductImage'));
 Route::get('delete-product-image', array('as' => 'delete-product', 'uses' => 'AdminController@deleteProductImage'));
-Route::get('/admin', 'AdminController@show');
+Route::get('/admin/{id?}', 'AdminController@show');
+
 Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCategory'));
 Route::get('edit-product/{id}', function($id) 
 {
     return View::make('admin.product_edit', array("product" => Product::find($id)) );
     //return "mamsamas" + $id;
 });
+
+
+/* MAIN ROUTES */
+Route::get('/', array('as' => 'home', 'uses' => 'MainController@homepage'));
+Route::get('/Rolunk', array('as' => 'about', 'uses' => 'MainController@about'));
+Route::get('/Termekek/{id?}', array('as' => 'products', 'uses' => 'MainController@products'));
+Route::get('/Szallitas-fizetes', array('as' => 'shippinginfo', 'uses' => 'MainController@shippinginfo'));
+/* Route::get('/Kapcsolat', array('as' => 'contact', 'uses' => 'MainController@contact')); */

@@ -1,0 +1,50 @@
+<?php
+
+use smaragd\menu\AdminMenu;
+
+class MainController extends Controller {
+
+    /**
+     * Show the profile for the given user.
+     */
+    private $adminMenu;
+
+    function __construct() {
+        //$this->adminMenu = App::make('AdminMenu');
+        //$this->adminMenu->categories = Category::all();//->toArray();
+       // $this->adminMenu = Menu::getFacadeRoot();
+    }
+
+    public function homepage($id = null)
+    {    	
+        return View::make('home');
+    }
+    
+	public function about()
+    {    	
+        return View::make('about');
+    }
+    
+	public function contact()
+    {    	
+        return View::make('contact');
+    }
+    
+	public function products($id = null)
+    {    	
+    	if(!is_null($id))
+    	{
+    		$displayedProds = Product::where('category_id', '=', $id)->get(); 
+    	} else {
+    		$displayedProds = Product::all();
+    	}
+        return View::make('products', array('products' => $displayedProds));
+    }
+    
+	public function shippinginfo()
+    {    	
+        return View::make('shippinginfo');
+    }
+}
+
+?>

@@ -1,23 +1,31 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" />
+</head>
+
+<body>
+<div style="width:800px; margin-left:auto; margin-right:auto;" id="edit">
 {{ Form::open(array('action' => 'AdminController@updateProduct'))  }}
 
     {{ Form::text('id', $product->id, array('style' => 'display:none')) }}
 
     {{ Form::label('name', 'Név') }}
-    {{ Form::text('name', $product->name) }}
+    {{ Form::text('name', $product->name, array('class' => 'form-control')) }}
 
-    {{ Form::label('description', 'Név') }}
-    {{ Form::text('description', $product->description) }}
+    {{ Form::label('description', 'Részletes leírás') }}
+    {{ Form::textarea('description', $product->description, array('class' => 'form-control')) }}
 
     {{ Form::label('price', 'Ár') }}
-    {{ Form::text('price', $product->price) }}
+    {{ Form::text('price', $product->price, array('class' => 'form-control')) }}
 
     {{ Form::label('category_id', 'Kategória') }}
-    {{ Form::select('category_id', Menu::selectArray(false)) }}
+    {{ Form::select('category_id', Menu::selectArray(false), null,  array('class' => 'form-control')) }}
 
-    {{ Form::submit('Módosít!') }}
+    {{ Form::submit('Módosít!', array('class' => 'btn btn-default')) }}
 {{ Form::close() }}
 
-<p>Képek</p>
+<h1>Képek</h1>
 
 @if (count($product->images) > 0)
 	<ul>
@@ -32,4 +40,7 @@
 	{{ Form::file('image') }}
 	{{ Form::submit('Feltölt!') }}	
 {{ Form::close() }}
-   	
+</div>
+</body>
+
+</html>

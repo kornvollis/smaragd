@@ -15,9 +15,12 @@ class AdminController extends Controller {
         $this->adminMenu = Menu::getFacadeRoot();
     }
 
-    public function show()
+    public function show($id = null)
     {
-        return View::make('admin.index', array("products" => Product::all(), "menu" => $this->adminMenu));
+    	if(!is_null($id)) $displayProds = Product::where('category_id', '=', $id)->get(); 
+    	else $displayProds = Product::all();
+    	
+        return View::make('admin.index', array("products" => $displayProds, "menu" => $this->adminMenu));
     }
 
 	public function addCategory() {
@@ -27,6 +30,16 @@ class AdminController extends Controller {
 	
 		$this->adminMenu->addCategory(new Category(array("name" => $name)), $this->adminMenu->findCategoryById($parent_id));
 		
+		return Redirect::to('/admin');
+	}
+	
+	public function editCategory() {
+		$category = Category::find(Input::get('id'));
+		if(isset($category))
+		{
+			$category->fill(Input::all());
+			$category->save();
+		}		
 		return Redirect::to('/admin');
 	}
 	

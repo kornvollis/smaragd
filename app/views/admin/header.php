@@ -5,16 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="/smaragd/resources/css/bootstrap.min.css" />
+    
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="/smaragd/resources/css/admin.css" />
+	<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" />
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="/smaragd/resources/js/bootstrap.min.js"></script>
     <script src="/smaragd/resources/js/jquery.validate.js"></script>
-
 </head>
 
 <body>

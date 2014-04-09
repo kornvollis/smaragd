@@ -38,39 +38,39 @@
 
 <div id="admin-page">
 
-
 <div style="position: relative">
 	<div id="left-column">
 		<ol>
-		@foreach ($menu->getRootCategories() as $category)
-			@include ('admin.menu_item', array('category'=>$category))
-		@endforeach
+			<li>Mutasd mind</li>
+			@foreach ($menu->getRootCategories() as $category)
+				@include ('admin.menu_item', array('category'=>$category))
+			@endforeach
 		</ol>
 
 		{{ Form::open(array('action' => 'AdminController@addCategory')) }}
 			{{ Form::label('name', 'Új kategória') }}
-			{{ Form::text('name', 'barackfavirag') }}
+			{{ Form::text('name', 'barackfavirag', array('class' => 'form-control')) }}
 			<br>
             {{ Form::label('position', 'Pozíció') }}
             {{ Form::radio('position', 'first') }} Első
             {{ Form::radio('position', 'last', true) }} Utolsó
 			<br>
             {{ Form::label('parent_id', 'Hova') }}
-            {{ Form::select('parent_id', $menu->selectArray(), '-1') }}
+            {{ Form::select('parent_id', $menu->selectArray(), '-1', array('class' => 'form-control')) }}
 
 			{{ Form::submit('Hozzáad!') }}
 		{{ Form::close() }}
         <br><br><br>
         {{ Form::open(array('action' => 'AdminController@editCategory')) }}
 			{{ Form::label('id', 'Átnevez') }}
-        	{{ Form::select('id', $menu->selectArray(false)) }}
-			{{ Form::text('name', '') }}
-			{{ Form::submit('Átnevez!') }}
+        	{{ Form::select('id', $menu->selectArray(false), null, array('class' => 'form-control')) }}
+			{{ Form::text('name', '', array('class' => 'form-control')) }}
+			{{ Form::submit('Átnevez!', array('class' => 'form-control')) }}
 		{{ Form::close() }}
 
 	</div>
 	<div id="right-column">
-		<h1 id="selectedCategory">TITLE</h1> <br>
+		<h1 id="selectedCategory">Termékek</h1> <br>
 		<table class="inventory-items table">
 			<tr>
 				<th>Kép</th>

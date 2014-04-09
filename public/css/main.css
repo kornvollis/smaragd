@@ -10,11 +10,15 @@ html, body {
 	margin-bottom: 200px;  
 }
 
-#smaragd {
+body {
 	width: 960px;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #fff;
+}
+
+.container {
+	background-color: white;	
 }
 
 #header-logo {
@@ -33,7 +37,7 @@ html, body {
 /* CARUSSEL */
 
 #carousel {
-	height: 360px;
+	/* height: 360px; */
 	background-color:#099;	
 }
 

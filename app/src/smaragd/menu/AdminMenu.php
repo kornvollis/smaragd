@@ -243,6 +243,7 @@ class AdminMenu {
 		return ( count($this->categories) == 0 );
 	}
 	
+	public function allCategories() {return $this->categories; } 
 }
 
 ?>
