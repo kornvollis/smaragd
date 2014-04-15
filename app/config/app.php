@@ -107,6 +107,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'smaragd\menu\AdminMenuServiceProvider',
+		'smaragd\cart\CartServiceProvider',
 	),
 
 	/*
@@ -173,6 +174,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
         'Menu'            => 'smaragd\menu\AdminMenuFacade',
+		'SCart'            => 'smaragd\cart\CartFacade',
 	),
 
 );

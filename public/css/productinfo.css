@@ -6,13 +6,23 @@
 
 .productInfo-img {
 	display: inline-block;
-	
+	max-width: 350px;
+	/*max-height: 350px;*/
+}
+
+.productInfo-small-img {
+	max-width: 50px;
+	max-height: 50px;	
+}
+
+#thumbnails div {
+	display: inline-block;	
 }
 
 .productInfoImageContainer {
 	display: inline-block;
 	width: 350px;
-	height: 350px;
+	/* height: 350px; */
 	border: 1px solid #000;
 	text-align: center;
 	margin-left: 15px;

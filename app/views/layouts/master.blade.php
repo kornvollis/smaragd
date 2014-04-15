@@ -39,5 +39,7 @@
 	        </div>
 	        <div class="footer-bottomline">2014 Smaragd Út webshop - Minden jog fentartva.</div>
 		</div> <!-- /FOOTER -->
+		
+		@yield('end')
     </body>
 </html>

@@ -45,6 +45,11 @@ class MainController extends Controller {
     {    	
         return View::make('shippinginfo');
     }
+    
+    public function info($id) 
+    {
+    	return View::make('info', array('product' => Product::find($id)));
+    }
 }
 
 ?>

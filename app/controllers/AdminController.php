@@ -22,14 +22,14 @@ class AdminController extends Controller {
     	
         return View::make('admin.index', array("products" => $displayProds, "menu" => $this->adminMenu));
     }
-
-	public function addCategory() {
-		$name = Input::get('name');
-		$parent_id = Input::get('parent_id');
-		if($parent_id == -1) $pranet_id = null;
 	
-		$this->adminMenu->addCategory(new Category(array("name" => $name)), $this->adminMenu->findCategoryById($parent_id));
-		
+	public function addCategory() {
+		$category = Category::find(Input::get('id'));
+		if(isset($category))
+		{
+			$category->fill(Input::all());
+			$category->save();
+		}		
 		return Redirect::to('/admin');
 	}
 	
@@ -48,6 +48,14 @@ class AdminController extends Controller {
 		$this->adminMenu->removeCategory($id);
 		
 		return Redirect::to('/admin');
+	}
+	
+	public function addProduct() {
+		$product = new Product();
+		$product->fill(Input::all());
+		$product->save();
+		
+		return Redirect::to('edit-product/' . $product->id);
 	}
 	
 	public function updateProduct()

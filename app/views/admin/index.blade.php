@@ -31,7 +31,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             <li><span class="editlock glyphicon glyphicon-lock"></span></li>
-            <li><a id="admin-newproduct">Új termék</a></li>
+            <li><a href="add-product">Új termék</a></li>
         </ul>
     </div>
 </nav>
@@ -102,7 +102,7 @@
 </div>
 
 	
-	
+
 	
 </body>
 

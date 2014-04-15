@@ -19,6 +19,8 @@ Route::get('delete-product-image', array('as' => 'delete-product', 'uses' => 'Ad
 Route::get('/admin/{id?}', 'AdminController@show');
 
 Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCategory'));
+Route::get('add-product', function() {return View::make('admin.product_add');});
+Route::post('add-product', array('uses' => 'AdminController@addProduct'));
 Route::get('edit-product/{id}', function($id) 
 {
     return View::make('admin.product_edit', array("product" => Product::find($id)) );
@@ -31,4 +33,5 @@ Route::get('/', array('as' => 'home', 'uses' => 'MainController@homepage'));
 Route::get('/Rolunk', array('as' => 'about', 'uses' => 'MainController@about'));
 Route::get('/Termekek/{id?}', array('as' => 'products', 'uses' => 'MainController@products'));
 Route::get('/Szallitas-fizetes', array('as' => 'shippinginfo', 'uses' => 'MainController@shippinginfo'));
+Route::get('/info/{id}', array('as' => 'info', 'uses' => 'MainController@info'));
 /* Route::get('/Kapcsolat', array('as' => 'contact', 'uses' => 'MainController@contact')); */
