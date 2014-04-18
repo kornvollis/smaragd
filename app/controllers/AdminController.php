@@ -10,8 +10,6 @@ class AdminController extends Controller {
     private $adminMenu;
 
     function __construct() {
-        //$this->adminMenu = App::make('AdminMenu');
-        //$this->adminMenu->categories = Category::all();//->toArray();
         $this->adminMenu = Menu::getFacadeRoot();
     }
 

@@ -53,7 +53,8 @@
 }
 
 .product-image {
-	width: 218px;
+	max-width: 218px;
+	max-height: 218px;
 }
 
 .product h1 {

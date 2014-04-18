@@ -16,8 +16,9 @@ class MainController extends Controller {
     }
 
     public function homepage($id = null)
-    {    	
-        return View::make('home');
+    {
+    	$featuredProducts = Product::where('isFeatured' , '=', 1)->get();
+        return View::make('home', array('featuredProducts' => $featuredProducts));
     }
     
 	public function about()

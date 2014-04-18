@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <div class="a-col">
 	@include('includes/leftmenu')
 </div>

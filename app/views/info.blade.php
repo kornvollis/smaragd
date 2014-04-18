@@ -22,7 +22,7 @@
 		<h1>{{ $product->name }}</h1>
 		<div>{{ $product->description }}</div>
 		<h2>{{ $product->price }}</h2>
-		<form role="form" action="cart/add" method="post">
+		<form role="form" action="{{URL::route('cart-add', array('id' => $product->id))}}" method="post">
 			<input id="quantity" style="width: 87px;" type="number" name="qty" value="1"  min="1" />
 			<input type="id" name="id" style="display: none;" value="{{ $product->id }}" />
 			<br><br><button type="submit" class="btn btn-success">Kosárba rak<span style="margin-left: 11px;" class="glyphicon glyphicon-shopping-cart"></span></button>
