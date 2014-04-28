@@ -12,8 +12,6 @@
 		<th>Darab</th>
 		<th>Műveletek</th>
 	</tr>
-	
-	getAll
 	@foreach (SCart::getAll() as $cartItem)
 		<tr>
 			<td> {{ $cartItem->getProduct()->name }}</td>
@@ -28,7 +26,9 @@
 	<a href="{{ URL::route('cart-remove-all') }}"> Összes termék törlése </a>
 	<h2>A teljes összeg: <?php //echo $this->cart->total(); ?> Ft</h2>
 	<br/>
-	<button class="btn btn-success" > Tovább a pénztárhoz </button>
+	<a href="{{ URL::route('payments') }}">
+		<button class="btn btn-success" > Tovább a pénztárhoz </button>
+	</a>
 </div>
 
 <script>

@@ -11,13 +11,13 @@
 |
 */
 
+/* ADMIN Routes */
+Route::get('/admin/{id?}', array('before' => 'auth.basic', 'as' => 'admin-show', 'uses' => 'AdminController@show'));
 Route::post('add-category', array('uses' => 'AdminController@addCategory', 'files'=> true));
 Route::post('edit-category/{id}', array('uses' => 'AdminController@editCategory'));
 Route::post('update-product', array('uses' => 'AdminController@updateProduct'));
 Route::post('upload-product-image', array('uses' => 'AdminController@uploadProductImage'));
 Route::get('delete-product-image', array('as' => 'delete-product', 'uses' => 'AdminController@deleteProductImage'));
-Route::get('/admin/{id?}', 'AdminController@show');
-
 Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCategory'));
 Route::get('add-product', function() {return View::make('admin.product_add');});
 Route::post('add-product', array('uses' => 'AdminController@addProduct'));
@@ -27,6 +27,9 @@ Route::get('edit-product/{id}', function($id)
     //return "mamsamas" + $id;
 });
 
+
+/* SEARCH RESULTS */
+Route::get('/Kereses/{search_param}', array('as' => 'search-results', 'uses' => 'MainController@searchResults'));
 
 /* MAIN ROUTES */
 Route::get('/', array('as' => 'home', 'uses' => 'MainController@homepage'));
@@ -41,3 +44,8 @@ Route::get('/info/{id}', array('as' => 'info', 'uses' => 'MainController@info'))
 /* CART */
 Route::get('/cart-remove-all', array('as' => 'cart-remove-all', 'uses' => 'CartController@removeAll'));
 Route::get('/cart-remove/{id}', array('as' => 'cart-remove', 'uses' => 'CartController@remove'));
+
+/* CASHIER */
+Route::get('/Penztar', array('as' => 'payments', 'uses' => 'PaymentsController@show'));
+Route::post('/Rendeles', array('as' => 'order', 'uses' => 'PaymentsController@order'));
+Route::get('/SikeresRendeles', array('as' => 'order-success', 'uses' => 'PaymentsController@orderSuccess'));

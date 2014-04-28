@@ -12,7 +12,7 @@ class MainController extends Controller {
     function __construct() {
         //$this->adminMenu = App::make('AdminMenu');
         //$this->adminMenu->categories = Category::all();//->toArray();
-       // $this->adminMenu = Menu::getFacadeRoot();
+        //$this->adminMenu = Menu::getFacadeRoot();
     }
 
     public function homepage($id = null)
@@ -50,6 +50,15 @@ class MainController extends Controller {
     public function info($id) 
     {
     	return View::make('info', array('product' => Product::find($id)));
+    }
+    
+    public function searchResults($search_param)
+    {
+    	$searchRegexp = ".*" . $search_param . ".*";
+    	$products = Product::whereRaw("name REGEXP ".$searchRegexp." or description REGEXP " .$searchRegexpe)->get();
+    	//$products	= Product::whereRaw("name REGEXP 'Szuper kapa'")->union($products_1)->get(); 
+    	
+    	return View::make('search_results', array('products' => $products) );
     }
 }
 
