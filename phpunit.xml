@@ -14,6 +14,7 @@
         <testsuite name="Application Test Suite">
             <directory>./app/tests/</directory>
             <directory>./app/src/</directory>
+            <directory>./app/controllers/</directory>
         </testsuite>
     </testsuites>
 </phpunit>

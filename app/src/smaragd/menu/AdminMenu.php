@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
+use Product;
 
 class AdminMenu {
 
@@ -10,8 +11,6 @@ class AdminMenu {
     public $categories;
 
     protected static function getFacadeAccessor() { return 'AdminMenu'; }
-
-    public function facedeDebug() { return "kacsa"; }
 
 	public function selectArray($withRoot = true) {
 		$result = array();

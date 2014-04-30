@@ -24,12 +24,11 @@ Route::post('add-product', array('uses' => 'AdminController@addProduct'));
 Route::get('edit-product/{id}', function($id) 
 {
     return View::make('admin.product_edit', array("product" => Product::find($id)) );
-    //return "mamsamas" + $id;
 });
 
 
 /* SEARCH RESULTS */
-Route::get('/Kereses/{search_param}', array('as' => 'search-results', 'uses' => 'MainController@searchResults'));
+Route::post('/Kereses', array('as' => 'search-results', 'uses' => 'MainController@searchResults'));
 
 /* MAIN ROUTES */
 Route::get('/', array('as' => 'home', 'uses' => 'MainController@homepage'));

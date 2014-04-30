@@ -1,33 +1,28 @@
 <?php
 
-use smaragd\menu\AdminMenu;
-
 class AdminController extends Controller {
 
-    /**
-     * Show the profile for the given user.
-     */
-    private $adminMenu;
+    private $product; 
 
-    function __construct() {
-        $this->adminMenu = Menu::getFacadeRoot();
+    function __construct(Product $product) {
+    	$this->product = $product;
     }
-
+    
     public function show($id = null)
     {
-    	if(!is_null($id)) $displayProds = Product::where('category_id', '=', $id)->get(); 
-    	else $displayProds = Product::all();
+    	if(!is_null($id)) $displayProds = $this->product->where('category_id', '=', $id)->get(); 
+    	else $displayProds = $this->product->all();
     	
-        return View::make('admin.index', array("products" => $displayProds, "menu" => $this->adminMenu));
+        return View::make('admin.index', array("products" => $displayProds));
     }
 	
 	public function addCategory() {
-		$category = Category::find(Input::get('id'));
-		if(isset($category))
-		{
-			$category->fill(Input::all());
-			$category->save();
-		}		
+		$name = Input::get('name');
+		$parent_id = Input::get('parent_id');
+		if($parent_id == -1) $pranet_id = null;
+
+		Menu::addCategory(new Category(array("name" => $name)), Menu::findCategoryById($parent_id));
+
 		return Redirect::to('/admin');
 	}
 	
@@ -43,7 +38,7 @@ class AdminController extends Controller {
 	
 	public function removeCategory($id) 
 	{
-		$this->adminMenu->removeCategory($id);
+		Menu::removeCategory($id);
 		
 		return Redirect::to('/admin');
 	}

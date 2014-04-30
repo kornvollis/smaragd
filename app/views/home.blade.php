@@ -6,17 +6,17 @@
 @stop
 
 @section('content')
-	<div id="featured-products">asd
+	<h1 class="featuredProducts-header">		
+		Kiemelt ajánlatok
+	</h1>
+	<div id="featured-products">
 		@foreach ($featuredProducts as $product)
 		<a href="/smaragd/products/info/">
 			<div style="display: inline-block;" class="featuredProducts-item">
-				<div class="featuredProducts-header">		
-					Kiemelt ajánlat
-				</div>
 				<div class="featuredProducts-imageholder" >
 					<img style="max-width: 218px; max-height: 218px;" class="featuredProducts-image" src="{{$product->getFirstImage()}}"></img>
 				</div>
-				<h1> {{$product->name}} </h1>
+				<p class="featuredProducts-name"> {{$product->name}} </p>
 				<p class="featuredProducts-price"> {{ $product->price }} Ft </p>
 			</div>
 		</a>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Collection;
 use smaragd\cart\Cart;
+use smaragd\cart\CartItem;
 
 class CartTest extends TestCase 
 {
@@ -10,16 +11,13 @@ class CartTest extends TestCase
 	public function setUp()
 	{
 		parent::setUp();
-	 	
 	}
 	
 	public function testAddCart() {
-        SCart::add(1);
-        SCart::add(1);
-        SCart::add(1);
+        $cartItem = new CartItem();
+		SCart::add($cartItem);
         
-        $this->assertEquals(3, SCart::num(1));
-        $this->assertEquals(0, SCart::num(-3));
+        $this->assertEquals(1, SCart::num());
     }
 	
     public function testRemoveCart() {

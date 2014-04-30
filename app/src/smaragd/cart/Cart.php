@@ -50,6 +50,13 @@ class Cart {
 			Session::put(Cart::CART, array());
 		} 
 	}
+	
+	public function num()
+	{
+		$numberOfItems = 0;
+		if(Session::has(Cart::CART)) $numberOfItems = count(Session::get(Cart::CART)) ;
+		return $numberOfItems;
+	}
 }
 
 ?>

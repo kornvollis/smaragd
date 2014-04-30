@@ -42,7 +42,7 @@
 	<div id="left-column">
 		<ol>
 			<li>Mutasd mind</li>
-			@foreach ($menu->getRootCategories() as $category)
+			@foreach (Menu::getRootCategories() as $category)
 				@include ('admin.menu_item', array('category'=>$category))
 			@endforeach
 		</ol>
@@ -56,14 +56,14 @@
             {{ Form::radio('position', 'last', true) }} Utolsó
 			<br>
             {{ Form::label('parent_id', 'Hova') }}
-            {{ Form::select('parent_id', $menu->selectArray(), '-1', array('class' => 'form-control')) }}
+            {{ Form::select('parent_id', Menu::selectArray(), '-1', array('class' => 'form-control')) }}
 
 			{{ Form::submit('Hozzáad!') }}
 		{{ Form::close() }}
         <br><br><br>
         {{ Form::open(array('action' => 'AdminController@editCategory')) }}
 			{{ Form::label('id', 'Átnevez') }}
-        	{{ Form::select('id', $menu->selectArray(false), null, array('class' => 'form-control')) }}
+        	{{ Form::select('id', Menu::selectArray(false), null, array('class' => 'form-control')) }}
 			{{ Form::text('name', '', array('class' => 'form-control')) }}
 			{{ Form::submit('Átnevez!', array('class' => 'form-control')) }}
 		{{ Form::close() }}

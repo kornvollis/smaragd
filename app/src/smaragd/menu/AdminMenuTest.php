@@ -25,15 +25,7 @@ class AdminMenuTest extends TestCase
 		parent::setUp();
 	 
 		$categories = new Collection();
-		/*
-		array_push($categories,  new Category(array("name" => "Root" ,     "lft" => 1, "rgt" => 10)));
-        array_push($categories,  new Category(array("name" => "Sub1" ,     "lft" => 2, "rgt" => 3)));
-        array_push($categories,  new Category(array("name" => "Sub2" ,     "lft" => 4, "rgt" => 9, "id" => 665)));
-        array_push($categories,  new Category(array("name" => "Sub2Sub1" , "lft" => 5, "rgt" => 6, "id" => 666)));
-        array_push($categories,  new Category(array("name" => "Sub2Sub2" , "lft" => 7, "rgt" => 8, "id" => 667)));
-        array_push($categories,  new Category(array("name" => "Root2" ,    "lft" => 11, "rgt" => 12)));
-        array_push($categories,  new Category(array("name" => "Root3" ,    "lft" => 13, "rgt" => 14)));
-		*/
+
 		$categories->push(new Category(array("name" => "Root" ,     "lft" => 1, "rgt" => 10, "id" => 1)));
         $categories->push(new Category(array("name" => "Sub1" ,     "lft" => 2, "rgt" => 3)));
         $categories->push(new Category(array("name" => "Sub2" ,     "lft" => 4, "rgt" => 9, "id" => 665)));
@@ -46,10 +38,6 @@ class AdminMenuTest extends TestCase
 		$this->adminMenu = new AdminMenu();
         $this->adminMenu->categories = $categories;
 	}
-
-    public function testFacedeDebug() {
-        $this->assertEquals("kacsa", Menu::facedeDebug());
-    }
 
 	public function testAdminMenuNotNull()
 	{

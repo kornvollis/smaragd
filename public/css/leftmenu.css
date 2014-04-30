@@ -1,5 +1,10 @@
-#leftMenu {
-	
+#leftMenu a {
+	color:black;
+}
+
+#leftMenu h1 {
+	font-size: 22px;
+	color: grey;
 }
 
 #leftMenu ol {
@@ -15,69 +20,3 @@
 .leftMenu-hidden {
 	display: none;
 }
-
-/*
-.badge {
-	background-color: #fff;
-	color: #108823;
-}
-
-#leftMenu>ul>li>ul .badge {
-	background-color: transparent;
-}
-
-#leftMenu {
-	display: inline-block;
-	background-color: rgb(208, 253, 208);
-	margin-top: 15px;	
-	margin-left: 15px;
-}
-
-#leftMenu-title {
-	text-align: center;	
-	background-color: #108823;
-	color: #D4FFCA;
-	padding: 10px 0px;
-	margin-bottom: 5px;
-}
-
-#leftMenu ul {
-	margin  : 0px;
-	padding : 0px;
-	list-style-type: none;
-}
-
-#leftMenu>ul>li {
-	margin-left: 0px;	
-}
-
-#leftMenu>ul>li>a {
-	background-color: #ACFF8C;
-	font-weight: bold;
-}
-
-#leftMenu>ul>li>ul a {
-	padding: 3px 0px;
-	padding-left: 15px;
-	padding-right: 3px;
-}
-
-#leftMenu .leftMenu-hidden {
-	display: none;
-}
-
-#leftMenu  .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-	background-color: #108823;
-	color: #fff;
-}
-
-#leftMenu .nav>li>a:hover, .nav>li>a:focus {
-	/*background-color: #FF0000;*/
-	color: #108823;
-}
-
-#leftMenu .nav>li>a.active {
-	background-color: #108823;
-	color: #fff;
-}
-*/
