@@ -89,9 +89,9 @@
 					<th><img style="width: 50px;" src="{{$product->getFirstImage()}}" /></th>
 					<th>{{ $product->name}}</th>
 					<th class="description">{{ $product->description}}</th>
-					<th class="netto_price">{{ $product->price}}</th>
-					<th class="price">{{ $product->price}}</th>
-					<th class="sell_price">{{ $product->price}}</th>
+					<th class="netto_price">{{ $product->price / 1.25 }}</th>
+					<th class="price">{{ $product->price }}</th>
+					<th class="sell_price">{{ $product->price }}</th>
 					<th class="profit_key">profit key</th>
 					<th>{{{ $product->category->name or '---' }}}</th>
 					<th>
