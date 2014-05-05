@@ -5,6 +5,7 @@
 </head>
 
 <body>
+<a href="{{ URL::action('AdminController@show') }}">Vissza</a>
 <div style="width:800px; margin-left:auto; margin-right:auto;" id="edit">
 {{ Form::open(array('action' => 'AdminController@updateProduct'))  }}
 
@@ -20,7 +21,7 @@
     {{ Form::text('price', $product->price, array('class' => 'form-control')) }}
 
     {{ Form::label('category_id', 'Kategória') }}
-    {{ Form::select('category_id', Menu::selectArray(false), null,  array('class' => 'form-control')) }}
+    {{ Form::select('category_id', Menu::selectArray(false), $product->category->id,  array('class' => 'form-control')) }}
 
     {{ Form::submit('Módosít!', array('class' => 'btn btn-default')) }}
 {{ Form::close() }}

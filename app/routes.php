@@ -12,6 +12,7 @@
 */
 
 /* ADMIN Routes */
+Route::get('/admin/show-add-product', array('uses' => 'AdminController@showAddProduct'));
 Route::get('/admin/{id?}', array('before' => 'auth.basic', 'as' => 'admin-show', 'uses' => 'AdminController@show'));
 Route::post('add-category', array('uses' => 'AdminController@addCategory', 'files'=> true));
 Route::post('edit-category/{id}', array('uses' => 'AdminController@editCategory'));
@@ -19,12 +20,12 @@ Route::post('update-product', array('uses' => 'AdminController@updateProduct'));
 Route::post('upload-product-image', array('uses' => 'AdminController@uploadProductImage'));
 Route::get('delete-product-image', array('as' => 'delete-product', 'uses' => 'AdminController@deleteProductImage'));
 Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCategory'));
-Route::get('add-product', function() {return View::make('admin.product_add');});
-Route::post('add-product', array('uses' => 'AdminController@addProduct'));
-Route::get('edit-product/{id}', function($id) 
-{
-    return View::make('admin.product_edit', array("product" => Product::find($id)) );
-});
+Route::post('/admin/add-product', array('uses' => 'AdminController@addProduct'));
+Route::get('/admin/remove-product/{id}', array('uses' => 'AdminController@removeProduct'));
+Route::get('/admin/edit-product/{id}', array('uses' => 'AdminController@editProduct'));
+//{
+  //  return View::make('admin.product_edit', array("product" => Product::find($id)) );
+//});
 
 
 /* SEARCH RESULTS */

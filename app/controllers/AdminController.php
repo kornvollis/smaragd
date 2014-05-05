@@ -39,16 +39,30 @@ class AdminController extends Controller {
 	public function removeCategory($id) 
 	{
 		Menu::removeCategory($id);
+		return Redirect::to('/admin');
+	}
+	
+	public function removeProduct($id) 
+	{
+		Product::find($id)->delete();
 		
 		return Redirect::to('/admin');
 	}
 	
+	public function showAddProduct() {
+		return View::make('admin.product_add');
+	}
+ 
 	public function addProduct() {
 		$product = new Product();
 		$product->fill(Input::all());
 		$product->save();
 		
-		return Redirect::to('edit-product/' . $product->id);
+		return Redirect::to(URL::action('AdminController@editProduct', array('id' => $product->id)));
+	}
+	
+	public function editProduct($id) {
+		return View::make('admin.product_edit', array("product" => Product::find($id)) );
 	}
 	
 	public function updateProduct()
@@ -70,7 +84,7 @@ class AdminController extends Controller {
 		$prodImage->save();
 		
 		Input::file('image')->move($destinationPath, $file->getClientOriginalName());
-		return Redirect::to('edit-product/' . $id);
+		return Redirect::to(URL::action('AdminController@editProduct', array('id' => $id)));
 	}
 	
 	public function deleteProductImage()
@@ -79,7 +93,7 @@ class AdminController extends Controller {
 		$product_id = Input::get('product_id');
 		
 		ProductImage::find($id)->delete();
-		return Redirect::to('edit-product/' . $product_id);
+		return Redirect::to(URL::action('AdminController@editProduct', array('id' => $id)));
 	}
 }
 

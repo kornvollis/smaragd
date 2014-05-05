@@ -11,18 +11,18 @@
 {{ Form::open(array('action' => 'AdminController@addProduct'))  }}
 
     {{ Form::label('name', 'Név') }}
-    {{ Form::text('name', '$product->name', array('class' => 'form-control')) }}
+    {{ Form::text('name', '', array('class' => 'form-control')) }}
 
     {{ Form::label('description', 'Részletes leírás') }}
-    {{ Form::textarea('description', '$product->description', array('class' => 'form-control')) }}
+    {{ Form::textarea('description', '', array('class' => 'form-control')) }}
 
     {{ Form::label('price', 'Ár') }}
-    {{ Form::text('price', '$product->price', array('class' => 'form-control')) }}
+    {{ Form::text('price', '', array('class' => 'form-control')) }}
 
     {{ Form::label('category_id', 'Kategória') }}
     {{ Form::select('category_id', Menu::selectArray(false), null,  array('class' => 'form-control')) }}
 
-    {{ Form::submit('Módosít!', array('class' => 'btn btn-default')) }}
+    {{ Form::submit('Termék felvétele!', array('class' => 'btn btn-default')) }}
 {{ Form::close() }}
 
 </div>

@@ -1,4 +1,4 @@
-<li>{{$category->name}} <a href="remove-category/{{$category->id}}" >töröl</a>
+<li><a href="{{ URL::action('AdminController@show', array('id' => $category->id)) }}"> {{$category->name}} </a> <a style="float: right;" href="remove-category/{{$category->id}}" >töröl</a>
 	@if ($category->hasChild() )
 	<ol>
 	@foreach (Menu::getFirstChildCategories($category) as $child)

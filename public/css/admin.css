@@ -33,11 +33,6 @@
 #admin-page #admin-products-edit {
 	padding: 40px;
 	padding-top: 0px;
-	width: 700;
-}
-
-table th.description {
-	width: 500px;
 }
 
 table th.price, table th.netto_price, table th.profit_key {
@@ -55,9 +50,7 @@ table th.price, table th.netto_price, table th.profit_key {
 }
 
 .inventory-items {
-	width: 700px;
 	display: inline-block;
-	float: left;	
 }
 
 ol li {

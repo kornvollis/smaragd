@@ -31,7 +31,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             <li><span class="editlock glyphicon glyphicon-lock"></span></li>
-            <li><a href="add-product">Új termék</a></li>
+            <li><a href="{{ URL::action('AdminController@showAddProduct')}}">Új termék</a></li>
         </ul>
     </div>
 </nav>
@@ -49,7 +49,7 @@
 
 		{{ Form::open(array('action' => 'AdminController@addCategory')) }}
 			{{ Form::label('name', 'Új kategória') }}
-			{{ Form::text('name', 'barackfavirag', array('class' => 'form-control')) }}
+			{{ Form::text('name', '', array('class' => 'form-control')) }}
 			<br>
             {{ Form::label('position', 'Pozíció') }}
             {{ Form::radio('position', 'first') }} Első
@@ -94,7 +94,10 @@
 					<th class="sell_price">{{ $product->price}}</th>
 					<th class="profit_key">profit key</th>
 					<th>{{{ $product->category->name or '---' }}}</th>
-					<th><a href="edit-product/{{$product->id}}">Módosít</a></th>
+					<th>
+						<a href="{{ URL::action('AdminController@editProduct', $product->id)}}">Módosít</a>
+						<a href="{{ URL::action('AdminController@removeProduct', $product->id)}}">Törlés</a>
+					</th>
 				</tr>
 			@endforeach
 		</table>
