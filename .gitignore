@@ -7,4 +7,5 @@ app/[Cc]onfig/database.php
 .project
 .buildpath
 .settings
+.idea/*
 !empty
