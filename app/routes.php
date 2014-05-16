@@ -23,6 +23,8 @@ Route::get('remove-category/{id}', array('uses' => 'AdminController@removeCatego
 Route::post('/admin/add-product', array('uses' => 'AdminController@addProduct'));
 Route::get('/admin/remove-product/{id}', array('uses' => 'AdminController@removeProduct'));
 Route::get('/admin/edit-product/{id}', array('uses' => 'AdminController@editProduct'));
+Route::post('/admin/add-product-option', array('uses' => 'AdminController@addProductOption'));
+Route::post('/admin/edit-product-option', array('uses' => 'AdminController@editProductOption'));
 //{
   //  return View::make('admin.product_edit', array("product" => Product::find($id)) );
 //});

@@ -61,6 +61,25 @@ class AdminController extends Controller {
 		return Redirect::to(URL::action('AdminController@editProduct', array('id' => $product->id)));
 	}
 	
+	public function addProductOption() {
+		$option = new ProductOption();
+		$option->fill(Input::all());
+		$option->save();
+		//return var_dump(Input::all());
+	}
+	
+	public function editProductOption() {
+		// $id = Input::get('id');
+		try {
+		    $prodOption = ProductOption::find(Input::get('id'));
+			$prodOption->fill(Input::all());
+			$prodOption->save();
+		} catch (Exception $e) {
+		    echo 'Caught exception: ',  $e->getMessage(), "\n";
+		}
+		
+	}	
+	
 	public function editProduct($id) {
 		return View::make('admin.product_edit', array("product" => Product::find($id)) );
 	}

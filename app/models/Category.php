@@ -1,10 +1,8 @@
 <?php
 
 class Category extends Eloquent {
-
+	public $timestamps = true;
     protected $fillable = array('id', 'name', 'lft', 'rgt');
-
-    public $timestamps = false;
    
 	public function hasChild() 
 	{

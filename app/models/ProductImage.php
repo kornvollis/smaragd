@@ -1,11 +1,11 @@
 <?php
 
 class ProductImage extends Eloquent {
-	
-	protected $fillable = array('path', 'product_id');
+	public $timestamps = true;
+	protected $fillable = array('product_id', 'name', 'path');
 	
 	protected $table = 'product_images';
-    public $timestamps = false;
+
 }
 
 ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2014 at 04:56 PM
+-- Generation Time: May 16, 2014 at 11:14 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -74,6 +74,7 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` varchar(500) NOT NULL,
   `netto_price` int(11) NOT NULL,
@@ -81,6 +82,8 @@ CREATE TABLE IF NOT EXISTS `products` (
   `profit_key` int(11) NOT NULL,
   `category_id` int(6) DEFAULT NULL,
   `isFeatured` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` varchar(20) NOT NULL,
+  `updated_at` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
@@ -88,36 +91,36 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `description`, `netto_price`, `price`, `profit_key`, `category_id`, `isFeatured`) VALUES
-(20, 'Kuplungcsatlakozó', '4401 1/2”\r\n4400 3/4”\r\n4402 1”', 0, 0, 0, 1343, 0),
-(21, 'Külsőmenetes Kuplungcsatlakozó', '4411 1/2”\r\n4410 3/4”', 0, 0, 0, 1343, 0),
-(22, 'Kuplungcsatlakozó', '4430', 0, 0, 0, 1343, 0),
-(23, 'Y elágazó 3 kuplung csatlakozóval és 2 db elzáróval', '4435/1', 0, 0, 0, 1343, 0),
-(24, 'Y elágazó 1 gyorscsatlakozóval és 2 kuplung csatlakozóval', '4437', 0, 0, 0, 1343, 0),
-(25, 'Gyorscsatlakozó', '4450 1/2”\r\n4455 3/4”', 0, 0, 0, 1343, 0),
-(26, 'Stoppos Gyorscsatlakozó', '4451 1/2”\r\n4456 3/4”', 0, 0, 0, 1343, 0),
-(27, 'Átalakító', '4425 1/2”\r\n4426 3/4”', 0, 0, 0, 1343, 0),
-(28, 'Tömlővéges T elágazó', '4489 1/2”\r\n4490 3/4”', 0, 0, 0, 1343, 0),
-(29, 'Tömlővéges és 2 kuplungos T elágazó', '4491 3/4”', 0, 0, 0, 1343, 0),
-(30, 'Elzárható csatlakozó', '4320', 0, 0, 0, 1343, 0),
-(31, 'Tömlő összekötő', '4480 1/2”\r\n4481 3/4”', 0, 0, 0, 1343, 0),
-(32, 'Tömlő összekötő', '4485 1/2” x 3/4”', 0, 0, 0, 1343, 0),
-(33, 'Csatlakozókészlet', '4428 1/2”', 0, 0, 0, 1343, 0),
-(34, 'T elágazó 2 elzáróval', '4492', 0, 0, 0, 1343, 0),
-(35, 'T elágazó 3 elzáróval', '4520', 0, 0, 0, 1343, 0),
-(36, 'T elágazó 1 elzáróval', '4493', 0, 0, 0, 1343, 0),
-(37, 'Csatlakozó - belső menetes', '4470 1/2 x 3/4”\r\n4472 1/2 x 1/2”\r\n4473 1/2 x 1”\r\n4474 3/4 x 1/2”\r\n4475 3/4 x 3/4”\r\n4477 3/4 x 1”', 0, 0, 0, 1343, 0),
-(38, 'Csatlakozó - külső menetes', '4471 3/4 x 1/2”\r\n4476 3/4 x 3/4”', 0, 0, 0, 1343, 0),
-(39, 'Csatlakozó - külső menetes kuplung csatlakozós', '4460 3/4”\r\n4461 1/2”', 0, 0, 0, 1343, 0),
-(40, 'Sugárcső', '4550 Kuplung csatlakozóval\r\n4552 1/2”-os tömlővéggel\r\n4553 3/4”-os tömlővéggel', 0, 0, 0, 1344, 0),
-(41, 'Locsolórózsa', '4560 állítható vízsugárral\r\n4555 szélesebb szórófejjel', 0, 0, 0, 1344, 0),
-(42, 'Pisztolyos szórófej', '4600 Kuplung csatlakozóval\r\n4602 1/2”-os tömlővéggel\r\n4603 3/4”-os tömlővéggel', 0, 0, 0, 1344, 0),
-(43, 'Multifunkciós elzárhatós négy állású locsolórózsa', '4755/5', 0, 0, 0, 1344, 0),
-(44, 'Pisztolyos locsoló', '4605 kuplungos', 0, 0, 0, 1344, 0),
-(45, 'Leszúrható locsoló 360 fokos', '4575 kupl. cs.\r\n4577 1/2”\r\n4578 3/4”', 0, 0, 0, 1344, 0),
-(46, 'Forgó locsoló', '4585 kupl. cs.\r\n4587 1/2”\r\n4588 3/4”', 0, 0, 0, 1344, 0),
-(48, 'Leszúrható szakaszos locsoló', '4595', 0, 0, 0, 1344, 0),
-(49, 'Átfolyós forgós locsoló', '4785', 0, 0, 0, 1344, 0);
+INSERT INTO `products` (`id`, `code`, `name`, `description`, `netto_price`, `price`, `profit_key`, `category_id`, `isFeatured`, `created_at`, `updated_at`) VALUES
+(20, '', 'Kuplungcsatlakozó', '4401 1/2”\r\n4400 3/4”\r\n4402 1”', 0, 0, 0, 1343, 0, '', '2014-05-06 14:36:53'),
+(21, '', 'Külsőmenetes Kuplungcsatlakozó', '4411 1/2”\r\n4410 3/4”', 0, 0, 0, 1343, 0, '', ''),
+(22, '', 'Kuplungcsatlakozó', '4430', 0, 0, 0, 1343, 0, '', ''),
+(23, '', 'Y elágazó 3 kuplung csatlakozóval és 2 db elzáróval', '4435/1', 0, 0, 0, 1343, 0, '', ''),
+(24, '', 'Y elágazó 1 gyorscsatlakozóval és 2 kuplung csatlakozóval', '4437', 0, 0, 0, 1343, 0, '', ''),
+(25, '', 'Gyorscsatlakozó', '4450 1/2”\r\n4455 3/4”', 0, 0, 0, 1343, 0, '', ''),
+(26, '', 'Stoppos Gyorscsatlakozó', '4451 1/2”\r\n4456 3/4”', 0, 0, 0, 1343, 0, '', ''),
+(27, '', 'Átalakító', '4425 1/2”\r\n4426 3/4”', 0, 0, 0, 1343, 0, '', ''),
+(28, '', 'Tömlővéges T elágazó', '4489 1/2”\r\n4490 3/4”', 0, 0, 0, 1343, 0, '', ''),
+(29, '', 'Tömlővéges és 2 kuplungos T elágazó', '4491 3/4”', 0, 0, 0, 1343, 0, '', ''),
+(30, '', 'Elzárható csatlakozó', '4320', 0, 0, 0, 1343, 0, '', ''),
+(31, '', 'Tömlő összekötő', '4480 1/2”\r\n4481 3/4”', 0, 0, 0, 1343, 0, '', ''),
+(32, '', 'Tömlő összekötő', '4485 1/2” x 3/4”', 0, 0, 0, 1343, 0, '', ''),
+(33, '', 'Csatlakozókészlet', '4428 1/2”', 0, 0, 0, 1343, 0, '', ''),
+(34, '', 'T elágazó 2 elzáróval', '4492', 0, 0, 0, 1343, 0, '', ''),
+(35, '', 'T elágazó 3 elzáróval', '4520', 0, 0, 0, 1343, 0, '', ''),
+(36, '', 'T elágazó 1 elzáróval', '4493', 0, 0, 0, 1343, 0, '', ''),
+(37, '', 'Csatlakozó - belső menetes', '4470 1/2 x 3/4”\r\n4472 1/2 x 1/2”\r\n4473 1/2 x 1”\r\n4474 3/4 x 1/2”\r\n4475 3/4 x 3/4”\r\n4477 3/4 x 1”', 0, 0, 0, 1343, 0, '', ''),
+(38, '', 'Csatlakozó - külső menetes', '4471 3/4 x 1/2”\r\n4476 3/4 x 3/4”', 0, 0, 0, 1343, 0, '', ''),
+(39, '', 'Csatlakozó - külső menetes kuplung csatlakozós', '4460 3/4”\r\n4461 1/2”', 0, 0, 0, 1343, 0, '', ''),
+(40, '', 'Sugárcső', '4550 Kuplung csatlakozóval\r\n4552 1/2”-os tömlővéggel\r\n4553 3/4”-os tömlővéggel', 0, 0, 0, 1344, 0, '', ''),
+(41, '', 'Locsolórózsa', '4560 állítható vízsugárral\r\n4555 szélesebb szórófejjel', 0, 0, 0, 1344, 0, '', ''),
+(42, '', 'Pisztolyos szórófej', '4600 Kuplung csatlakozóval\r\n4602 1/2”-os tömlővéggel\r\n4603 3/4”-os tömlővéggel', 0, 0, 0, 1344, 0, '', ''),
+(43, '', 'Multifunkciós elzárhatós négy állású locsolórózsa', '4755/5', 0, 0, 0, 1344, 0, '', ''),
+(44, '', 'Pisztolyos locsoló', '4605 kuplungos', 0, 0, 0, 1344, 0, '', ''),
+(45, '', 'Leszúrható locsoló 360 fokos', '4575 kupl. cs.\r\n4577 1/2”\r\n4578 3/4”', 0, 0, 0, 1344, 0, '', ''),
+(46, '', 'Forgó locsoló', '4585 kupl. cs.\r\n4587 1/2”\r\n4588 3/4”', 0, 0, 0, 1344, 0, '', ''),
+(48, '', 'Leszúrható szakaszos locsoló', '4595', 0, 0, 0, 1344, 0, '', ''),
+(49, '', 'Átfolyós forgós locsoló', '4785', 0, 0, 0, 1344, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -138,12 +141,6 @@ CREATE TABLE IF NOT EXISTS `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `product_id`, `name`, `path`) VALUES
-(1, 1, 'Cserép', 'cserep.jpg'),
-(2, 1, 'Kuki', 'kapa001.jpg'),
-(3, 1, 'Kuki', 'kapa002.jpg'),
-(6, 3, NULL, 'test.jpg'),
-(7, 1, NULL, 'xKE07.jpg'),
-(8, 18, NULL, 'cic.jpg'),
 (9, 20, NULL, 'pan_page75_image3.png'),
 (10, 21, NULL, 'pan_page75_image4.png'),
 (11, 22, NULL, 'pan_page75_image5.png'),
@@ -174,6 +171,29 @@ INSERT INTO `product_images` (`id`, `product_id`, `name`, `path`) VALUES
 (37, 46, NULL, 'pan_page75_image35.jpg'),
 (38, 48, NULL, 'pan_page75_image44.png'),
 (41, 49, NULL, 'pan_page75_image37.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_options`
+--
+
+CREATE TABLE IF NOT EXISTS `product_options` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `code` varchar(50) NOT NULL,
+  `price` int(11) NOT NULL,
+  `product_image_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `product_options`
+--
+
+INSERT INTO `product_options` (`id`, `product_id`, `description`, `code`, `price`, `product_image_id`) VALUES
+(1, 20, 'Méret: 1/2"', '4401', 150, 9);
 
 -- --------------------------------------------------------
 

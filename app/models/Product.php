@@ -1,7 +1,7 @@
 <?php
 
 class Product extends Eloquent {
-    public $timestamps = false;
+    public $timestamps = true;
 	protected $fillable = array('id', 'name', 'description', 'netto_price', 'price', 'profit_key', 'category_id', 'isFeatured');
     
 	public function category()
@@ -12,6 +12,11 @@ class Product extends Eloquent {
     public function images()
     {
     	 return $this->hasMany('ProductImage');
+    }
+    
+	public function options()
+    {
+    	 return $this->hasMany('ProductOption');
     }
     
     public function getFirstImage()
