@@ -84,21 +84,40 @@
 				<th>Müveletek</th>
 			</tr>
 
-			@foreach ($products as $product)		
+			@foreach ($products as $product)
+				@if($product->hasOptions())
+					@foreach ($product->options as $option)
+					<tr>
+						<th><img style="width: 50px;" src="{{$product->getFirstImage()}}" /></th>
+						<th>{{ $product->name}}</th>
+						<th class="description">{{ $option->description}}</th>
+						<th class="netto_price">{{ $option->price}}</th>
+						<th class="price">{{ round($option->price * 1.27) }}</th>
+						<th class="sell_price">{{ round($product->displayedPrice($option->id))}}</th>
+						<th class="profit_key">{{ round($product->profit_key, 2) }}</th>
+						<th>{{{ $product->category->name or '---' }}}</th>
+						<th>
+							<a href="{{ URL::action('AdminController@editProduct', $product->id)}}">Módosít</a>
+							<a href="{{ URL::action('AdminController@removeProduct', $product->id)}}">Törlés</a>
+						</th>
+					</tr>	
+					@endforeach
+				@else
 				<tr>
 					<th><img style="width: 50px;" src="{{$product->getFirstImage()}}" /></th>
 					<th>{{ $product->name}}</th>
 					<th class="description">{{ $product->description}}</th>
-					<th class="netto_price">{{ $product->price / 1.25 }}</th>
-					<th class="price">{{ $product->price }}</th>
-					<th class="sell_price">{{ $product->price }}</th>
-					<th class="profit_key">profit key</th>
+					<th class="netto_price">{{ $product->price}}</th>
+					<th class="price">{{ round($product->price * 1.27) }}</th>
+					<th class="sell_price">{{ round($product->displayedPrice()) }}</th>
+					<th class="profit_key">{{ round($product->profit_key, 2) }}</th>
 					<th>{{{ $product->category->name or '---' }}}</th>
 					<th>
 						<a href="{{ URL::action('AdminController@editProduct', $product->id)}}">Módosít</a>
 						<a href="{{ URL::action('AdminController@removeProduct', $product->id)}}">Törlés</a>
 					</th>
 				</tr>
+				@endif
 			@endforeach
 		</table>
 	</div>

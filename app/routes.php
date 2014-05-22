@@ -25,6 +25,8 @@ Route::get('/admin/remove-product/{id}', array('uses' => 'AdminController@remove
 Route::get('/admin/edit-product/{id}', array('uses' => 'AdminController@editProduct'));
 Route::post('/admin/add-product-option', array('uses' => 'AdminController@addProductOption'));
 Route::post('/admin/edit-product-option', array('uses' => 'AdminController@editProductOption'));
+Route::post('/admin/delete-product-option', array('uses' => 'AdminController@deleteProductOption'));
+
 //{
   //  return View::make('admin.product_edit', array("product" => Product::find($id)) );
 //});
@@ -51,3 +53,12 @@ Route::get('/cart-remove/{id}', array('as' => 'cart-remove', 'uses' => 'CartCont
 Route::get('/Penztar', array('as' => 'payments', 'uses' => 'PaymentsController@show'));
 Route::post('/Rendeles', array('as' => 'order', 'uses' => 'PaymentsController@order'));
 Route::get('/SikeresRendeles', array('as' => 'order-success', 'uses' => 'PaymentsController@orderSuccess'));
+
+/* TEMP */
+Route::get('/Mail', function(){
+	Mail::send('emails.test', array('token'=>'SAMPLE'), function($message)
+	{
+	    $message->to('kornvollis@gmail.com', 'John Smith')->subject('Welcome!');
+	});
+	return "sija";
+});

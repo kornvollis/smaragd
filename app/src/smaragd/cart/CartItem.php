@@ -1,11 +1,28 @@
 <?php 
 namespace smaragd\cart;
+use Product;
+use ProductOption;
 
 class CartItem {
 	private $product;
-	private $quantity = 0;
+	private $option = null;
+	public $quantity;
 	
-	public function add($num)
+	function __construct($quantity, $product_id, $option_id = null) {
+		$this->product = Product::find($product_id);
+		$this->option = ProductOption::find($option_id);
+		$this->quantity = $quantity;
+	}
+	
+	public function name() {
+		return $this->product->name;
+	}
+	
+	public function cartID() {
+		return $this->product->id . $this->option->id;
+	}
+	
+	public function add($num) 
 	{
 		$this->quantity += $num;
 	}
@@ -21,21 +38,14 @@ class CartItem {
 		$this->quantity = 0;
 	}
 	
-	public function setProduct($prod) {
-		$this->product = $prod;
-	}
-	
-	public function getProduct() {
-		return $this->product;
-	}
-	
-	public function getQuantity() {
-		return $this->quantity;
+	public function price()
+	{
+		return $this->product->displayedPrice($this->option->id);
 	}
 	
 	public function sumPrice()
 	{
-		return $this->product->price * $this->quantity;
+		return $this->price() * $this->quantity;
 	}
 }
 

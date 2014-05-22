@@ -20,9 +20,25 @@
 	
 	<div class="productInfo">
 		<h1>{{ $product->name }}</h1>
-		<div>{{ $product->description }}</div>
-		<h2>{{ $product->price }}</h2>
+		@if ($product->hasOptions())
+			<div id="description">{{ $product->options->first()->description }}</div>
+			<h2 id="price">{{ $product->displayedPrice($product->options->first()->id) }} Ft</h2>
+		@else
+			<div id="description">{{ $product->description }}</div>
+			<h2 id="price">{{ $product->displayedPrice() }} Ft</h2>
+		@endif
+		
 		<form role="form" action="{{URL::route('cart-add', array('id' => $product->id))}}" method="post">
+			@if ($product->hasOptions())
+				<select name="option" id="options" name="option">
+				@foreach($product->options as $option)
+					<option value="{{$option->id}}" data-price="{{$product->displayedPrice($option->id)}}" data-description="{{$option->description}}">{{$option->description}}</option>
+				@endforeach
+				</select>
+				<br><br>
+			@else
+				<input name="option" value="" />
+			@endif
 			<input id="quantity" style="width: 87px;" type="number" name="qty" value="1"  min="1" />
 			<input type="id" name="id" style="display: none;" value="{{ $product->id }}" />
 			<br><br><button type="submit" class="btn btn-success">Kosárba rak<span style="margin-left: 11px;" class="glyphicon glyphicon-shopping-cart"></span></button>
@@ -35,6 +51,12 @@
 <script>
 $("#thumbnails img").on("click", function(e) {
 	$(".productInfo-img").attr("src", e.currentTarget.src);
+});
+
+$("#options").on("change", function(e) {
+	var option = $('#options').find(":selected");
+	$("#price").html(option.data("price") + " Ft");
+	$("#description").html(option.data("description"));
 });
 </script>
 @stop

@@ -30,7 +30,10 @@
 		<td><input style="display: inline-block;" class="form-control" type="text" name="description" value="{{$prod_option->description}}"></td>
 		<td><input style="display: inline-block;" class="form-control" type="text" name="code" value="{{$prod_option->code}}"></td>
 		<td><img data-piid="{{$prod_option->product_image_id}}" style="width: 30px;" src="{{asset('images/p/' . $prod_option->image->path)}}" /></td>
-		<td><button class="edit-option" data-id="{{$prod_option->id}}" type="button" class="btn btn-default navbar-btn">Módosít</button></td>
+		<td>
+			<button class="edit-option" data-id="{{$prod_option->id}}" type="button" class="btn btn-default navbar-btn">Módosít</button>
+			<button class="delete-option" data-id="{{$prod_option->id}}" type="button" class="btn btn-default navbar-btn">Töröl</button>
+		</td>
 	</tr>
     @endforeach
     <tr>
@@ -76,7 +79,28 @@ $( function() {
 	$(".edit-option").on("click", function(e) {
 		editOption(e);
 	});
+	$(".delete-option").on("click", function(e) {
+		deleteOption(e);
+	});
+	
 });
+
+function deleteOption(e) {
+	var row = $(e.currentTarget).parent().parent();	
+	var params = {};
+
+	params.id = $(e.currentTarget).data("id");
+	params.product_id = $("#product-id").val();
+	params.description = row.find("input[name=description]").val();
+	params.code = row.find("input[name=code]").val();
+	params.price = row.find("input[name=price]").val();
+	params.product_image_id = row.find("img").data("piid");
+	
+	$.post( "{{ URL::action('AdminController@deleteProductOption') }}", params)
+	.done(function( data ) {
+	    alert("Sikeres törlés");
+  	});	
+}
 
 function editOption(e) {
 	var row = $(e.currentTarget).parent().parent();	

@@ -13,7 +13,7 @@
 					<img class="product-image" src="{{$product->getFirstImage()}}"></img>
 				</div>
 				<h1>{{$product->name}}</h1>
-				<p class="price">{{$product->price}} Ft</p>
+				<p class="price">{{$product->lowestPrice()}} Ft</p>
 			</div>
 		</a>
 	@endforeach

@@ -19,6 +19,40 @@ class Product extends Eloquent {
     	 return $this->hasMany('ProductOption');
     }
     
+    public function hasOptions() {
+    	if(count($this->options) > 0) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+
+    public function displayedPrice($option_id = null) {
+    	$price = $this->price;
+    	if(!is_null($option_id))
+    	{
+    		$price = ProductOption::find($option_id)->price;
+    	}
+    	return round($price * 1.27 * $this->profit_key);
+    }
+    
+    public function lowestPrice()
+    {
+    	if($this->hasOptions())
+    	{
+    		$lowestPrice = 999999999;
+    		foreach ($this->options as $option)
+    		{
+    			if($option->price < $lowestPrice) {
+					$lowestPrice = $option->price;
+    			}
+    		}
+    		return round($lowestPrice * 1.27 * $this->profit_key);
+    	} else {
+    		return round($this->price * 1.27 * $this->profit_key);
+    	}
+    }
+    
     public function getFirstImage()
     {
     	$prefix = URL::asset('images/p/') . '/';

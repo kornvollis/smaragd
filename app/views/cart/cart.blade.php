@@ -12,13 +12,13 @@
 		<th>Darab</th>
 		<th>Műveletek</th>
 	</tr>
-	@foreach (SCart::getAll() as $cartItem)
+	@foreach (SCart::getItems() as $cartItem)
 		<tr>
-			<td> {{ $cartItem->getProduct()->name }}</td>
-			<td> {{ $cartItem->getProduct()->price }} </td>
-			<td> {{ $cartItem->sumPrice() }} </td>
-			<td> <input class="qty" style="width: 60px;" type="number" min="1" onkeypress="validate(event)" value="{{ $cartItem->getQuantity() }}"> </td>
-			<td> <a href="{{ URL::route('cart-remove', array('id' => $cartItem->getProduct()->id )) }}">Törlés</a> </td>
+			<td> {{ $cartItem->name() }}</td>
+			<td> {{ $cartItem->price() }}</td>
+			<td> {{ $cartItem->sumPrice() }}</td>
+			<td> <input class="qty" style="width: 60px;" type="number" min="1" onkeypress="validate(event)" value="{{ $cartItem->quantity }}"> </td>
+			<td> <a href="{{ URL::route('cart-remove', array('id' => $cartItem->cartID() )) }}">Törlés</a> </td>
 		</tr>
 	@endforeach
 	</table>

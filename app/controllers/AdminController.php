@@ -80,6 +80,14 @@ class AdminController extends Controller {
 		
 	}	
 	
+	public function deleteProductOption() {
+		try {
+			ProductOption::find(Input::get('id'))->delete();
+		} catch (Exception $e) {
+		    echo 'Caught exception: ',  $e->getMessage(), "\n";
+		}
+	}	
+	
 	public function editProduct($id) {
 		return View::make('admin.product_edit', array("product" => Product::find($id)) );
 	}

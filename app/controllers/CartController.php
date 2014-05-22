@@ -11,7 +11,7 @@ class CartController extends Controller {
     
 	public function add() 
     {
-    	SCart::add(Input::get('id'), Input::get('qty'));
+    	SCart::add(Input::get('qty'), Input::get('id'), Input::get('option'));
     	return Redirect::to(URL::route('cart'));
     	//return View::make('cart.cart');
     }
