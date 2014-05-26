@@ -31,11 +31,11 @@ class MainController extends Controller {
         return View::make('contact');
     }
     
-	public function products($id = null)
+	public function products($category_id = null)
     {    	
-    	if(!is_null($id))
+    	if(!is_null($category_id))
     	{
-    		$displayedProds = Product::where('category_id', '=', $id)->get(); 
+    		$displayedProds = Product::where('category_id', '=', $category_id)->get();
     	} else {
     		$displayedProds = Product::all();
     	}

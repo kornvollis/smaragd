@@ -3,7 +3,7 @@
 
 	<ol>
 		@foreach (Menu::allCategories() as $category)
-			<li><a href="{{URL::route('products', array('id' => $category->id))}}">{{$category->name}}</a></li>
+            @include ('includes.leftmenu_item', array('category'=>$category))
 		@endforeach
 	</ol>
 </div>
