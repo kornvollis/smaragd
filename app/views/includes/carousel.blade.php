@@ -10,7 +10,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
           <div class="item active">
-            <img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="First slide" src="{{URL::asset('images/havaskep.png')}}">
+            <img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="First slide" src="{{URL::asset('images/carousel/frissito_szett_kep.JPG')}}">
           </div>
     </div>
     

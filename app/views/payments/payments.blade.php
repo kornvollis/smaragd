@@ -42,13 +42,13 @@
 			<th>Összesen</th>
 			<th>Darab</th>
 		</tr>
-		
-		@foreach (SCart::getAll() as $cartItem)
+
+		@foreach (SCart::getItems() as $cartItem)
 		<tr>
-			<td> {{ $cartItem->getProduct()->name }}</td>
-			<td> {{ $cartItem->getProduct()->price }} </td>
+			<td> {{ $cartItem->name }}</td>
+			<td> {{ $cartItem->price }} </td>
 			<td> {{ $cartItem->sumPrice() }} </td>
-			<td> {{ $cartItem->getQuantity() }} </td>
+			<td> {{ $cartItem->quantity }} </td>
 		</tr>
 		@endforeach
 	</table>

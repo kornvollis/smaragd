@@ -16,15 +16,25 @@ class CartController extends Controller {
     	//return View::make('cart.cart');
     }
     
+    public function updateItem()
+    {
+    	SCart::update(Input::get('qty'), Input::get('product_id'), Input::get('option_id'));
+    	
+    	$obj = array();
+    	$obj["sumPrice"] = SCart::sumPrice();
+    	$obj["itemPrice"] = SCart::getItem(Input::get('product_id'), Input::get('option_id'))->sumPrice();
+    	return json_encode($obj);
+    }
+    
     public function removeAll()
     {
     	SCart::removeAll();
     	return View::make('cart.cart');
     }
     
-	public function remove($id)
+	public function remove($product_id, $option_id = null)
     {
-    	SCart::remove($id);
+    	SCart::remove($product_id, $option_id);
     	return View::make('cart.cart');
     }
 }

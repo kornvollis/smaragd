@@ -15,16 +15,19 @@
 	@foreach (SCart::getItems() as $cartItem)
 		<tr>
 			<td> {{ $cartItem->name() }}</td>
-			<td> {{ $cartItem->price() }}</td>
-			<td> {{ $cartItem->sumPrice() }}</td>
+			<td class="price"> {{ $cartItem->price() }}</td>
+			<td class="sum-price"> {{ $cartItem->sumPrice() }}</td>
 			<td> <input class="qty" style="width: 60px;" type="number" min="1" onkeypress="validate(event)" value="{{ $cartItem->quantity }}"> </td>
-			<td> <a href="{{ URL::route('cart-remove', array('id' => $cartItem->cartID() )) }}">Törlés</a> </td>
+			<td> <a class="remove-cart-item" href="{{ URL::route('cart-remove', array('product_id' => $cartItem->product_id, 'option_id' => $cartItem->option_id )) }}">Törlés</a> 
+				 <a class="edit-cart-item hidden" data-productid="{{$cartItem->product_id}}" data-optionid="{{$cartItem->option_id}}">Módosít</a>
+			</td>
+			
 		</tr>
 	@endforeach
 	</table>
 	
 	<a href="{{ URL::route('cart-remove-all') }}"> Összes termék törlése </a>
-	<h2>A teljes összeg: <?php //echo $this->cart->total(); ?> Ft</h2>
+	<h2>A teljes összeg: <span id="full-price">{{ SCart::sumPrice() }}</span> Ft</h2>
 	<br/>
 	<a href="{{ URL::route('payments') }}">
 		<button class="btn btn-success" > Tovább a pénztárhoz </button>
@@ -32,6 +35,31 @@
 </div>
 
 <script>
+$(".qty").on("change", function(e) {
+	$(e.currentTarget).parent().parent().find(".edit-cart-item").removeClass("hidden");
+	$(e.currentTarget).parent().parent().find(".remove-cart-item").addClass("hidden");
+});
+
+$(".edit-cart-item").on("click", function(e) {
+	var params = {};
+
+	var sumPriceField = $(e.currentTarget).parent().parent().find(".sum-price");
+	
+	params.product_id = $(e.currentTarget).data("productid");
+	params.option_id = $(e.currentTarget).data("optionid");
+	params.qty = $(e.currentTarget).parent().parent().find(".qty").val();
+		
+	$.post( "{{ URL::action('CartController@updateItem') }}", params)
+	.done(function( data ) {
+		var obj = jQuery.parseJSON( data );
+		$(sumPriceField).html(obj.itemPrice);
+		
+		$("#full-price").html(obj.sumPrice);
+		$(e.currentTarget).parent().parent().find(".edit-cart-item").addClass("hidden");
+		$(e.currentTarget).parent().parent().find(".remove-cart-item").removeClass("hidden");
+  	});	
+});
+
 function validate(evt) {
   var theEvent = evt || window.event;
   var key = theEvent.keyCode || theEvent.which;

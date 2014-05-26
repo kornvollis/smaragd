@@ -36,10 +36,8 @@
 				@endforeach
 				</select>
 				<br><br>
-			@else
-				<input name="option" value="" />
 			@endif
-			<input id="quantity" style="width: 87px;" type="number" name="qty" value="1"  min="1" />
+			<input id="quantity" style="width: 87px;" onkeypress="validate(event)" type="number" name="qty" value="1"  min="1" />
 			<input type="id" name="id" style="display: none;" value="{{ $product->id }}" />
 			<br><br><button type="submit" class="btn btn-success">Kosárba rak<span style="margin-left: 11px;" class="glyphicon glyphicon-shopping-cart"></span></button>
 		</form>
@@ -58,5 +56,16 @@ $("#options").on("change", function(e) {
 	$("#price").html(option.data("price") + " Ft");
 	$("#description").html(option.data("description"));
 });
+
+function validate(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
 </script>
 @stop

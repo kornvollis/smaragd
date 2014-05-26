@@ -47,7 +47,8 @@ Route::get('/info/{id}', array('as' => 'info', 'uses' => 'MainController@info'))
 
 /* CART */
 Route::get('/cart-remove-all', array('as' => 'cart-remove-all', 'uses' => 'CartController@removeAll'));
-Route::get('/cart-remove/{id}', array('as' => 'cart-remove', 'uses' => 'CartController@remove'));
+Route::get('/cart-remove/{product_id}/{option_id?}', array('as' => 'cart-remove', 'uses' => 'CartController@remove'));
+Route::post('/updateItem', array('as' => 'cart-updateItem', 'uses' => 'CartController@updateItem'));
 
 /* CASHIER */
 Route::get('/Penztar', array('as' => 'payments', 'uses' => 'PaymentsController@show'));

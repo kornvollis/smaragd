@@ -4,22 +4,43 @@ use Product;
 use ProductOption;
 
 class CartItem {
-	private $product;
-	private $option = null;
+	public $product_id;
+	public $option_id;
 	public $quantity;
 	
-	function __construct($quantity, $product_id, $option_id = null) {
-		$this->product = Product::find($product_id);
-		$this->option = ProductOption::find($option_id);
+	public $name;
+	public $price;
+	public $option_description;
+	
+	function __construct($quantity, $product_id, $option_id) {
 		$this->quantity = $quantity;
+		$this->product_id = $product_id;
+		$this->option_id = $option_id;
+		
+		try {
+			$prod = Product::find($product_id);
+			
+			$this->name = $prod->name;
+			$this->price = $prod->displayedPrice($option_id);
+			if(isset($option_id))
+			{
+				$this->option_description  = ProductOption::find($option_id)->description;
+			}	
+		} catch (Exception $e) {
+		}
 	}
 	
 	public function name() {
-		return $this->product->name;
+		$name = $this->name;
+		if(isset($this->option_description))
+		{
+			$name = $name . " / " .$this->option_description;
+		}
+		return $name;
 	}
 	
-	public function cartID() {
-		return $this->product->id . $this->option->id;
+	public function equals($prod_id, $option_id) {
+		return ($this->product_id == $prod_id && $this->option_id == $option_id);
 	}
 	
 	public function add($num) 
@@ -40,12 +61,12 @@ class CartItem {
 	
 	public function price()
 	{
-		return $this->product->displayedPrice($this->option->id);
+		return $this->price;
 	}
 	
 	public function sumPrice()
 	{
-		return $this->price() * $this->quantity;
+		return $this->price * $this->quantity;
 	}
 }
 

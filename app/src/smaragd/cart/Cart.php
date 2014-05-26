@@ -14,9 +14,20 @@ class Cart {
 		return Session::get(Cart::CART);
 	}
 	
+	public function getItem($product_id, $option_id) {
+		$items = $this->getItems();
+		foreach ($items as $item) {
+			if($item->equals($product_id, $option_id))
+			{
+				return $item;
+			}
+		}
+		return null;
+	}
+	
 	public function isInCart($prod_id, $option_id) {		
 		foreach($this->getItems() as $item) {
-			if($item->cartID() == $prod_id . $option_id) {
+			if($item->equals($prod_id, $option_id)) {
 				return true;
 			}
 		}
@@ -30,7 +41,7 @@ class Cart {
 		if($this->isInCart($prod_id, $option_id))
 		{
 			foreach($items as $item) {
-				if($item->cartID() == $prod_id . $option_id) {
+				if($item->equals($prod_id, $option_id)) {
 					$item->add($num);
 					break;
 				}
@@ -41,13 +52,32 @@ class Cart {
 		Session::put(Cart::CART, $items);
 	}
 	
-	public function remove($id)
+	public function remove($product_id, $option_id)
 	{
 		if(Session::has(Cart::CART)) {
-			$items = Session::get(Cart::CART);
-			unset($items[$id]);
-			Session::put(Cart::CART, $items);
+			$items = $this->getItems();
+			foreach($items as $key => $item) {
+				if($item->equals($product_id, $option_id))
+				{
+					unset($items[$key]);
+					Session::put(Cart::CART, $items);
+					break;
+				}
+			}
 		} 
+	}
+	
+	public function update($qty, $prod_id, $option_id)
+	{
+		$items = $this->getItems();
+		foreach($items as $item) {
+			if($item->equals($prod_id, $option_id))
+			{
+				$item->quantity = $qty;
+				Session::put(Cart::CART, $items);
+				break;
+			}
+		}
 	}
 	
 	public function removeAll()
@@ -55,6 +85,14 @@ class Cart {
 		if(Session::has(Cart::CART)) {
 			Session::put(Cart::CART, array());
 		} 
+	}
+	
+	public function sumPrice() {
+		$cost = 0;
+		foreach($this->getItems() as $item) {
+			$cost += $item->sumPrice();
+		}
+		return $cost;
 	}
 	/*
 	public function num()

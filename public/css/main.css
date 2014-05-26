@@ -2,7 +2,7 @@ html, body {
 	margin: 0px;
 	padding: 0px;
 	font-family: Arial, Helvetica, sans-serif;
-	background: url(../images/winter_snow_road-wide.jpg) no-repeat center center fixed;   
+	background: url(../images/smaragdut_blur.jpg) no-repeat center center fixed;   
 	-webkit-background-size: cover;  
 	-moz-background-size: cover;  
 	-o-background-size: cover;  
@@ -22,7 +22,7 @@ body {
 }
 
 #header-logo {
-	background-image: url(../images/fuzer_karacsony.png);
+	background-image: url(../images/cimsor_tavasz.png);
 	background-size:960px 135px;
 	height: 135px;
 	background-color: #FFF;
