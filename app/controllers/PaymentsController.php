@@ -11,7 +11,31 @@ class PaymentsController extends Controller {
     
     public function order()
     {
-    	//Redirect::return View::make('payments.order_success');
+    	$data = array();
+    	$data['lastName']  = Input::get('lastname');
+    	$data['firstName'] = Input::get('firstname');
+    	$data['email']     = Input::get('email');
+    	$data['phone']     = Input::get('phone');
+    	$data['address']   = Input::get('address');
+    	$data['lasteName'] = Input::get('lastname');
+    	$data['cartItems'] = SCart::getItems();
+    	
+    	$admins = array('kornvollis@gmail.com', 'postmaster@smaragdut.hu');
+    	
+    	
+    	Mail::send('emails.order', $data, function($message) use ($data)
+		{
+		    $message->to('kornvollis@gmail.com', 'Smaragd.hu')->subject('Smragad vásrálás!');
+		    $message->to('postmaster@smaragdut.hu', 'Smaragd.hu')->subject('Smragad vásrálás!');
+		});
+    	
+    	Mail::send('emails.order_confirm', $data, function($message) use ($data)
+		{
+		    $message->to($data['email'], 'www.Smaragdut.hu')->subject('Smaragdut.hu sikeres vásárlás!');
+		});
+    	
+		SCart::removeAll();
+		
     	return Redirect::action('PaymentsController@orderSuccess');
     }
 	

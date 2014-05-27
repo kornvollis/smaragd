@@ -32,14 +32,17 @@ class MainController extends Controller {
     }
     
 	public function products($category_id = null)
-    {    	
+    {
+    	$category;    	
     	if(!is_null($category_id))
     	{
+    		$category = Category::find($category_id);
     		$displayedProds = Product::where('category_id', '=', $category_id)->get();
     	} else {
-    		$displayedProds = Product::all();
+    		$category = Category::first();
+    		$displayedProds = Product::where('category_id', '=', $category->id)->get();
     	}
-        return View::make('products', array('products' => $displayedProds));
+        return View::make('products', array('products' => $displayedProds, 'category' => $category));
     }
     
 	public function shippinginfo()
