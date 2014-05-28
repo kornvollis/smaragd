@@ -39,6 +39,10 @@
 	/*background-color: #DFFFDF;*/
 }
 
+.product-link {
+	display: inline-block;
+}
+
 .product-imageBorder {
 	width: 220px;
 	height: 220px;

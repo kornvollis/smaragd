@@ -11,13 +11,13 @@
 	</h1>
 	<div id="featured-products">
 		@foreach ($featuredProducts as $product)
-		<a href="/smaragd/products/info/">
-			<div style="display: inline-block;" class="featuredProducts-item">
-				<div class="featuredProducts-imageholder" >
-					<img style="max-width: 218px; max-height: 218px;" class="featuredProducts-image" src="{{$product->getFirstImage()}}"></img>
+		<a class="product-link" href="{{URL::route('info', array('id' => $product->id))}}">
+			<div class="product">
+				<div class="product-imageBorder">
+					<img class="product-image" src="{{$product->getFirstImage()}}"></img>
 				</div>
-				<p class="featuredProducts-name"> {{$product->name}} </p>
-				<p class="featuredProducts-price"> {{ $product->price }} Ft </p>
+				<h1>{{$product->name}}</h1>
+				<p class="price">{{$product->lowestPrice()}} Ft</p>
 			</div>
 		</a>
 		@endforeach

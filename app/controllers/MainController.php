@@ -17,7 +17,8 @@ class MainController extends Controller {
 
     public function homepage($id = null)
     {
-    	$featuredProducts = Product::where('isFeatured' , '=', 1)->get();
+    	//$featuredProducts = Product::where('isFeatured' , '=', 1)->get();
+    	$featuredProducts = Product::orderBy(DB::raw('RAND()'))->take(8)->get();
         return View::make('home', array('featuredProducts' => $featuredProducts));
     }
     

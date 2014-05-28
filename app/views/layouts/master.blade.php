@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/about.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/navbar.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}" />
@@ -8,7 +9,7 @@
 		<link rel="stylesheet" href="{{ URL::asset('css/productinfo.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/products.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/footer.css') }}" />
-		<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" />
+		<link rel="stylesheet" href="{{ URL::asset('css/featuredproducts.css') }}" />
 		
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -41,5 +42,7 @@
 		</div> <!-- /FOOTER -->
 		
 		@yield('end')
+		
+		@include('includes/google_analytics')
     </body>
 </html>

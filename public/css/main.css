@@ -114,20 +114,3 @@ a:hover, a:focus {
 #searchresult div.searchresult-price {
 	width: 200px;
 }
-
-/* FEATURED PRODUCTS */
-
-#featured-products {
-	text-align: center;	
-}
-
-.featuredProducts-header {
-	font-size: 32px;
-	margin-left: 27px;
-	color: grey;
-}
-
-#featured-products a {
-	margin: 0px 27px;
-
-}

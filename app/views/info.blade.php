@@ -10,11 +10,13 @@
 		<div class="vertical-middle">
 			<img class="productInfo-img" src="{{ $product->getFirstImage() }}" />
 		</div>
-		<div id="thumbnails">
-		@foreach ($product->images as $image)
-			<div><img class="productInfo-small-img" src="{{ URL::asset('images/p') }}/{{$image->path}}" /></div>
-		@endforeach
-		</div>
+		@if(count($product->images) > 1)
+			<div id="thumbnails">
+			@foreach ($product->images as $image)
+				<div><img class="productInfo-small-img" src="{{ URL::asset('images/p') }}/{{$image->path}}" /></div>
+			@endforeach
+			</div>
+		@endif
 	</div>
 	
 	
@@ -43,6 +45,7 @@
 		</form>
 	</div>
 </div>
+
 @stop
 
 @section('end')

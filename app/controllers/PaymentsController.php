@@ -25,7 +25,6 @@ class PaymentsController extends Controller {
     	
     	Mail::send('emails.order', $data, function($message) use ($data)
 		{
-		    $message->to('kornvollis@gmail.com', 'Smaragd.hu')->subject('Smragad vásrálás!');
 		    $message->to('postmaster@smaragdut.hu', 'Smaragd.hu')->subject('Smragad vásrálás!');
 		});
     	
