@@ -10,10 +10,15 @@ class AdminController extends Controller {
     
     public function show($id = null)
     {
-    	if(!is_null($id)) $displayProds = $this->product->where('category_id', '=', $id)->get(); 
-    	else $displayProds = $this->product->all();
+    	if(!is_null($id)) {
+    		$current_category = Category::find($id);
+    		$displayProds = $this->product->where('category_id', '=', $current_category->id)->get(); 
+    	} else {
+    		$current_category = Category::first();
+    		$displayProds = $this->product->where('category_id', '=', $current_category->id)->get();
+    	}
     	
-        return View::make('admin.index', array("products" => $displayProds));
+        return View::make('admin.index', array("products" => $displayProds, "current_category" => $current_category));
     }
 	
 	public function addCategory() {

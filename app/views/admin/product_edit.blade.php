@@ -1,19 +1,16 @@
-<html>
+@extends('layouts.admin')
 
-<head>
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" />
-	<link rel="stylesheet" href="{{ URL::asset('css/admin/product-edit.css') }}" />
-</head>
+@section('content')
 
-<body>
 <a href="{{ URL::action('AdminController@show') }}">Vissza</a>
 <div style="width:800px; margin-left:auto; margin-right:auto;" id="edit">
 {{ Form::open(array('action' => 'AdminController@updateProduct')) }}
     {{ Form::text('id', $product->id, array('style' => 'display:none', 'id'=>'product-id')) }}
     {{ Form::label('name', 'Név') }} {{ Form::text('name', $product->name, array('class' => 'form-control')) }}
+    {{ Form::label('code', 'Cikkszám') }} {{ Form::text('code', $product->code, array('class' => 'form-control')) }}
     {{ Form::label('description', 'Részletes leírás') }} {{ Form::textarea('description', $product->description, array('class' => 'form-control')) }}
     {{ Form::label('price', 'Ár') }} {{ Form::text('price', $product->price, array('class' => 'form-control')) }}
+    {{ Form::label('profit_key', 'Profit kulcs') }} {{ Form::text('profit_key', $product->profit_key, array('class' => 'form-control')) }}
     {{ Form::label('category_id', 'Kategória') }}
     {{ Form::select('category_id', Menu::selectArray(false), $product->category->id,  array('class' => 'form-control')) }}
     {{ Form::submit('Módosít!', array('class' => 'btn btn-default')) }}
@@ -29,7 +26,7 @@
 		<td><input style="display: inline-block;" class="form-control" type="text" name="price" value="{{$prod_option->price}}"></td>
 		<td><input style="display: inline-block;" class="form-control" type="text" name="description" value="{{$prod_option->description}}"></td>
 		<td><input style="display: inline-block;" class="form-control" type="text" name="code" value="{{$prod_option->code}}"></td>
-		<td><img data-piid="{{$prod_option->product_image_id}}" style="width: 30px;" src="{{asset('images/p/' . $prod_option->image->path)}}" /></td>
+		<td><img data-piid="{{$prod_option->product_image_id}}" style="width: 30px;" src="{{ $prod_option->image->source() }}" /></td>
 		<td>
 			<button class="edit-option" data-id="{{$prod_option->id}}" type="button" class="btn btn-default navbar-btn">Módosít</button>
 			<button class="delete-option" data-id="{{$prod_option->id}}" type="button" class="btn btn-default navbar-btn">Töröl</button>
@@ -138,6 +135,4 @@ function addOption() {
 }
 </script>
 
-</body>
-
-</html>
+@stop

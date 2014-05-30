@@ -1,40 +1,6 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.admin')
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="{{ URL::asset('css/admin.css') }}" />
-	
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="/smaragd/resources/js/bootstrap.min.js"></script>
-    <script src="/smaragd/resources/js/jquery.validate.js"></script>
-	<script src="{{ URL::asset('js/admin.js') }}"></script>
-</head>
-
-<body>
-
-<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-        </button>
-    </div>
-
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-            <li><span class="editlock glyphicon glyphicon-lock"></span></li>
-            <li><a href="{{ URL::action('AdminController@showAddProduct')}}">Új termék</a></li>
-        </ul>
-    </div>
-</nav>
+@section('content')
 
 <div id="admin-page">
 
@@ -70,10 +36,11 @@
 
 	</div>
 	<div id="right-column">
-		<h1 id="selectedCategory">Termékek</h1> <br>
+		<h1 id="selectedCategory">Kategória: {{$current_category->name}}</h1> <br>
 		<table class="inventory-items table">
 			<tr>
 				<th>Kép</th>
+				<th>Cikkszám</th>
 				<th>Név</th>
 				<th class="description">Leírás</th>
 				<th class="netto_price">Netto ár</th>
@@ -81,6 +48,7 @@
 				<th class="sell_price">Eladási ár</th>
 				<th class="profit_key">Haszon kulcs</th>
 				<th>Kategória</th>
+				<th>Láthatóság</th>
 				<th>Müveletek</th>
 			</tr>
 
@@ -89,6 +57,7 @@
 					@foreach ($product->options as $option)
 					<tr>
 						<th><img style="width: 50px;" src="{{$product->getFirstImage()}}" /></th>
+						<th>{{ $option->code}}</th>
 						<th>{{ $product->name}}</th>
 						<th class="description">{{ $option->description}}</th>
 						<th class="netto_price">{{ $option->price}}</th>
@@ -96,6 +65,7 @@
 						<th class="sell_price">{{ round($product->displayedPrice($option->id))}}</th>
 						<th class="profit_key">{{ round($product->profit_key, 2) }}</th>
 						<th>{{{ $product->category->name or '---' }}}</th>
+						<th>{{{ $product->display }}}</th>
 						<th>
 							<a href="{{ URL::action('AdminController@editProduct', $product->id)}}">Módosít</a>
 							<a href="{{ URL::action('AdminController@removeProduct', $product->id)}}">Törlés</a>
@@ -105,6 +75,7 @@
 				@else
 				<tr>
 					<th><img style="width: 50px;" src="{{$product->getFirstImage()}}" /></th>
+					<th>{{ $product->code}}</th>
 					<th>{{ $product->name}}</th>
 					<th class="description">{{ $product->description}}</th>
 					<th class="netto_price">{{ $product->price}}</th>
@@ -112,6 +83,7 @@
 					<th class="sell_price">{{ round($product->displayedPrice()) }}</th>
 					<th class="profit_key">{{ round($product->profit_key, 2) }}</th>
 					<th>{{{ $product->category->name or '---' }}}</th>
+					<th>{{{ $product->display }}}</th>
 					<th>
 						<a href="{{ URL::action('AdminController@editProduct', $product->id)}}">Módosít</a>
 						<a href="{{ URL::action('AdminController@removeProduct', $product->id)}}">Törlés</a>
@@ -123,9 +95,4 @@
 	</div>
 </div>
 
-	
-
-	
-</body>
-
-</html>
+@stop

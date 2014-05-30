@@ -2,7 +2,7 @@
 
 class Product extends Eloquent {
     public $timestamps = true;
-	protected $fillable = array('id', 'name', 'description', 'netto_price', 'price', 'profit_key', 'category_id', 'isFeatured');
+	protected $fillable = array('id', 'code', 'name', 'description', 'netto_price', 'price', 'profit_key', 'category_id', 'isFeatured');
     
 	public function category()
     {
