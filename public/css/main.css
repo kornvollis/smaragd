@@ -1,3 +1,8 @@
+/*
+	GREEN-COLOR: #009421; 
+	BORDER-GRAY: #D8D8D8;
+*/
+
 html, body {	
 	margin: 0px;
 	padding: 0px;
@@ -11,14 +16,28 @@ html, body {
 }
 
 body {
-	width: 960px;
 	margin-left: auto !important;
 	margin-right: auto !important;
 	background-color: #fff;
+	width: 960px;
 }
 
-.container {
-	background-color: white;	
+.header1-title {
+	height: 37px;
+	font-size: 24px;
+	margin-bottom: 2px;
+	border-bottom: 3px solid #009421;
+}
+
+.header1-title.with-margin {
+	margin-bottom: 40px;
+	margin-top: 40px;
+}
+
+.smaragd-container {
+	background-color: white;
+	padding: 10px;
+	padding-bottom: 50px;
 }
 
 #header-logo {
@@ -28,8 +47,7 @@ body {
 	background-color: #FFF;
 }
 
-#container .container {
-	width : 1081px;
+.smaragd-container {
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -47,7 +65,7 @@ body {
 }
 
 a {
-	color: #2DA827;
+	color: #009421;
 	text-decoration: none;
 }
 
@@ -113,4 +131,14 @@ a:hover, a:focus {
 
 #searchresult div.searchresult-price {
 	width: 200px;
+}
+
+/* BREAD CRUMBS */
+.bread-crumbs {
+	background-color: rgba(230, 240, 230, 1);
+	border: 1px solid rgba(216, 216, 216, 1);
+	padding: 4px;
+	border-radius: 4px;
+	color: #009421;
+	font-weight: bold;
 }

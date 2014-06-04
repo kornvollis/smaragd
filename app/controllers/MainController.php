@@ -43,7 +43,21 @@ class MainController extends Controller {
     		$category = Category::first();
     		$displayedProds = Product::where('category_id', '=', $category->id)->get();
     	}
-        return View::make('products', array('products' => $displayedProds, 'category' => $category));
+    	
+    	$data = array();
+    	$data['products'] = $displayedProds;
+    	$data['category'] = $category;
+    	if(isset($category))
+    	{
+    		$data['breadCrumbs'] = array(
+	    		array(
+	    			'name' => $category->name, 
+	    			'url'  => URL::action('products', array('id' => $category_id))
+	    		)
+    		);
+    	}
+    	
+        return View::make('products', $data);
     }
     
 	public function shippinginfo()
@@ -53,7 +67,21 @@ class MainController extends Controller {
     
     public function info($id) 
     {
-    	return View::make('info', array('product' => Product::find($id)));
+    	$product = Product::find($id);
+    	
+    	$data = array();
+    	$data['product'] = $product;
+    	$data['breadCrumbs'] = array(
+	    	array(
+	    		'name' => $product->category->name, 
+	    		'url'  => URL::action('products', array('id' => $product->category->id))
+	    	), array(
+	    		'name' => $product->name, 
+	    		'url'  => URL::action('info', array('id' => $product->id))
+	    	)
+    	);
+    	
+    	return View::make('info', $data);
     }
     
     public function searchResults()

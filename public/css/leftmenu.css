@@ -1,10 +1,5 @@
-#leftMenu a {
-	color:black;
-}
-
-#leftMenu h1 {
-	font-size: 22px;
-	color: grey;
+#leftMenu, #leftMenu a {
+	color: rgba(80, 79, 79, 1);
 }
 
 #leftMenu ol {
@@ -14,7 +9,8 @@
 }
 
 #leftMenu li {
-	margin-left: 5px;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 .leftMenu-hidden {

@@ -22,7 +22,7 @@
             @include('includes/header')
         @show		
 		
-        <div class="container">
+        <div class="smaragd-container">
             @yield('content')
         </div>
         

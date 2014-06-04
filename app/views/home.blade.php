@@ -6,20 +6,29 @@
 @stop
 
 @section('content')
-	<h1 class="featuredProducts-header">		
-		Kiemelt ajánlatok
+	<h1 class="header1-title with-margin">		
+		Nézzen körbe folyamatosan bővülő kínálatunkban!
 	</h1>
 	<div id="featured-products">
 		@foreach ($featuredProducts as $product)
-		<a class="product-link" href="{{URL::route('info', array('id' => $product->id))}}">
-			<div class="product">
-				<div class="product-imageBorder">
-					<img class="product-image" src="{{$product->getFirstImage()}}"></img>
-				</div>
-				<h1>{{$product->name}}</h1>
-				<p class="price">{{$product->lowestPrice()}} Ft</p>
+		<div class="product-item home-item">
+			<div class="product-item-imageBorder">
+				<a href="{{URL::action('info', array('id'=>$product->id))}}">
+					<img class="product-item-image" src="{{$product->getFirstImage()}}"></img>
+				</a>
 			</div>
-		</a>
+			<div class="product-item-info">
+				<a href="{{URL::action('info', array('id'=>$product->id))}}">
+					<p class="product-item-name">{{$product->name}}</p>
+				</a>
+				<a href="{{URL::action('info', array('id'=>$product->id))}}">
+					<p class="product-item-price">{{$product->lowestPrice()}} Ft</p>
+				</a>
+				<a href="{{URL::action('info', array('id'=>$product->id))}}">
+					<button type="button" class="details-link btn btn-success">Részletek</button>
+				</a>
+			</div>
+		</div>
 		@endforeach
 	</div>
 @stop

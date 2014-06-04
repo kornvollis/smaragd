@@ -2,15 +2,28 @@
 
 @section('content')
 
-<h1>Keresési találatok: </h1>
+<h1 class="header1-title with-margin">Keresési találatok: {{count($products)}} db</h1>
 
 <table  class="inventory-items table">
 @foreach ($products as $product)
-	<tr style="cursor:pointer" onclick="document.location = '{{URL::action('MainController@info', array('id' => $product->id))}}';">
-		<td><img style="width: 50px;" src="{{$product->getFirstImage()}}" /></td>
-		<td>{{ $product->name}}</td>
-		<td class="price">{{$product->lowestPrice() }} Ft</td>
-	</tr>
+	<div class="product-item home-item">
+		<div class="product-item-imageBorder">
+			<a href="{{URL::action('info', array('id'=>$product->id))}}">
+				<img class="product-item-image" src="{{$product->getFirstImage()}}"></img>
+			</a>
+		</div>
+		<div class="product-item-info">
+			<a href="{{URL::action('info', array('id'=>$product->id))}}">
+				<p class="product-item-name">{{$product->name}}</p>
+			</a>
+			<a href="{{URL::action('info', array('id'=>$product->id))}}">
+				<p class="product-item-price">{{$product->lowestPrice()}} Ft</p>
+			</a>
+			<a href="{{URL::action('info', array('id'=>$product->id))}}">
+				<button type="button" class="details-link btn btn-success">Részletek</button>
+			</a>
+		</div>
+	</div>
 @endforeach
 </table>
 @stop

@@ -1,11 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
+
+@include('includes/bread_crumbs', array('breadCrumbs' => $breadCrumbs))
+
 <div class="a-col">
 	@include('includes/leftmenu')
 </div>
 
-<div class="b-col">
+<div class="b-col products-margin">
 	<div class="productInfoImageContainer">
 		<div class="vertical-middle">
 			<img class="productInfo-img" src="{{ $product->getFirstImage() }}" />
@@ -21,31 +24,70 @@
 	
 	
 	<div class="productInfo">
-		<h1>{{ $product->name }}</h1>
-		@if ($product->hasOptions())
-			<div id="description">{{ $product->options->first()->description }}</div>
-			<h2 id="price">{{ $product->displayedPrice($product->options->first()->id) }} Ft</h2>
-		@else
-			<div id="description">{{ $product->description }}</div>
-			<h2 id="price">{{ $product->displayedPrice() }} Ft</h2>
-		@endif
+		<p class="productInfo-name">{{ $product->name }}</p>
+		
+		
+		<dl class="productInfo-description">
+			<dt>Leírás: </dt>
+			<dd id="description">
+			@if ($product->hasOptions())
+				@if($product->options->first()->description != "")
+					{{$product->options->first()->description}}
+				@else
+					N/A
+				@endif
+			@else
+				@if($product->description != "")
+					{{$product->description}}
+				@else
+					N/A
+				@endif
+			@endif
+			</dd>
+		</dl>
+		
+		<dl>
+			<dt>Szállítás: </dt>
+			<dd>
+				Külső raktrárról elérhető, 3-5 munkanapon belül
+			</dd>
+		</dl>
 		
 		<form role="form" action="{{URL::route('cart-add', array('id' => $product->id))}}" method="post">
 			@if ($product->hasOptions())
-				<select name="option" id="options" name="option">
-				@foreach($product->options as $option)
-					<option value="{{$option->id}}" data-price="{{$product->displayedPrice($option->id)}}" data-description="{{$option->description}}">{{$option->description}}</option>
-				@endforeach
-				</select>
-				<br><br>
+			<dl>
+				<dt>Tipus: </dt>
+				<dd>
+					<select name="option" id="options" name="option">
+					@foreach($product->options as $option)
+						<option value="{{$option->id}}" data-price="{{$product->displayedPrice($option->id)}}" data-description="{{$option->description}}">{{$option->description}}</option>
+					@endforeach
+					</select>
+				</dd>
+			</dl>
 			@endif
-			<input id="quantity" style="width: 87px;" onkeypress="validate(event)" type="number" name="qty" value="1"  min="1" />
+			<dl>
+				<dt>Darab: </dt>
+				<dd><input id="quantity" style="width: 87px;" onkeypress="validate(event)" type="number" name="qty" value="1"  min="1" /></dd>
+			</dl>
+			
+			<dl class="productInfo-price">
+				<dt>Bruttó ár: </dt>
+				<dd id="price">
+				@if ($product->hasOptions())
+					{{ $product->displayedPrice($product->options->first()->id) }} Ft
+				@else
+					{{ $product->displayedPrice() }} Ft
+				@endif
+				</dd>
+			</dl>
+			
 			<input type="id" name="id" style="display: none;" value="{{ $product->id }}" />
 			<br><br><button type="submit" class="btn btn-success">Kosárba rak<span style="margin-left: 11px;" class="glyphicon glyphicon-shopping-cart"></span></button>
-		</form>
+		</form>	
+		
 	</div>
 </div>
-
 @stop
 
 @section('end')

@@ -2,23 +2,31 @@
 
 @section('content')
 
+@include('includes/bread_crumbs', array('breadCrumbs' => $breadCrumbs))
+
 <div class="a-col">
 	@include('includes/leftmenu')
 </div>
-<div class="b-col">
-	
-	<h1 style="font-size: 22px; margin-left: 54px;color: grey;" >Termékek / {{$category->name}}</h1>
-	
+<div class="b-col products-margin">	
 	@foreach ($products as $product)
-		<a class="product-link" href="{{URL::route('info', array('id' => $product->id))}}">
-			<div class="product">
-				<div class="product-imageBorder">
-					<img class="product-image" src="{{$product->getFirstImage()}}"></img>
-				</div>
-				<h1>{{$product->name}}</h1>
-				<p class="price">{{$product->lowestPrice()}} Ft</p>
+		<div class="product-item">
+			<div class="product-item-imageBorder">
+				<a href="{{URL::action('info', array('id'=>$product->id))}}">
+					<img class="product-item-image" src="{{$product->getFirstImage()}}"></img>
+				</a>
 			</div>
-		</a>
+			<div class="product-item-info">
+				<a href="{{URL::action('info', array('id'=>$product->id))}}">
+					<p class="product-item-name">{{$product->name}}</p>
+				</a>
+				<a href="{{URL::action('info', array('id'=>$product->id))}}">
+					<p class="product-item-price">{{$product->lowestPrice()}} Ft</p>
+				</a>
+				<a href="{{URL::action('info', array('id'=>$product->id))}}">
+					<button type="button" class="details-link btn btn-success">Részletek</button>
+				</a>
+			</div>
+		</div>
 	@endforeach
 </div>
 
