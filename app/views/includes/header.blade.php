@@ -11,9 +11,59 @@
             </ul>
             <a class="shop-cart-icon " href="{{URL::route('cart')}}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
             <form style="display: inline-block; float: right; margin-top: 8px;" action="{{ URL::route('search-results') }}" method="post" role="search">
-            	<input style="display:inline-block; width: 160px;" type="text" name="search" class="form-control" placeholder="Keresek valamit...">
-	            <button type="submit" class="btn btn-default">Keresés</button>
+            	<input id="ta" style="display:inline-block; width: 320px;" type="text" name="search" class="form-control" placeholder="Keresek egy ...">
+	            <button onclick="return validateSearch();" id="search-submit" type="submit" class="btn btn-default" style="height: 34px;"><span class="glyphicon glyphicon-search"></span></button>
             </form>
         </div><!-- /.navbar-collapse -->
     </nav>
 </div>
+
+<script type="text/javascript">
+
+function validateSearch() {
+
+	if($("#ta").val() == "")
+	{
+ 		return false;
+	}
+	
+	return true;
+}
+
+
+var substringMatcher = function(strs) {
+	return function findMatches(q, cb) {
+		var matches, substringRegex;
+		matches = [];
+		substrRegex = new RegExp(q, 'i');
+		$.each(strs, function(i, str) {
+		if (substrRegex.test(str)) {
+		matches.push({ value: str });
+		}
+		});
+		 
+		cb(matches);
+	};
+};
+
+var allProducts = {{Product::all()}} ;
+var products = new Array();
+for (var i = 0; i < allProducts.length; i++) { 
+    products.push(allProducts[i].name);
+}
+
+$('#ta').on("typeahead:selected", function() {
+	$("#search-submit").click();
+});
+
+$('#ta').typeahead({
+	hint: true,
+	highlight: true,
+	minLength: 1
+},
+{
+	name: 'products',
+	displayKey: 'value',
+	source: substringMatcher(products)
+});
+</script>

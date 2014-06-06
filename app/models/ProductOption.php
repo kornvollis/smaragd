@@ -10,6 +10,16 @@ class ProductOption extends Eloquent {
     {
     	return $this->hasOne('ProductImage', 'id', 'product_image_id');
     }
+    
+    public function imageSource()
+    {
+    	if(isset($this->image))
+    	{
+    		return $this->image->source();
+    	} else {
+    		return URL::asset('images/p/default.png');
+    	}
+    }
 }
 
 ?>

@@ -11,7 +11,7 @@ class ProductImage extends Eloquent {
     	$prefix = URL::asset('images/p/') . '/';
     	if(isset($this->path)) return $prefix . $this->path;
     	
-    	return $prefix . "default.jpg";
+    	return $prefix . "default.png";
     }
 }
 

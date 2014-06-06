@@ -30,7 +30,7 @@
 				<td><input style="display: inline-block;" class="form-control" type="text" name="price" value="{{$prod_option->price}}"></td>
 				<td><input style="display: inline-block;" class="form-control" type="text" name="description" value="{{$prod_option->description}}"></td>
 				<td><input style="display: inline-block;" class="form-control" type="text" name="code" value="{{$prod_option->code}}"></td>
-				<td><img data-piid="{{$prod_option->product_image_id}}" style="width: 30px;" src="{{ $prod_option->image->source() }}" /></td>
+				<td><img data-piid="{{$prod_option->product_image_id}}" style="width: 30px;" src="{{ $prod_option->imageSource() }}" /></td>
 				<td>
 					<button class="edit-option" data-id="{{$prod_option->id}}" type="button" class="btn btn-default navbar-btn">Módosít</button>
 					<button class="delete-option" data-id="{{$prod_option->id}}" type="button" class="btn btn-default navbar-btn">Töröl</button>
@@ -55,11 +55,13 @@
 	<div class="col-md-4">
 		<h2>Képek</h2>
 		@if (count($product->images) > 0)
-			<ul>
 			@foreach ($product->images as $image)
-		   		<li><img style="width: 50px;" src="{{asset('images/p/' . $image->path)}}" /> <a href="{{ URL::route('delete-product', array('id' => $image->id, 'product_id' => $image->product_id)) }}">töröl</a></li>
+			<div class="uploaded-image">
+		   		<img style="width: 50px;" src="{{asset('images/p/' . $image->path)}}" />
+		   		<!--  { URL::route('delete-product', array('id' => $image->id, 'product_id' => $image->product_id)) } -->
+		   		<span class="glyphicon glyphicon-remove uploaded-image-delete" data-route="{{ URL::route('delete-product', array('id' => $image->id, 'product_id' => $image->product_id)) }}" ></span>
+		   	</div>
 		   	@endforeach
-		   	</ul>
 		@endif
 		   	
 		{{ Form::open(array('action' => 'AdminController@uploadProductImage', 'files' => true))  }}
@@ -71,7 +73,34 @@
 	</div>
 </div>
 
+<!--  MODAL  -->
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Biztosan törli az elemet?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
+        <button id="modal-yes" type="button" class="btn btn-primary">Igen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+
+var smaragd = smaragd || {};
+(function (smaragd) {
+	$.extend(smaragd, {
+				
+	
+	});
+}(smaragd));
+
+modal = {};
 
 $( function() {
 	$(".option-image").first().addClass("selected");
@@ -86,7 +115,15 @@ $( function() {
 	$(".delete-option").on("click", function(e) {
 		deleteOption(e);
 	});
-	
+
+	$(".uploaded-image-delete").on("click", function(e) {
+		$("#myModal").modal('show');
+		modal.callback = function() {
+			deleteOption(e);
+		};
+	});
+
+	$(".modal-yes").on("click", modal.callback());
 });
 
 function deleteOption(e) {
