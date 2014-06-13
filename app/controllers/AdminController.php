@@ -2,20 +2,37 @@
 
 class AdminController extends Controller {
 
-    private $product; 
+    private $product;
+    private $category; 
 
-    function __construct(Product $product) {
-    	$this->product = $product;
+    function __construct(Product $product, Category $category) {
+    	$this->product  = $product;
+    	$this->category = $category;
     }
     
-    public function show($id = null)
+    public function show($category_id)
     {
-    	if(!is_null($id)) {
-    		$current_category = Category::find($id);
-    		$displayProds = $this->product->where('category_id', '=', $current_category->id)->get(); 
+    	$current_category;
+    	if(isset($this->category))
+    	{
+    		if(isset($category_id))
+    		{
+    			$data = [
+    						"products" => $this->product->where('category_id', '=', $category_id)->get(),
+							"current_category" => $this->category->find($category_id)
+    					];
+    			return View::make('admin.index', $data);
+    		}
+    	}
+    		
+    	if(!is_null($category_id)) {
+    		$current_category = $this->category->find($category_id);
+    		//$displayProds = $this->product->where('category_id', '=', $current_category->id)->get(); 
     	} else {
-    		$current_category = Category::first();
-    		$displayProds = $this->product->where('category_id', '=', $current_category->id)->get();
+    		if(isset($this->category->first())) {
+    			
+    		}
+    		//$displayProds = $this->product->where('category_id', '=', $current_category->id)->get();
     	}
     	
         return View::make('admin.index', array("products" => $displayProds, "current_category" => $current_category));
@@ -125,7 +142,7 @@ class AdminController extends Controller {
 		$product_id = Input::get('product_id');
 		
 		ProductImage::find($id)->delete();
-		return Redirect::to(URL::action('AdminController@editProduct', array('id' => $id)));
+		return Redirect::to(URL::action('AdminController@editProduct', array('id' => $product_id)));
 	}
 }
 

@@ -23,7 +23,8 @@ class AdminControllerTest extends TestCase
 		$this->app->instance('Product', $this->productMock);
 		
 		$this->call('GET', '/admin');
-		$this->assertViewHas('products');
+
+		$this->assertResponseOk();
     }
 	
 }

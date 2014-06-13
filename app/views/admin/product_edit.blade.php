@@ -20,7 +20,7 @@
 	</div>
 	
 	<div class="col-md-4">
-		<h2>Opció hozzáadása</h2>
+		<h2>Termék opciók</h2>
 		<div id="product-options">
 		    <table style="width: 100%">
 		    <th>Ár</th><th>Leírás</th><th>Cikkszám</th><th>Kép</th><th>Müveletek</th>
@@ -36,7 +36,8 @@
 					<button class="delete-option" data-id="{{$prod_option->id}}" type="button" class="btn btn-default navbar-btn">Töröl</button>
 				</td>
 			</tr>
-		    @endforeach
+			@endforeach
+			
 		    <tr>
 				<td><input id="option-price" style="display: inline-block;" class="form-control" type="text" name="price"></td>
 				<td><input id="option-product-description" style="display: inline-block;" class="form-control" type="text" name="description"></td>
@@ -59,11 +60,14 @@
 			<div class="uploaded-image">
 		   		<img style="width: 50px;" src="{{asset('images/p/' . $image->path)}}" />
 		   		<!--  { URL::route('delete-product', array('id' => $image->id, 'product_id' => $image->product_id)) } -->
-		   		<span class="glyphicon glyphicon-remove uploaded-image-delete" data-route="{{ URL::route('delete-product', array('id' => $image->id, 'product_id' => $image->product_id)) }}" ></span>
+		   		<a href="{{ URL::route('delete-product', array('id' => $image->id, 'product_id' => $image->product_id)) }}">
+		   			<span class="glyphicon glyphicon-remove uploaded-image-delete"></span>
+		   		</a>
 		   	</div>
 		   	@endforeach
 		@endif
-		   	
+		
+		<h2>Új kép feltöltése</h2>
 		{{ Form::open(array('action' => 'AdminController@uploadProductImage', 'files' => true))  }}
 			{{ Form::text('id', $product->id, array('style' => 'display:none')) }}
 			{{ Form::file('image') }}
@@ -73,7 +77,6 @@
 	</div>
 </div>
 
-<!--  MODAL  -->
 <!-- Modal -->
 <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -92,14 +95,6 @@
 
 <script>
 
-var smaragd = smaragd || {};
-(function (smaragd) {
-	$.extend(smaragd, {
-				
-	
-	});
-}(smaragd));
-
 modal = {};
 
 $( function() {
@@ -115,15 +110,14 @@ $( function() {
 	$(".delete-option").on("click", function(e) {
 		deleteOption(e);
 	});
-
+	/*
 	$(".uploaded-image-delete").on("click", function(e) {
 		$("#myModal").modal('show');
 		modal.callback = function() {
 			deleteOption(e);
 		};
 	});
-
-	$(".modal-yes").on("click", modal.callback());
+	*/
 });
 
 function deleteOption(e) {
