@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2014 at 04:39 PM
+-- Generation Time: Jun 17, 2014 at 03:46 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `pma_recent` (
 --
 
 INSERT INTO `pma_recent` (`username`, `tables`) VALUES
-('root', '[{"db":"smaragd","table":"product_options"},{"db":"smaragd","table":"products"},{"db":"smaragd","table":"categories"},{"db":"smaragd","table":"product_images"},{"db":"smaragd","table":"users"},{"db":"smaragd","table":"migrations"},{"db":"smaragd","table":"media"},{"db":"test","table":"categories"},{"db":"test","table":"migrations"},{"db":"phpmyadmin","table":"pma_column_info"}]');
+('root', '[{"db":"smaragd","table":"categories"},{"db":"smaragd","table":"products"},{"db":"smaragd","table":"product_options"},{"db":"smaragd","table":"product_images"},{"db":"smaragd","table":"users"},{"db":"smaragd","table":"migrations"},{"db":"smaragd","table":"media"},{"db":"test","table":"categories"},{"db":"test","table":"migrations"},{"db":"phpmyadmin","table":"pma_column_info"}]');
 
 -- --------------------------------------------------------
 
@@ -364,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   `created_at` varchar(50) NOT NULL,
   `updated_at` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=106 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=117 ;
 
 --
 -- Dumping data for table `product_images`
@@ -454,17 +454,17 @@ INSERT INTO `product_images` (`id`, `product_id`, `name`, `path`, `created_at`, 
 (92, 90, NULL, 'pan_page75_image393.jpg', '2014-06-03 14:13:16', '2014-06-03 14:13:16'),
 (93, 90, NULL, 'pan_page75_image394.jpg', '2014-06-03 14:13:22', '2014-06-03 14:13:22'),
 (94, 90, NULL, 'pan_page75_image396.png', '2014-06-03 14:13:32', '2014-06-03 14:13:32'),
-(95, 91, NULL, 'pan_page75_image1531.jpg', '2014-06-05 13:39:54', '2014-06-05 13:39:54'),
-(96, 91, NULL, 'pan_page75_image1526.jpg', '2014-06-05 13:40:13', '2014-06-05 13:40:13'),
-(97, 91, NULL, 'pan_page75_image1527.jpg', '2014-06-05 13:40:31', '2014-06-05 13:40:31'),
-(98, 91, NULL, 'pan_page75_image1524.jpg', '2014-06-05 13:40:38', '2014-06-05 13:40:38'),
-(99, 91, NULL, 'pan_page75_image1521.jpg', '2014-06-05 13:40:45', '2014-06-05 13:40:45'),
-(100, 91, NULL, 'pan_page75_image1523.jpg', '2014-06-05 13:42:31', '2014-06-05 13:42:31'),
-(101, 91, NULL, 'pan_page75_image1528.jpg', '2014-06-05 13:43:15', '2014-06-05 13:43:15'),
-(102, 91, NULL, 'pan_page75_image1530.jpg', '2014-06-05 13:43:27', '2014-06-05 13:43:27'),
-(103, 91, NULL, 'pan_page75_image1529.jpg', '2014-06-05 13:43:54', '2014-06-05 13:43:54'),
-(104, 91, NULL, 'pan_page75_image1525.jpg', '2014-06-05 13:44:51', '2014-06-05 13:44:51'),
-(105, 91, NULL, 'pan_page75_image1522.jpg', '2014-06-05 13:45:12', '2014-06-05 13:45:12');
+(106, 91, NULL, 'pan_page75_image1531.jpg', '2014-06-10 13:43:34', '2014-06-10 13:43:34'),
+(107, 92, NULL, 'pan_page75_image1526.jpg', '2014-06-17 13:10:56', '2014-06-17 13:10:56'),
+(108, 93, NULL, 'pan_page75_image1527.jpg', '2014-06-17 13:12:59', '2014-06-17 13:12:59'),
+(109, 94, NULL, 'pan_page75_image1528.jpg', '2014-06-17 13:18:04', '2014-06-17 13:18:04'),
+(110, 95, NULL, 'pan_page75_image1530.jpg', '2014-06-17 13:19:22', '2014-06-17 13:19:22'),
+(111, 96, NULL, 'pan_page75_image1529.jpg', '2014-06-17 13:20:47', '2014-06-17 13:20:47'),
+(112, 97, NULL, 'pan_page75_image1524.jpg', '2014-06-17 13:22:26', '2014-06-17 13:22:26'),
+(113, 98, NULL, 'pan_page75_image1521.jpg', '2014-06-17 13:23:49', '2014-06-17 13:23:49'),
+(114, 99, NULL, 'pan_page75_image1523.jpg', '2014-06-17 13:24:39', '2014-06-17 13:24:39'),
+(115, 100, NULL, 'pan_page75_image1525.jpg', '2014-06-17 13:26:45', '2014-06-17 13:26:45'),
+(116, 101, NULL, 'pan_page75_image1522.jpg', '2014-06-17 13:27:24', '2014-06-17 13:27:24');
 
 -- --------------------------------------------------------
 
@@ -585,7 +585,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_at` varchar(20) NOT NULL,
   `updated_at` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=92 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
 
 --
 -- Dumping data for table `products`
@@ -662,7 +662,17 @@ INSERT INTO `products` (`id`, `code`, `name`, `description`, `price`, `profit_ke
 (88, 'HECHT 270', 'Kézi	szórókocsi', '27 literes tárolóval.', 8587, 1.2, 1348, 0, 0, '2014-06-03 14:07:49', '2014-06-03 14:08:57'),
 (89, 'HECHT 229', 'Kézi	szórókocsi. 29 literes tárolóval', 'Gumikerekes', 17786, 1.2, 1348, 0, 0, '2014-06-03 14:10:10', '2014-06-03 14:10:10'),
 (90, '3450', 'Frissítő szett', 'Nézze meg termékbemutató videónkat, szerelési útmutatóval!\r\n\r\n<a href="https://www.youtube.com/watch?v=-tcq3RSSyvo" target="_blank">ITT</a>', 4400, 1.2, 1349, 0, 0, '2014-06-03 14:12:28', '2014-06-03 14:26:20'),
-(91, '', 'Róma állókút', '', 0, 1.2, 1350, 0, 0, '2014-06-05 13:16:39', '2014-06-05 13:16:39');
+(91, '22/01', 'Róma állókút', 'Zöld színű', 36000, 1.2, 1350, 0, 0, '2014-06-05 13:16:39', '2014-06-10 13:22:16'),
+(92, '22/02', 'Róma állókút', 'Fehér színben', 36000, 1.2, 1350, 0, 0, '2014-06-17 13:10:47', '2014-06-17 13:10:47'),
+(93, '22/03', 'Róma állókút', 'Fekete színben', 36000, 1.2, 1350, 0, 0, '2014-06-17 13:11:49', '2014-06-17 13:11:49'),
+(94, '22/05', 'Róma állókút', '"Kalapácslakk arany" színben', 38500, 1.2, 1350, 0, 0, '2014-06-17 13:17:14', '2014-06-17 13:17:14'),
+(95, '22/06', 'Róma állókút', '"Kalapácslakk ezüst" színben', 38500, 1.2, 1350, 0, 0, '2014-06-17 13:19:03', '2014-06-17 13:19:03'),
+(96, '22/07', 'Róma állókút', '"Kalapácslakk bronz" színben', 38500, 1.2, 1350, 0, 0, '2014-06-17 13:20:18', '2014-06-17 13:20:18'),
+(97, '22/09', 'Róma állókút', 'Sárga műkő', 40500, 1.2, 1350, 0, 0, '2014-06-17 13:22:06', '2014-06-17 13:22:06'),
+(98, '22/10', 'Róma állókút', 'Antikolt arany', 40500, 1.2, 1350, 0, 0, '2014-06-17 13:23:25', '2014-06-17 13:23:25'),
+(99, '22/11', 'Róma állókút', 'Antikolt ezüst', 40500, 1.2, 1350, 0, 0, '2014-06-17 13:24:30', '2014-06-17 13:24:30'),
+(100, '22/12', 'Róma állókút', 'Antikolt bronz', 40500, 1.2, 1350, 0, 0, '2014-06-17 13:26:12', '2014-06-17 13:26:12'),
+(101, '22/13', 'Róma állókút', 'Antikolt zöld', 40500, 1.2, 1350, 0, 0, '2014-06-17 13:27:16', '2014-06-17 13:27:16');
 
 -- --------------------------------------------------------
 

@@ -19,7 +19,11 @@ class MainController extends Controller {
     {
     	//$featuredProducts = Product::where('isFeatured' , '=', 1)->get();
     	$featuredProducts = Product::orderBy(DB::raw('RAND()'))->take(8)->get();
-        return View::make('home', array('featuredProducts' => $featuredProducts));
+    	$wells = Product::where('category_id', '=', 1350)->take(8)->get();
+    	$data = array('featuredProducts' => $featuredProducts, 
+    				  'wells' => $wells);
+    	
+        return View::make('home', $data);
     }
     
 	public function about()

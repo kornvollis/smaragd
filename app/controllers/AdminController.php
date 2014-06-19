@@ -10,32 +10,25 @@ class AdminController extends Controller {
     	$this->category = $category;
     }
     
-    public function show($category_id)
+    public function show($category_id = null)
     {
-    	$current_category;
-    	if(isset($this->category))
-    	{
+    	try {
     		if(isset($category_id))
     		{
-    			$data = [
-    						"products" => $this->product->where('category_id', '=', $category_id)->get(),
-							"current_category" => $this->category->find($category_id)
-    					];
+    			$data = ["products"         => $this->product->where('category_id', '=', $category_id)->get(), 
+    					 "current_category" => $this->category->find($category_id)];
+    			
+    			return View::make('admin.index', $data);
+    		} else {
+    			$category = $this->category->first();
+    			$data = ["products"         => $this->product->where('category_id', '=', $category->id)->get(), 
+    					 "current_category" => $category];
+    			
     			return View::make('admin.index', $data);
     		}
+    	} catch (Exception $e) {
+    		return View::make('admin.index', array("products" => [], "current_category" => null));
     	}
-    		
-    	if(!is_null($category_id)) {
-    		$current_category = $this->category->find($category_id);
-    		//$displayProds = $this->product->where('category_id', '=', $current_category->id)->get(); 
-    	} else {
-    		if(isset($this->category->first())) {
-    			
-    		}
-    		//$displayProds = $this->product->where('category_id', '=', $current_category->id)->get();
-    	}
-    	
-        return View::make('admin.index', array("products" => $displayProds, "current_category" => $current_category));
     }
 	
 	public function addCategory() {
