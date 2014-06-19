@@ -24,6 +24,7 @@ class AdminControllerTest extends TestCase
 		
 		$this->call('GET', '/admin');
 
+
 		$this->assertResponseOk();*/
 		$this->assertEquals(1, 1);
     }
