@@ -20,7 +20,7 @@
 					<p class="product-item-name">{{$product->name}}</p>
 				</a>
 				<a href="{{URL::action('info', array('id'=>$product->id))}}">
-					<p class="product-item-price">{{$product->lowestPrice()}} Ft</p>
+					<p class="product-item-price">{{ HTML::priceFormat($product->lowestPrice()) }} Ft</p>
 				</a>
 				<a href="{{URL::action('info', array('id'=>$product->id))}}">
 					<button type="button" class="details-link btn btn-success">Részletek</button>

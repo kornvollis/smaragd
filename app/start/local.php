@@ -1,1 +1,3 @@
 <?php
+/* Custom Blade Macros */ 
+

@@ -12,7 +12,9 @@ class ProductOption extends Eloquent {
     }
     
     public function imageSource()
-    {
+    {    	
+//    	return $this->image->source();
+
     	if(isset($this->image))
     	{
     		return $this->image->source();

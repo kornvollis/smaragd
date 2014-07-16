@@ -7,7 +7,7 @@
 		<h2>{{$product->name}}</h2>
 		{{ Form::open(array('action' => 'AdminController@updateProduct')) }}
 		    {{ Form::text('id', $product->id, array('style' => 'display:none', 'id'=>'product-id')) }}
-		    {{ Form::label('name', 'Név') }} {{ Form::text('name', $product->name, array('class' => 'form-control')) }}
+		    {{ Form::label('name', 'Név') }}      {{ Form::text('name', $product->name, array('class' => 'form-control')) }}
 		    {{ Form::label('code', 'Cikkszám') }} {{ Form::text('code', $product->code, array('class' => 'form-control')) }}
 		    {{ Form::label('description', 'Részletes leírás') }}
 		    <textarea class="form-control base-description" name="description" rows="3">{{$product->description}}</textarea>
@@ -38,7 +38,7 @@
 			</tr>
 			@endforeach
 			
-		    <tr>
+		    <tr id="new-option">
 				<td><input id="option-price" style="display: inline-block;" class="form-control" type="text" name="price"></td>
 				<td><input id="option-product-description" style="display: inline-block;" class="form-control" type="text" name="description"></td>
 				<td><input id="option-code" style="display: inline-block;" class="form-control" type="text" name="code"></td>
@@ -163,11 +163,11 @@ function addOption() {
 	params.code = $("#option-code").val();
 	params.price = $("#option-price").val();
 	params.product_image_id = $(".option-image.selected").data("id");
-
+	//alert(new String(params));
 	
-	alert(new String(params));
 	$.post( "{{ URL::action('AdminController@addProductOption') }}", params)
 	.done(function( data ) {
+		//new-option
 	    console.log("Data: " + data);
   	});	
 }

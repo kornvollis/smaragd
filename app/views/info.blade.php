@@ -75,9 +75,9 @@
 				<dt>Bruttó ár: </dt>
 				<dd id="price">
 				@if ($product->hasOptions())
-					{{ $product->displayedPrice($product->options->first()->id) }} Ft
+					{{ HTML::priceFormat($product->displayedPrice($product->options->first()->id)) }} Ft
 				@else
-					{{ $product->displayedPrice() }} Ft
+					{{ HTML::priceFormat($product->displayedPrice()) }} Ft
 				@endif
 				</dd>
 			</dl>

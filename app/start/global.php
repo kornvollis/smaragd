@@ -86,3 +86,10 @@ App::missing(function($exception){
     return Response::make("Page not found", 404);
 });
 */
+
+/* Custom Blade Macros */ 
+
+HTML::macro('priceFormat', function($price)
+{
+    return number_format($price , 0, "." , " ");
+});

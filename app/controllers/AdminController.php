@@ -104,6 +104,9 @@ class AdminController extends Controller {
 	}	
 	
 	public function editProduct($id) {
+		
+		$json = Product::with('options', 'images')->find($id)->toJson();	
+		
 		return View::make('admin.product_edit', array("product" => Product::find($id)) );
 	}
 	

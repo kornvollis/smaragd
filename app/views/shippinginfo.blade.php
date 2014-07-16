@@ -26,8 +26,37 @@
 </style>
 
 <div id="shipping">
-<h3>Szállítási partnerünk az MPL futárszolgálat. </h3>
+<h3>Szállítási feltételek</h3>
 
+// Emailes rendelés felvétel: telefonon lehet érdeklődni.
+
+Szakértő ügyfélszolgálat ad tájékoztatást a termékekről!
+A minőséget garantáljuk igyekezünk a legjobb ár érték arányt kiválasztani.
+Rendelés módosítás, termékcsere, termék visszaküldése esetén intézkedünk!
+Gyors szállítás a raktárkészlettől függően igyekszünk teljesíteni
+
+Szállítási költségünk:
+
+2500 Ft és 15.000 Ft közötti megrendelés esetén a szállítási költség 1390 Ft / cs
+15.000 Ft és 30.000 Ft közötti megrendelés esetén a szállítási költség 990 Ft / cs
+30.001 Ft és 39.000 Ft közötti megrendelés esetén a szállítási költség 690 Ft / cs
+39.000 Ft feletti rendelés esetén INGYENESEN házhoz szállítjuk a csomagját!
+
+MPL futárszolgálat szállítási súlyhatár 0-10kb
+
+Kérjük, hogy megrendelésekor olyan szállítási címet adjon meg, ahol a  fenti időben folyamatosan biztosított a csomag átvételének lehetősége 8:00-17:00 - ig.
+
+Postai szállítás esetén utánvétes fizetést kérünk!
+
+Fenti díjak a 40kg-am felett nem érvényesek valamint a 2m-nél hosszabb termékekre, termékcsoportokra, 
+illetve azokra a csomagokra ahol a csomagolási akadályok miatt a termékek nem csomagolhatóak egybe, ezek szállítási díját a
+ megrendelést követő munkatársunk telefonon egyezteti Önnel.
+ A br. 39.000 Ft feletti szállítást nem tudjuk átvállalni, külföldre történő szállítás esetén.
+ 
+ Bármilyen probléma esetén érdeklődjön:  +36209-420-940 
+ 
+
+<!--
 <h4>Szállítási díjak:</h4>
 
 	<table class="table">
@@ -45,4 +74,5 @@
 		<tr><td>500 - 1000 kg</td><td>13.100.- Ft</td></tr>
 	</table>
 </div>
+-->
 @stop
