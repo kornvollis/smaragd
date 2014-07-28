@@ -1,15 +1,14 @@
 #footer {
-	background-color: #464646;
+	background-color: #ffffff;
 	text-align: center;
-	color: #ffffff;
+	color: #919191;
 }
 
-#footer .footer-column {
-	text-align: left;
-	display: inline-block;
-	width: 240px;
-	margin-top: 15px;
-	margin-right: 70px;
+#footer a {
+	text-transform:uppercase;
+	color: #919191;
+	margin: 0px 10px;
+	font-size: 11px;
 }
 
 #footer .footer-column span {
@@ -21,7 +20,7 @@
 	font-size: 11px;
 	background-color: #202020;	
 	padding: 6px;
-	margin-top: 12px;
+	margin-top: 5px;
 }
 
 #footer .footer-facebook {
