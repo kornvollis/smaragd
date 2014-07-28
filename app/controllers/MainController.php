@@ -4,15 +4,9 @@ use smaragd\menu\AdminMenu;
 
 class MainController extends Controller {
 
-    /**
-     * Show the profile for the given user.
-     */
     private $adminMenu;
 
     function __construct() {
-        //$this->adminMenu = App::make('AdminMenu');
-        //$this->adminMenu->categories = Category::all();//->toArray();
-        //$this->adminMenu = Menu::getFacadeRoot();
     }
 
     public function homepage($id = null)

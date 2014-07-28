@@ -1,5 +1,4 @@
 <div id="leftMenu">
-	<h1 class="header1-title">Kategóriák</h1>
 
 	<ol>
 		@foreach (Menu::allCategories() as $category)

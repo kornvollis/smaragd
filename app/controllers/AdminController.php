@@ -30,7 +30,23 @@ class AdminController extends Controller {
     		return View::make('admin.index', array("products" => [], "current_category" => null));
     	}
     }
-	
+
+    public function  showCategoryManager() {
+        return View::make('admin.category_manager');
+    }
+
+    public function  showNewCategory() {
+        return View::make('admin.new_category');
+    }
+
+    public function  showRenameCategory() {
+        return View::make('admin.rename_category');
+    }
+
+    public function  showReorderCategory() {
+        return View::make('admin.reorder_category');
+    }
+
 	public function addCategory() {
 		$name = Input::get('name');
 		$parent_id = Input::get('parent_id');

@@ -13,6 +13,10 @@
 
 /* ADMIN Routes */
 Route::get('/admin/show-add-product', array('uses' => 'AdminController@showAddProduct'));
+Route::get('/admin/show-category-manager', array('uses' => 'AdminController@showCategoryManager'));
+Route::get('/admin/show-new-category', array('uses' => 'AdminController@showNewCategory'));
+Route::get('/admin/show-rename-category', array('uses' => 'AdminController@showRenameCategory'));
+Route::get('/admin/show-reorder-category', array('uses' => 'AdminController@showReorderCategory'));
 Route::get('/admin/{id?}', array('before' => 'auth.basic', 'as' => 'admin-show', 'uses' => 'AdminController@show'));
 Route::post('add-category', array('uses' => 'AdminController@addCategory', 'files'=> true));
 Route::post('edit-category/{id}', array('uses' => 'AdminController@editCategory'));

@@ -33,10 +33,13 @@
         <ul class="nav navbar-nav">
             <li><a href="{{ URL::action('AdminController@show')}}">TERMÉKEK</a></li>
             <li><a href="{{ URL::action('AdminController@showAddProduct')}}">ÚJ TERMÉK</a></li>
+            <li><a href="{{ URL::action('AdminController@showCategoryManager')}}">KATEGÓRIÁK MÓDOSÍTÁSA</a></li>
         </ul>
     </div>
 </nav>
 
+<div id="admin-page">
 @yield('content')
+</div>
 
 </body>

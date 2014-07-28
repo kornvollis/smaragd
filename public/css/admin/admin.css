@@ -7,7 +7,7 @@
 }
 
 #admin-page #left-column {
-	top: 0px;
+    top: 56px;
 	left: 0px;
 	position: absolute;
 	background-color: #f8f8f8;
@@ -107,4 +107,9 @@ ol li {
 	margin-top: 3px;
 	margin-left: 38px;
 	margin-bottom: 18px;	
+}
+
+/* NAV BAR */
+.navbar {
+    margin-bottom: 5px;
 }

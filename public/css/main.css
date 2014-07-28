@@ -29,6 +29,7 @@ body {
 	margin-bottom: 2px;
 	border-bottom: 3px solid #cb2b57;
 	color: #cb2b57;
+    text-transform:uppercase;
 }
 
 .header1-title.with-margin {
@@ -138,12 +139,14 @@ a:hover, a:focus {
 
 /* BREAD CRUMBS */
 .bread-crumbs {
-	background-color: rgba(230, 240, 230, 1);
-	border: 1px solid rgba(216, 216, 216, 1);
 	padding: 4px;
 	border-radius: 4px;
-	color: #009421;
-	font-weight: bold;
+	color: #000000;
+    font-size: 10px;
+}
+
+.bread-crumbs a {
+    color: #000000;
 }
 
 /* TYPEAHEAD */
