@@ -32,19 +32,29 @@ class AdminController extends Controller {
     }
 
     public function  showCategoryManager() {
-        return View::make('admin.category_manager');
+        return View::make('admin.category_manager.new_category', array('active_link' => 'new-cat'));
     }
 
     public function  showNewCategory() {
-        return View::make('admin.new_category');
+        return View::make('admin.category_manager.new_category', array('active_link' => 'new-cat'));
     }
 
     public function  showRenameCategory() {
-        return View::make('admin.rename_category');
+        return View::make('admin.category_manager.rename_category', array('active_link' => 'rename-cat'));
+    }
+    
+	public function  renameCategories() {
+        $inputs = Input::all();
+		
+        foreach ($inputs['category'] as $id => $name) {
+			$id_int = intval($id);
+        	Menu::editCategory($id, $name);
+        }
+		return View::make('admin.category_manager.rename_category', array('active_link' => 'rename-cat'));
     }
 
     public function  showReorderCategory() {
-        return View::make('admin.reorder_category');
+        return View::make('admin.category_manager.reorder_category', array('active_link' => 'reorder-cat'));
     }
 
 	public function addCategory() {

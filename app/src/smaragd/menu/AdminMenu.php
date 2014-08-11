@@ -190,12 +190,39 @@ class AdminMenu {
 		if (!App::environment('testing')) {	$this->saveAll(); }
 	}
 	
-	public function editCategory($id, $name, $description)
+	public function editCategory($id, $name, $description = null)
 	{
 		$category = $this->findCategoryById($id);
 		$category->name = $name;
-        $category->description = $description;
+		if(isset($description))
+		{
+        	$category->description = $description;
+		}
 		$category->save();
+	}
+	
+	public function isFirstCategory($category)
+	{
+		if(!isset($category))  { 
+			return false; 
+		}
+		$neighbours = new Collection();
+		$this->getLeftNeighbours($category, $neighbours);
+		if(count($neighbours) > 0) {
+			return false;
+		} else return true;
+	}
+	
+	public function isLastCategory($category)
+	{
+		if(!isset($category))  { 
+			return false; 
+		}
+		$neighbours = new Collection();
+		$this->getRightNeighbours($category, $neighbours);
+		if(count($neighbours) > 0) {
+			return false;
+		} else return true;
 	}
 	
 	private function findKey($item) 

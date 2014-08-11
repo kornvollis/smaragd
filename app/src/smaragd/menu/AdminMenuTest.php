@@ -92,6 +92,12 @@ class AdminMenuTest extends TestCase
 		$this->assertEquals("Sub2Sub1", $cat->name);
 	}
 	
+	public function testFindCategoryByIdWithStringValue() 
+	{
+		$cat = $this->adminMenu->findCategoryById("666");
+		$this->assertEquals("Sub2Sub1", $cat->name);
+	}
+	
 	public function testAddCategory() {
 		$newCategory = new Category(array('name' => 'xxx'));
 		
@@ -130,5 +136,29 @@ class AdminMenuTest extends TestCase
 		
 		$this->assertEquals(15, $newCategory->lft);
 		$this->assertEquals(16, $newCategory->rgt);
+	}
+	
+	public function testIsFirstCategory() 
+	{
+		$cat = $this->adminMenu->findCategoryByLft(1);
+		$this->assertTrue($this->adminMenu->isFirstCategory($cat));
+		
+		$cat = $this->adminMenu->findCategoryByLft(2);
+		$this->assertTrue($this->adminMenu->isFirstCategory($cat));
+		
+		$cat = $this->adminMenu->findCategoryByLft(5);
+		$this->assertTrue($this->adminMenu->isFirstCategory($cat));
+	}
+	
+	public function testIsLastCategory() 
+	{
+		$cat = $this->adminMenu->findCategoryByLft(13);
+		$this->assertTrue($this->adminMenu->isLastCategory($cat));
+		
+		$cat = $this->adminMenu->findCategoryByLft(7);
+		$this->assertTrue($this->adminMenu->isLastCategory($cat));
+		
+		$cat = $this->adminMenu->findCategoryByLft(4);
+		$this->assertTrue($this->adminMenu->isLastCategory($cat));
 	}
 }
