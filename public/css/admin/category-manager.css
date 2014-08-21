@@ -20,3 +20,7 @@
 .progress-row.active .progress-row-step {
 	color: rgb(66, 150, 62);
 }
+.list-of-categories {
+	display: inline-block;
+	text-align: left;
+}

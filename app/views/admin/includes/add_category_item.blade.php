@@ -7,7 +7,11 @@
         @endforeach
     </ol>
     @else
-    	<span class="insert-arrow glyphicon glyphicon-arrow-down"></span>
+    	<ol>
+    		<li>
+    			<span class="insert-arrow glyphicon glyphicon-arrow-down"></span>
+    		</li>
+    	</ol>
     @endif
 </li>
 @if (Menu::isLastCategory($category))

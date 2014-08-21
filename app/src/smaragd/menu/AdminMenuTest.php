@@ -107,6 +107,15 @@ class AdminMenuTest extends TestCase
 		$this->assertEquals(13, $newCategory->rgt);
 	}
 	
+	public function testAddCategoryBefore() {
+		$newCategory = new Category(array('name' => 'xxx'));
+		
+		$this->adminMenu->addCategory($newCategory, $this->adminMenu->findCategoryByLft(1), "before" );
+		
+		$this->assertEquals(1, $newCategory->lft);
+		$this->assertEquals(2, $newCategory->rgt);
+	}
+	
 	public function testRemoveCategory() {
 		$remove_id = 666;		
 		$this->adminMenu->removeCategory($remove_id);

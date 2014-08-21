@@ -133,7 +133,7 @@ class AdminMenu {
 		return null;
 	}
 	
-	public function addCategory($category, $parentCategory = null)
+	public function addCategory($category, $parentCategory = null, $position = null)
 	{
 		if($parentCategory == null )
 		{

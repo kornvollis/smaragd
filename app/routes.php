@@ -11,6 +11,9 @@
 |
 */
 
+/* Category Manager */
+Route::controller('category-manager', 'CategoryManagerController');
+
 /* ADMIN Routes */
 Route::get('/admin/show-add-product', array('uses' => 'AdminController@showAddProduct'));
 Route::get('/admin/show-category-manager', array('uses' => 'AdminController@showCategoryManager'));
