@@ -101,19 +101,37 @@ class AdminMenuTest extends TestCase
 	public function testAddCategory() {
 		$newCategory = new Category(array('name' => 'xxx'));
 		
-		$this->adminMenu->addCategory($newCategory, $this->adminMenu->findCategoryByLft(11) );
+		$this->adminMenu->addCategory($newCategory);
 		
-		$this->assertEquals(12, $newCategory->lft);
-		$this->assertEquals(13, $newCategory->rgt);
+		$this->assertEquals(15, $newCategory->lft);
+		$this->assertEquals(16, $newCategory->rgt);
 	}
 	
 	public function testAddCategoryBefore() {
 		$newCategory = new Category(array('name' => 'xxx'));
 		
-		$this->adminMenu->addCategory($newCategory, $this->adminMenu->findCategoryByLft(1), "before" );
+		$this->adminMenu->addCategory($newCategory, $this->adminMenu->findCategoryById(1), "before" );
 		
 		$this->assertEquals(1, $newCategory->lft);
 		$this->assertEquals(2, $newCategory->rgt);
+	}
+	
+	public function testAddCategoryAfter() {
+		$newCategory = new Category(array('name' => 'xxx'));
+		
+		$this->adminMenu->addCategory($newCategory, $this->adminMenu->findCategoryById(1), "after" );
+		
+		$this->assertEquals(11, $newCategory->lft);
+		$this->assertEquals(12, $newCategory->rgt);
+	}
+
+	public function testAddCategorySub() {
+		$newCategory = new Category(array('name' => 'xxx'));
+		
+		$this->adminMenu->addCategory($newCategory, $this->adminMenu->findCategoryById(666), "sub" );
+		
+		$this->assertEquals(6, $newCategory->lft);
+		$this->assertEquals(7, $newCategory->rgt);
 	}
 	
 	public function testRemoveCategory() {
@@ -136,15 +154,6 @@ class AdminMenuTest extends TestCase
 		
 		$this->adminMenu->removeCategory(1);
 		$this->assertEquals(2, $this->adminMenu->categories->count());
-	}
-	
-	public function testAddWithoutParentCategory() {
-		$newCategory = new Category(array('name' => 'xxx'));
-		
-		$this->adminMenu->addCategory($newCategory);
-		
-		$this->assertEquals(15, $newCategory->lft);
-		$this->assertEquals(16, $newCategory->rgt);
 	}
 	
 	public function testIsFirstCategory() 

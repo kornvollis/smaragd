@@ -133,9 +133,9 @@ class AdminMenu {
 		return null;
 	}
 	
-	public function addCategory($category, $parentCategory = null, $position = null)
+	public function addCategory($category, $targetCategory = null, $position = null)
 	{
-		if($parentCategory == null )
+		if($targetCategory == null )
 		{
 			if($this->isEmpty()) {
 				$category->lft = 1;
@@ -145,14 +145,44 @@ class AdminMenu {
 				$category->rgt = $category->lft + 1;
 			}
 		} else { 
-			$this->updateRgtLftAfterAddNewCat($parentCategory);
-			$category->rgt =  $parentCategory->rgt - 1;
-			$category->lft = $category->rgt - 1;
+			switch($position)
+			{
+				case "before":
+			        $category->lft = $targetCategory->lft;
+			        $category->rgt = $category->lft + 1;
+			        $this->incraseLftRgtAfterPosition($targetCategory->lft);			        
+			        break;
+			    case "after":
+			        $category->lft = $targetCategory->rgt + 1;
+			        $category->rgt = $category->lft + 1;
+			        $this->incraseLftRgtAfterPosition($targetCategory->rgt + 1);
+			        break;
+				case "sub":
+			        $category->lft = $targetCategory->lft + 1;
+			        $category->rgt = $category->lft + 1;
+			        $this->incraseLftRgtAfterPosition($targetCategory->rgt);
+			        break;
+			}
 		}		
 		
 		$this->categories->push($category);
 
 		if (!App::environment('testing')) {$this->saveAll();}
+	}
+	
+	private function incraseLftRgtAfterPosition($pos)
+	{
+		foreach ($this->categories as $category)
+		{
+			if($category->lft >= $pos)
+			{
+				$category->lft += 2;
+			}
+			if($category->rgt >= $pos)
+			{
+				$category->rgt += 2;
+			}
+		}
 	}
 	
 	public function removeCategory($id)
