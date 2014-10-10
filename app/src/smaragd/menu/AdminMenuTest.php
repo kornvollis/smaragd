@@ -6,15 +6,15 @@ use smaragd\menu\AdminMenu;
 class AdminMenuTest extends TestCase 
 {
 	/* 
-	(1 Root  
-		(2  Sub1 3)  
-		(4 Sub2               665
-			( 5 Sub2Sub1 6 )  666
-			( 7 Sub2Sub2 8 )  667
+	(1 Root  							id: 1
+		(2  Sub1 3)  					id: 2
+		(4 Sub2                  		id: 665
+			( 5 Sub2Sub1 6 )     		id: 666
+			( 7 Sub2Sub2 8 )    		id: 667
 		9) 
 	10) 
-	(11 Root2 12) 
-	(13 Root3 14)
+	(11 Root2 12) 						id: 1000
+	(13 Root3 14)						id: 1200
 	*/
 
 	private $adminMenu;
@@ -27,12 +27,12 @@ class AdminMenuTest extends TestCase
 		$categories = new Collection();
 
 		$categories->push(new Category(array("name" => "Root" ,     "lft" => 1, "rgt" => 10, "id" => 1)));
-        $categories->push(new Category(array("name" => "Sub1" ,     "lft" => 2, "rgt" => 3)));
+        $categories->push(new Category(array("name" => "Sub1" ,     "lft" => 2, "rgt" => 3, "id" => 2)));
         $categories->push(new Category(array("name" => "Sub2" ,     "lft" => 4, "rgt" => 9, "id" => 665)));
         $categories->push(new Category(array("name" => "Sub2Sub1" , "lft" => 5, "rgt" => 6, "id" => 666)));
         $categories->push(new Category(array("name" => "Sub2Sub2" , "lft" => 7, "rgt" => 8, "id" => 667)));
-        $categories->push(new Category(array("name" => "Root2" ,    "lft" => 11, "rgt" => 12)));
-        $categories->push(new Category(array("name" => "Root3" ,    "lft" => 13, "rgt" => 14)));
+        $categories->push(new Category(array("name" => "Root2" ,    "lft" => 11, "rgt" => 12, "id" => 1000)));
+        $categories->push(new Category(array("name" => "Root3" ,    "lft" => 13, "rgt" => 14, "id" => 1200)));
 		
 		
 		$this->adminMenu = new AdminMenu();
@@ -178,5 +178,28 @@ class AdminMenuTest extends TestCase
 		
 		$cat = $this->adminMenu->findCategoryByLft(4);
 		$this->assertTrue($this->adminMenu->isLastCategory($cat));
+	}
+	
+	public function testReorder()
+	{   
+		/* 
+		(1 Root  							id: 1
+			(2  Sub1 3)  					id: 2
+			(4 Sub2                  		id: 665
+				( 5 Sub2Sub1 6 )     		id: 666
+				( 7 Sub2Sub2 8 )    		id: 667
+			9) 
+		10) 
+		(11 Root2 12) 						id: 1000
+		(13 Root3 14)						id: 1200
+		*/
+		
+		$newOrder = [[1000,[]],[1200,[]],[1,[ [2,[]],[665,[[666,[]],[667,[]]]]]]];
+		
+		$this->adminMenu->reorder($newOrder);
+		
+		$cat = $this->adminMenu->findCategoryById(1);
+		
+		$this->assertEquals(5, $cat->lft);
 	}
 }

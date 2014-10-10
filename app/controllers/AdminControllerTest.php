@@ -26,7 +26,6 @@ class AdminControllerTest extends TestCase
 
 
 		$this->assertResponseOk();*/
-		$this->assertEquals(1, 2);
     }
 	
 }

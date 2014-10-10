@@ -13,6 +13,13 @@ class CategoryManagerController extends Controller {
 		
 		echo "kakas " . $input_stuff;
 	}
+	
+	public function postApplyReorder() 
+    {    	
+    	Menu::reorder(Input::get('orders'));
+    	
+    	return "sziszifuszKA";
+    }
 }
 
 ?>

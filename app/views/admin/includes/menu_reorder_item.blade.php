@@ -1,4 +1,4 @@
-<li>{{$category->name}}
+<li data-id="{{$category->id}}" >{{$category->name}}
     @if ($category->hasChild() )
     <ol>
         @foreach (Menu::getFirstChildCategories($category) as $child)

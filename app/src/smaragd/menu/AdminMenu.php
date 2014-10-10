@@ -3,6 +3,7 @@
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Product;
+use smaragd\category\CategoryOrder;
 
 class AdminMenu {
 
@@ -300,6 +301,19 @@ class AdminMenu {
 	}
 	
 	public function allCategories() {return $this->categories; } 
+	
+	private function numOfsubCategories($subCategories) {
+		return 0;
+	}
+	
+	public function reorder($orders) 
+	{
+		$index = 1;
+		foreach($orders as $order) {
+			$id = $order[0];
+			$category = $this->findCategoryById($id);
+		}
+	}
 }
 
 ?>
