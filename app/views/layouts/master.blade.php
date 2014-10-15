@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="{{ URL::asset('css/products.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/footer.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/featuredproducts.css') }}" />
+		<link rel="stylesheet" href="{{ URL::asset('css/payment.css') }}" />
 		
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>

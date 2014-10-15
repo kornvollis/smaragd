@@ -9,8 +9,9 @@ class PaymentsController extends Controller {
     	return View::make('payments.payments');
     }
     
-    public function order()
+    public function order($step)
     {
+    	/*
     	$data = array();
     	$data['lastName']  = Input::get('lastname');
     	$data['firstName'] = Input::get('firstname');
@@ -36,6 +37,10 @@ class PaymentsController extends Controller {
 		SCart::removeAll();
 		
     	return Redirect::action('PaymentsController@orderSuccess');
+    	
+    	*/
+    	
+    	return View::make('payments.payment_process', array('step' => $step));
     }
 	
     public function orderSuccess()

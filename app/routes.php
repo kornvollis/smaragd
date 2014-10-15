@@ -61,7 +61,7 @@ Route::post('/updateItem', array('as' => 'cart-updateItem', 'uses' => 'CartContr
 
 /* CASHIER */
 Route::get('/Penztar', array('as' => 'payments', 'uses' => 'PaymentsController@show'));
-Route::post('/Rendeles', array('as' => 'order', 'uses' => 'PaymentsController@order'));
+Route::get('/Rendeles/{step?}', array('as' => 'order', 'uses' => 'PaymentsController@order'));
 Route::get('/SikeresRendeles', array('as' => 'order-success', 'uses' => 'PaymentsController@orderSuccess'));
 
 /* ERRORS */
