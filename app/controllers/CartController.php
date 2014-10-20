@@ -11,9 +11,34 @@ class CartController extends Controller {
     
 	public function add()
     {
-    	SCart::add(Input::get('qty'), Input::get('id'), Input::get('option'));
-    	return Redirect::to(URL::route('cart'));
-    	//return View::make('cart.cart');
+        $qty = Input::get('qty');
+        $id = Input::get('id');
+        $option = Input::get('option');
+
+        $validator = Validator::make(
+          array(
+              'qty' => $qty,
+              'id' => $id,
+              'option' => $option
+          ),
+          array(
+              'qty' => 'required',
+              'id' => 'required',
+              'option' => 'required'
+          )
+        );
+
+        $response = array();
+
+        if ($validator->passes())
+        {
+            SCart::add($qty, $id, $option);
+            $response['status'] = 'success';
+            return json_encode($response);
+        } else {
+            $response['status'] = 'error';
+            return json_encode($response);
+        }
     }
     
     public function updateItem()

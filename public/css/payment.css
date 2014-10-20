@@ -25,7 +25,7 @@
 	text-align: center;
 }
 
-#order_step li.step_current {
+#order_step li.step_current, #order_step li.step_current a {
 	color: #da3b44;
 }
 
@@ -109,12 +109,12 @@
 	padding: 15px;
 }
 
-#cart_summary .cart_description h5 a {
+#payment a {
 	color: #555555;
 }
 
-#cart_summary .cart_description h5 a:hover {
-	color: #da3b44!important;
+#payment a:hover {
+	color: #da3b44;
 	text-decoration: none;
 }
 

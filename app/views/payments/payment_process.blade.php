@@ -13,21 +13,21 @@
 		@endif
 	</li>
 	<li id="step-bar-2" class="@if ($step == 2)step_current  @elseif ($step < 2) step_todo @else step_done @endif">
-		@if ($step > 2)
+		@if ($step < 3)
 			<span>2. Adatok megadása</span>
 		@else 
 			<a href="{{URL::route('order', array('step' => 2))}}">2. Adatok megadása</a>
 		@endif
 	</li>
 	<li id="step-bar-3" class="@if ($step == 3)step_current  @elseif ($step < 3) step_todo @else step_done @endif" style="width: 244px;">
-		@if ($step > 3)
+		@if ($step < 4)
 			<span>3. Szállítási/Számlázási adatok</span>
 		@else 
 			<a href="{{URL::route('order', array('step' => 3))}}">3. Szállítási/Számlázási adatok</a>
 		@endif
 	</li>
 	<li id="step-bar-4" class="@if ($step == 4)step_current  @elseif ($step < 4) step_todo @else step_done @endif">
-		@if ($step > 4)
+		@if ($step < 5)
 			<span>4. Szállítás</span>
 		@else 
 			<a href="{{URL::route('order', array('step' => 4))}}">4. Szállítás</a>
@@ -62,55 +62,51 @@
 		</thead>
 
 		<tbody>
-			<tr id="product_710016_0_0_0"
-				class="last_item  cart_item address_0 even">
-				<td class="cart_product"><a
-					href="http://webshop.idokep.hu/home/710016-conrad-kulteri-napelemes-ultrahangos-kartev-kutya-macska-es-vadriaszto-mozgaserzekelvel-25-m.html"><img
-						src="http://webshop.idokep.hu/30668-medium_default/conrad-kulteri-napelemes-ultrahangos-kartev-kutya-macska-es-vadriaszto-mozgaserzekelvel-25-m.jpg"
-						alt="Conrad kültéri napelemes ultrahangos kártevő-, kutya-, macska- és vadriasztó mozgásérzékelővel, 25 m²">
-				</a>
-				</td>
-				<td class="cart_description">
-					<h5>
-						<a
-							href="http://webshop.idokep.hu/home/710016-conrad-kulteri-napelemes-ultrahangos-kartev-kutya-macska-es-vadriaszto-mozgaserzekelvel-25-m.html">Conrad
-							kültéri napelemes ultrahangos kártevő-, kutya-, macska- és
-							vadriasztó mozgásérzékelővel, 25 m²</a>
-					</h5>
-				</td>
-				<td class="cart_unit">
-					<span class="price" id="product_price_710016_0_0"> 13 990 Ft&lrm; </span>
-				</td>
-				<td class="cart_quantity">
-					<input class="qty" style="width: 60px;" type="number" min="1" onkeypress="validate(event)" value="1">
-				</td>
-				<td class="cart_total">
-					<span class="price" id="total_product_price_710016_0_0"> 27 980
-						Ft&lrm; </span>
-				</td>
-				<td class="cart_delete">
-					<div>
-						<a class="delete_button" id="" href="#">Törlöm a terméket</a>
-					</div>
-				</td>
-			</tr>
+            @foreach (SCart::getItems() as $cartItem)
+                <tr id="product_710016_0_0_0"
+                    class="last_item  cart_item address_0 even">
+                    <td class="cart_product">
+                        <a href="">
+                            <img style="width:60px;" src="{{$cartItem->image()}}">
+                        </a>
+                    </td>
+                    <td class="cart_description" style="width: 500px; text-align: left;">
+                        <a href="http://webshop.idokep.hu/home/710016-conrad-kulteri-napelemes-ultrahangos-kartev-kutya-macska-es-vadriaszto-mozgaserzekelvel-25-m.html">
+                            {{$cartItem->option_description}}
+                        </a>
+                    </td>
+                    <td class="cart_unit">
+                        <span class="price" id="product_price_710016_0_0">{{$cartItem->price()}} Ft&lrm; </span>
+                    </td>
+                    <td class="cart_quantity">
+                        <input class="qty" style="width: 60px;" type="number" min="1" onkeypress="validate(event)" value="{{$cartItem->quantity}}">
+                    </td>
+                    <td class="cart_total">
+                        <span class="price" id="total_product_price_710016_0_0">{{$cartItem->sumPrice()}} Ft&lrm;</span>
+                    </td>
+                    <td class="cart_delete">
+                        <div>
+                            <a class="smaragd-button" id="" href="#">Törlöm a terméket</a>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
 		</tbody>
-
 
 		<tfoot>
 			<tr class="cart_total_price">
 				<td colspan="4" style="text-align: left;">Összesen</td>
-				<td colspan="2" class="price" id="total_product" style="text-align: right;">36 970 Ft&lrm;</td>
+				<td colspan="2" class="price" id="total_product" style="text-align: right;">{{SCart::sumPrice()}} Ft&lrm;</td>
 			</tr>
 			<tr class="cart_total_delivery">
 				<td colspan="4" style="text-align: left;">Összes szállítás</td>
-				<td colspan="2" class="price" id="total_shipping" style="text-align: right;">1 100 Ft&lrm;</td>
+				<td colspan="2" class="price" id="total_shipping" style="text-align: right;">{{SCart::shippingCost()}} Ft&lrm;</td>
 			</tr>
 			<tr class="cart_total_price grand_total">
 				<td colspan="4" id="cart_voucher" class="cart_voucher"></td>
 				<td colspan="2" class="price total_price_container" id="total_price_container">
 					<p>Végösszeg</p> 
-					<span id="total_price">38 070 Ft&lrm;</span>
+					<span id="total_price">{{SCart::sumPrice() + SCart::shippingCost()}} Ft&lrm;</span>
 				</td>
 			</tr>
 		</tfoot>
@@ -118,7 +114,7 @@
 	</table>
 	<div class="cart_navigation">
 		<a href="/" class="autumn-button continue-shopping" title="Vásárlás folytatása">« Vásárlás folytatása</a>
-		<a href="{{URL::route('order', array('step' => 2))}}" class="exclusive standard-checkout order-button" title="Tovább" onClick="showStep2();">Tovább »</a>
+		<a href="{{URL::route('order', array('step' => 2))}}" class="smaragd-button"  style="float: right;">Tovább</a>
 	</div>
 </div>
 
@@ -187,7 +183,7 @@
 				
 				<div class="user-form-footer required submit">
 					<span style="color: #990000;"><sup>*</sup>kötelező kitölteni</span>
-					<a href="{{URL::route('order', array('step' => 3))}}" style="float: right" type="submit" class="order-button" name="submitGuestAccount" id="submitGuestAccount">Tovább</a>
+					<a href="{{URL::route('order', array('step' => 3))}}" class="smaragd-button"  style="float: right;">Tovább</a>
 				</div>			
 			</div>
 		</fieldset>
@@ -203,7 +199,7 @@
 			<li class="address_postcode city">1123 asdasdads</li>
 			<li class="address_Country:name">Magyarország</li>
 			<li class="address_phone">123123123</li>
-			<li class="address_update"><a class="order-button"
+			<li class="address_update"><a class="smaragd-button"
 				href="http://webshop.idokep.hu/address?id_address=391&amp;back=order.php?step=1"
 				title="Módosít">Módosít</a></li>
 		</ul>
@@ -215,7 +211,7 @@
 			<li class="address_postcode city">1123 asdasdads</li>
 			<li class="address_Country:name">Magyarország</li>
 			<li class="address_phone">123123123</li>
-			<li class="address_update"><a class="order-button"
+			<li class="address_update"><a class="smaragd-button"
 				href="http://webshop.idokep.hu/address?id_address=391&amp;back=order.php?step=1"
 				title="Módosít">Módosít</a></li>
 		</ul>
@@ -223,8 +219,8 @@
 		<p class="textarea"><textarea cols="60" rows="3" name="message"></textarea></p>
 	</div>
 	<div class="order-navigation">
-		<a href="{{URL::route('order', array('step' => 2))}}" class="order-button">vissza</a>
-		<a style="float:right" href="{{URL::route('order', array('step' => 4))}}" class="order-button">Tovább</a>
+		<a href="{{URL::route('order', array('step' => 2))}}" class="smaragd-button">vissza</a>
+		<a href="{{URL::route('order', array('step' => 4))}}" class="smaragd-button"  style="float: right;">Tovább</a>
 	</div>
 </div>
 
@@ -267,8 +263,8 @@
 	</div>
 	
 	<div class="order-navigation">
-		<a href="{{URL::route('order', array('step' => 3))}}" class="order-button">vissza</a>
-		<a style="float:right" href="{{URL::route('order', array('step' => 5))}}" class="order-button">Tovább</a>
+		<a href="{{URL::route('order', array('step' => 3))}}" class="smaragd-button">vissza</a>
+		<a href="{{URL::route('order', array('step' => 5))}}" class="smaragd-button"  style="float: right;">Tovább</a>
 	</div>
 </div>
 
@@ -351,11 +347,11 @@
 			<img style="width: 130px;" src="{{ URL::asset('images/payment/szallitas.jpg') }}" />
 			<p style="font-weight: bold; font-size: 12px; padding: 10px;">Utánvételes fizetés</p>
 		</div>
-		<a style="margin-top: 35px; float: right;" href="http://webshop.idokep.hu/module/cashondelivery/validation" class="order-button">A termék átvételekor fizetek, tovább >></a>
+		<a style="margin-top: 35px; float: right;" class="smaragd-button">A termék átvételekor fizetek, tovább</a>
     </p>
 	
 	<div class="cart_navigation">
-		<a href="{{URL::route('order', array('step' => 4))}}" class="order-button" title="Tovább">vissza</a>
+		<a href="{{URL::route('order', array('step' => 4))}}" class="smaragd-button" title="Tovább">vissza</a>
 	</div>
 </div>
 <!--

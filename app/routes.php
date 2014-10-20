@@ -49,10 +49,14 @@ Route::get('/', array('as' => 'home', 'uses' => 'MainController@homepage'));
 Route::get('Rolunk', array('as' => 'about', 'uses' => 'MainController@about'));
 Route::get('/Kosar', array('as' => 'cart', 'uses' => 'CartController@cart'));
 Route::post('/cart-add', array('as' => 'cart-add', 'uses' => 'CartController@add'));
-Route::get('/Termekek/{id?}', array('as' => 'products', 'uses' => 'MainController@products'));
+/* Route::get('/Termekek/{id?}', array('as' => 'products', 'uses' => 'MainController@products')); */
 Route::get('/Szallitas-fizetes', array('as' => 'shippinginfo', 'uses' => 'MainController@shippinginfo'));
 Route::get('/info/{id}', array('as' => 'info', 'uses' => 'MainController@info'));
 /* Route::get('/Kapcsolat', array('as' => 'contact', 'uses' => 'MainController@contact')); */
+
+
+/* PRODUCTS */
+Route::get('termekek/{id?}',  array('as' => 'products', 'uses' => 'ProductsController@showProducts'));
 
 /* CART */
 Route::get('/cart-remove-all', array('as' => 'cart-remove-all', 'uses' => 'CartController@removeAll'));

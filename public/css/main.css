@@ -23,6 +23,16 @@ body {
 	width: 960px;
 }
 
+.smaragd-button, .smaragd-button:hover {
+    font-family: 'Open Sans', Helvetica, Arial;
+    font-size: 12px;
+    display: inline-block;
+    background-color: #da3b44 !important;
+    color: #fafafa !important;
+    border: 1px solid #a40f18;
+    padding: 6px 12px;
+}
+
 .header1-title {
 	height: 37px;
 	font-size: 24px;

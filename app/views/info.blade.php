@@ -4,8 +4,24 @@
 
 @include('includes/bread_crumbs', array('breadCrumbs' => $breadCrumbs))
 
+<div class="modal fade" id="buy-confirm-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Beraktuk a kosaradba!</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Folytatom a vásárlást</button>
+        <button id="pay-button" type="button" class="smaragd-button">Fizetés/kosár megtekintése</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="a-col">
-	@include('includes/leftmenu')
+	@include('includes/navigation')
+    @include('includes/cart_info')
 </div>
 
 <div class="b-col products-margin">
@@ -53,7 +69,7 @@
 			</dd>
 		</dl>
 		
-		<form role="form" action="{{URL::route('cart-add', array('id' => $product->id))}}" method="post">
+		<!-- form role="form" action="{{URL::route('cart-add', array('id' => $product->id))}}" method="post" -->
 			@if ($product->hasOptions())
 			<dl>
 				<dt>Tipus: </dt>
@@ -82,16 +98,47 @@
 				</dd>
 			</dl>
 			
-			<input type="id" name="id" style="display: none;" value="{{ $product->id }}" />
-			<br><br><button type="submit" class="btn btn-success">Kosárba rak<span style="margin-left: 11px;" class="glyphicon glyphicon-shopping-cart"></span></button>
-		</form>	
-		
+			<input id="product-id" type="id" name="id" style="display: none;" value="{{ $product->id }}" />
+			<br><br>
+			<button id="buy-item" type="submit" class="smaragd-button">
+			    Kosárba rak<span style="margin-left: 11px;" class="glyphicon glyphicon-shopping-cart"></span>
+			</button>
 	</div>
 </div>
 @stop
 
 @section('end')
 <script>
+
+$('#buy-item').click(function() {
+    var qty = $('#quantity').val();
+    var qty = $('#quantity').val();
+    var qty = $('#quantity').val();
+
+    var data = {};
+    data.id = $("#product-id").val();
+    data.qty = $('#quantity').val();
+    data.option = $("#options").val();
+
+    $.ajax({
+      type: "POST",
+      url: "{{URL::route('cart-add')}}",
+      data: data,
+      dataType: 'json',
+      success: function() {
+        $('#buy-confirm-modal').modal('show');
+      },
+      error: function() {
+         alert("error");
+       }
+    });
+
+})
+
+$("#pay-button").click(function() {
+    window.location.href = "{{URL::route('order', array('step' => 1))}}";
+});
+
 $("#thumbnails img").on("click", function(e) {
 	$(".productInfo-img").attr("src", e.currentTarget.src);
 });

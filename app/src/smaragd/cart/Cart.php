@@ -94,6 +94,27 @@ class Cart {
 		}
 		return $cost;
 	}
+
+    public function shippingCost() {
+        $sumPrice = $this->sumPrice();
+
+        if($sumPrice < 15000)
+        {
+            return 1390;
+        }
+
+        if($sumPrice < 30000)
+        {
+            return 990;
+        }
+
+        if($sumPrice < 39000)
+        {
+            return 690;
+        }
+
+        return 0;
+    }
 	/*
 	public function num()
 	{

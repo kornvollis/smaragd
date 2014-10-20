@@ -28,7 +28,7 @@ class AdminMenu {
 		$children = new Collection();
 		foreach ($this->categories as $child) 
 		{
-			if($child->lft > $parent->left && $child->rgt < $parent->rgt)
+			if($child->lft > $parent->lft && $child->rgt < $parent->rgt)
 			{
 				$children->push($child);
 			}

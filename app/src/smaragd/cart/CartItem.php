@@ -11,17 +11,19 @@ class CartItem {
 	public $name;
 	public $price;
 	public $option_description;
-	
+
+    private $product;
+
 	function __construct($quantity, $product_id, $option_id) {
 		$this->quantity = $quantity;
 		$this->product_id = $product_id;
 		$this->option_id = $option_id;
 		
 		try {
-			$prod = Product::find($product_id);
+            $this->product = Product::find($product_id);
 			
-			$this->name = $prod->name;
-			$this->price = $prod->displayedPrice($option_id);
+			$this->name = $this->product->name;
+			$this->price = $this->product->displayedPrice($option_id);
 			if(isset($option_id))
 			{
 				$this->option_description  = ProductOption::find($option_id)->description;
@@ -68,6 +70,10 @@ class CartItem {
 	{
 		return $this->price * $this->quantity;
 	}
+
+    public function image() {
+        return $this->product->getFirstImage();
+    }
 }
 
 ?>

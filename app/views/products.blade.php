@@ -5,7 +5,8 @@
 @include('includes/bread_crumbs', array('breadCrumbs' => $breadCrumbs))
 
 <div class="a-col">
-	@include('includes/leftmenu')
+    @include('includes/navigation')
+    @include('includes/cart_info')
 </div>
 
 <div class="b-col products-margin">	

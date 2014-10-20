@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="{{ URL::asset('css/navbar.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/leftmenu.css') }}" />
+		<link rel="stylesheet" href="{{ URL::asset('css/navigation.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/productinfo.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/products.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/footer.css') }}" />

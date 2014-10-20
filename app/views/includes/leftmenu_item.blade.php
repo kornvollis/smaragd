@@ -2,7 +2,7 @@
     @if ($category->hasChild() )
     <ol>
         @foreach (Menu::getFirstChildCategories($category) as $child)
-        @include ('includes.leftmenu_item', array('category'=>$child))
+            @include ('includes.leftmenu_item', array('category'=>$child))
         @endforeach
     </ol>
     @endif
