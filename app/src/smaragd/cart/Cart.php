@@ -24,7 +24,7 @@ class Cart {
 		}
 		return null;
 	}
-	
+
 	public function isInCart($prod_id, $option_id) {		
 		foreach($this->getItems() as $item) {
 			if($item->equals($prod_id, $option_id)) {
@@ -97,6 +97,11 @@ class Cart {
 
     public function shippingCost() {
         $sumPrice = $this->sumPrice();
+
+        if($sumPrice < 1)
+        {
+            return 0;
+        }
 
         if($sumPrice < 15000)
         {

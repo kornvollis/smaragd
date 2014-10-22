@@ -18,13 +18,11 @@ class CartController extends Controller {
         $validator = Validator::make(
           array(
               'qty' => $qty,
-              'id' => $id,
-              'option' => $option
+              'id' => $id
           ),
           array(
               'qty' => 'required',
-              'id' => 'required',
-              'option' => 'required'
+              'id' => 'required'
           )
         );
 
@@ -60,7 +58,9 @@ class CartController extends Controller {
 	public function remove($product_id, $option_id = null)
     {
     	SCart::remove($product_id, $option_id);
-    	return View::make('cart.cart');
+
+        return Redirect::to('/Rendeles/1');
+        // return View::make('payments.payment_process', array('step' => '1'));
     }
 }
 

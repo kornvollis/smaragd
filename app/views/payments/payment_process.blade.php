@@ -39,9 +39,9 @@
 </ul>
 
 <div id="step-1" style="display:@if($step == 1)block; @else none; @endif" >
-	<p style="font-size: 12px; padding-top: 10px;">Az ön kosarának tartalma <span style="font-weight: bold;" class="summary_products_quantity">3 Termék</span></p>
+	<p style="font-size: 12px; padding-top: 10px;">Az ön kosarának tartalma <span style="font-weight: bold;" class="summary_products_quantity">{{count(SCart::getItems())}} Termék</span></p>
 
-	<table id="cart_summary">
+	<table id="cart_summary" style="width: 100%;">
 		<colgroup>
 			<col width="1">
 			<col width="1">
@@ -63,8 +63,7 @@
 
 		<tbody>
             @foreach (SCart::getItems() as $cartItem)
-                <tr id="product_710016_0_0_0"
-                    class="last_item  cart_item address_0 even">
+                <tr class="last_item  cart_item address_0 even">
                     <td class="cart_product">
                         <a href="">
                             <img style="width:60px;" src="{{$cartItem->image()}}">
@@ -76,17 +75,18 @@
                         </a>
                     </td>
                     <td class="cart_unit">
-                        <span class="price" id="product_price_710016_0_0">{{$cartItem->price()}} Ft&lrm; </span>
+                        <span class="price" id="product_price_{{$cartItem->product_id}}">{{$cartItem->price()}} Ft&lrm; </span>
                     </td>
                     <td class="cart_quantity">
-                        <input class="qty" style="width: 60px;" type="number" min="1" onkeypress="validate(event)" value="{{$cartItem->quantity}}">
+                        <input id="product_quantity_{{$cartItem->product_id}}" class="qty" style="width: 60px;" type="number" min="1" onkeypress="validate(event)" value="{{$cartItem->quantity}}">
                     </td>
                     <td class="cart_total">
-                        <span class="price" id="total_product_price_710016_0_0">{{$cartItem->sumPrice()}} Ft&lrm;</span>
+                        <span class="price" id="total_product_price_{{$cartItem->product_id}}">{{$cartItem->sumPrice()}} Ft&lrm;</span>
                     </td>
                     <td class="cart_delete">
                         <div>
-                            <a class="smaragd-button" id="" href="#">Törlöm a terméket</a>
+                            <a class="smaragd-button" id="product_delete_{{$cartItem->product_id}}$cartItem"
+                               href="{{ URL::route('cart-remove', array('product_id' => $cartItem->product_id, 'option_id' => $cartItem->option_id )) }}">Törlöm a terméket</a>
                         </div>
                     </td>
                 </tr>
@@ -118,8 +118,6 @@
 	</div>
 </div>
 
-
-
 <div id="step-2" style="display:@if($step == 2)block; @else none; @endif" >
 	<form
 		action="http://webshop.idokep.hu/authentication?back=http%3A%2F%2Fwebshop.idokep.hu%2Forder%3Fstep%3D1&amp;multi-shipping=0"
@@ -148,7 +146,11 @@
 						type="hidden" class="text" id="customer_lastname"
 						name="customer_lastname" value="">
 				</p>
-				
+				<p class="required text">
+                    <label for="phone">Telefonszám <sup>*</sup> </label> <input
+                        type="text" class="text light" name="phone" id="phone" value="">
+                </p>
+
 				<h4 class="subtitle">Szállítási cím megadása</h4>
 				<p class="text extra_top_space">
 					<label for="company">Cégnév (amennyiben szükséges)</label> <input
@@ -175,16 +177,40 @@
 					<label for="city">Város <sup>*</sup> </label> <input type="text"
 						class="text light" name="city" id="city" value="">
 				</p>
-	
-				<p class="required text">
-					<label for="phone">Telefonszám <sup>*</sup> </label> <input
-						type="text" class="text light" name="phone" id="phone" value="">
-				</p>
 				
 				<div class="user-form-footer required submit">
 					<span style="color: #990000;"><sup>*</sup>kötelező kitölteni</span>
 					<a href="{{URL::route('order', array('step' => 3))}}" class="smaragd-button"  style="float: right;">Tovább</a>
-				</div>			
+				</div>
+
+			    <h4 class="subtitle">Számlázási cím megadása</h4>
+                <p class="text extra_top_space">
+                    <label for="company">Cégnév</label> <input
+                        type="text" class="text light" id="company-billing" name="company" value="">
+                </p>
+                <div id="vat_number" style="display: none;">
+                    <p class="text">
+                        <label for="vat_number">Adószám (nem kötelező)</label>
+                        <input type="text" class="text" name="vat_number" value="">
+                    </p>
+                </div>
+                <p class="required text">
+                    <label for="address1">Utca, házszám <sup>*</sup> </label>
+                    <input type="text" class="text light" name="address1" id="address-billing" value="">
+                </p>
+                <p class="required postcode text">
+                    <label for="postcode">Irányítószám <sup>*</sup> </label>
+                    <input type="text" class="text light" name="postcode" id="postcode-billing" value="">
+                </p>
+                <p class="required text">
+                    <label for="city">Város <sup>*</sup> </label>
+                    <input type="text" class="text light" name="city" id="city-billing" value="">
+                </p>
+
+                <div class="user-form-footer required submit">
+                    <span style="color: #990000;"><sup>*</sup>kötelező kitölteni</span>
+                    <a href="{{URL::route('order', array('step' => 3))}}" class="smaragd-button"  style="float: right;">Tovább</a>
+                </div>
 			</div>
 		</fieldset>
 	</form>
@@ -354,27 +380,38 @@
 		<a href="{{URL::route('order', array('step' => 4))}}" class="smaragd-button" title="Tovább">vissza</a>
 	</div>
 </div>
-<!--
-<div id="step-5" style="display:@if($step == 5)block; @else none; @endif">
-	<div class="order-navigation">
-		<a href="{{URL::route('order', array('step' => 4))}}" class="order-button">vissza</a>
-		<a style="float:right" class="order-button">Megrendelem</a>
-	</div>
-</div>
--->
-<script type="text/javascript">
-/*
-function hideAll() {
-	$("#step-1").hide();
-}
 
-function showStep2() {
-	hideAll();
-	$("#step-bar-1").removeClass("step_current");
-	$("#step-bar-1").addClass("step_done");
-	$("#step-2").show();
+<script type="text/javascript">
+$(".edit-cart-item").on("click", function(e) {
+	var params = {};
+
+	var sumPriceField = $(e.currentTarget).parent().parent().find(".sum-price");
+
+	params.product_id = $(e.currentTarget).data("productid");
+	params.option_id = $(e.currentTarget).data("optionid");
+	params.qty = $(e.currentTarget).parent().parent().find(".qty").val();
+
+	$.post( "{{URL::action('CartController@updateItem')}}", params)
+	.done(function( data ) {
+		var obj = jQuery.parseJSON( data );
+		$(sumPriceField).html(obj.itemPrice);
+
+		$("#full-price").html(obj.sumPrice);
+		$(e.currentTarget).parent().parent().find(".edit-cart-item").addClass("hidden");
+		$(e.currentTarget).parent().parent().find(".remove-cart-item").removeClass("hidden");
+  	});
+});
+
+function validate(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
 }
-*/
 </script>
 
 

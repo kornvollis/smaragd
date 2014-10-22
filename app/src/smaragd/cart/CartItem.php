@@ -46,7 +46,7 @@ class CartItem {
 	}
 	
 	public function add($num) 
-	{
+    {
 		$this->quantity += $num;
 	}
 	
