@@ -63,10 +63,11 @@ Route::get('/cart-remove-all', array('as' => 'cart-remove-all', 'uses' => 'CartC
 Route::get('/cart-remove/{product_id}/{option_id?}', array('as' => 'cart-remove', 'uses' => 'CartController@remove'));
 Route::post('/updateItem', array('as' => 'cart-updateItem', 'uses' => 'CartController@updateItem'));
 
-/* CASHIER */
+/* PAYMENT */
 Route::get('/Penztar', array('as' => 'payments', 'uses' => 'PaymentsController@show'));
 Route::get('/Rendeles/{step?}', array('as' => 'order', 'uses' => 'PaymentsController@order'));
 Route::get('/SikeresRendeles', array('as' => 'order-success', 'uses' => 'PaymentsController@orderSuccess'));
+Route::post('/processUserData', array('as' => 'processUserData', 'uses' => 'PaymentsController@processUserData'));
 
 /* ERRORS */
 App::missing(function($exception)
