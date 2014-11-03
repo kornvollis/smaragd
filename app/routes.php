@@ -42,18 +42,15 @@ Route::post('/admin/delete-product-option', array('uses' => 'AdminController@del
 
 
 /* SEARCH RESULTS */
-Route::post('/Kereses', array('as' => 'search-results', 'uses' => 'MainController@searchResults'));
+Route::post('/Kereses', array('as' => 'search-results', 'uses' => 'SearchController@searchResults'));
 
 /* MAIN ROUTES */
 Route::get('/', array('as' => 'home', 'uses' => 'MainController@homepage'));
 Route::get('Rolunk', array('as' => 'about', 'uses' => 'MainController@about'));
 Route::get('/Kosar', array('as' => 'cart', 'uses' => 'CartController@cart'));
 Route::post('/cart-add', array('as' => 'cart-add', 'uses' => 'CartController@add'));
-/* Route::get('/Termekek/{id?}', array('as' => 'products', 'uses' => 'MainController@products')); */
 Route::get('/Szallitas-fizetes', array('as' => 'shippinginfo', 'uses' => 'MainController@shippinginfo'));
 Route::get('/info/{id}', array('as' => 'info', 'uses' => 'MainController@info'));
-/* Route::get('/Kapcsolat', array('as' => 'contact', 'uses' => 'MainController@contact')); */
-
 
 /* PRODUCTS */
 Route::get('termekek/{id?}',  array('as' => 'products', 'uses' => 'ProductsController@showProducts'));
@@ -66,10 +63,11 @@ Route::post('/updateItem', array('as' => 'cart-updateItem', 'uses' => 'CartContr
 /* PAYMENT */
 Route::get('/Penztar', array('as' => 'payments', 'uses' => 'PaymentsController@show'));
 Route::get('/Rendeles/{step?}', array('as' => 'order', 'uses' => 'PaymentsController@order'));
-Route::get('/SikeresRendeles', array('as' => 'order-success', 'uses' => 'PaymentsController@orderSuccess'));
+Route::get('/SikeresRendeles', array('as' => 'orderSuccess', 'uses' => 'PaymentsController@orderSuccess'));
 Route::get('/Szemelyes-adatok', array('as' => 'showGuestUserForm', 'uses' => 'PaymentsController@showGuestUserForm'));
 Route::get('/Szemelyes-adatok-jovahagyas', array('as' => 'showGuestUserConfirmation', 'uses' => 'PaymentsController@showGuestUserConfirmation'));
-
+Route::get('/Szallitasimodok', array('as' => 'showShippingOptions', 'uses' => 'PaymentsController@showShippingOptions'));
+Route::get('/Osszesites', array('as' => 'showPaymentSummary', 'uses' => 'PaymentsController@showPaymentSummary'));
 Route::post('/processUserData', array('as' => 'processUserData', 'uses' => 'PaymentsController@processUserData'));
 
 /* ERRORS */

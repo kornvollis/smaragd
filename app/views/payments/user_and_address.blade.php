@@ -23,8 +23,8 @@
             <input type="text" name="lastname" class="form-control" id="lastname" placeholder="">
         </div>
         <div class="form-group">
-            <label for="mobil">Telefonszám <sup>*</sup> </label>
-            <input type="text" name="mobil" class="form-control" id="mobil" placeholder="">
+            <label for="phone">Telefonszám <sup>*</sup> </label>
+            <input type="text" name="phone" class="form-control" id="phone" placeholder="">
         </div>
 
         <h4 class="subtitle">Szállítási cím megadása</h4>
@@ -43,12 +43,12 @@
         </div>
 
         <div class="form-group">
-            <input id="same-address" type="checkbox" name="shipping_billing_address" value="">A számlázásí címem külöbzik a szállításí címtől
+            <input id="same-address" type="checkbox" name="shipping_billing_address" value="check">A számlázásí címem külöbzik a szállításí címtől
         </div>
 
         <div id="billing-address" style="display: none;">
             <div class="form-group">
-                <label for="billing_company">Cégnév (amennyiben szükséges)</label>
+                <label for="billing_company">Cégnév / név</label>
                 <input type="text" name="billing_company" class="form-control" id="company" placeholder="">
             </div>
             <div class="form-group">

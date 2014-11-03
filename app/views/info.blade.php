@@ -61,7 +61,16 @@
 			@endif
 			</dd>
 		</dl>
-		
+
+        @if($product->code != "")
+		<dl>
+            <dt>Cikkszám: </dt>
+            <dd id="product-code">
+                {{$product->code}}
+            </dd>
+		</dl>
+		@endif
+
 		<dl>
 			<dt>Szállítás: </dt>
 			<dd>

@@ -81,16 +81,6 @@ class MainController extends Controller {
     	
     	return View::make('info', $data);
     }
-    
-    public function searchResults()
-    {
-    	$search_param = Input::get('search');
-    	$searchRegexp = "'.*" . $search_param . ".*'";
-    	$products = Product::whereRaw("name REGEXP ". $searchRegexp .
-    								  " or description REGEXP " . $searchRegexp)->get();
-    	
-    	return View::make('search_results', array('products' => $products) );
-    }
 }
 
 ?>

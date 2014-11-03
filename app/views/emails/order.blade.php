@@ -8,10 +8,10 @@
  		<th>Cím</th>
  	</tr>
  	<tr>
- 		<td>{{$lastName}} {{$firstName}}</td>
- 		<td>{{$email}}</td>
- 		<td>{{$phone}}</td>
- 		<td>{{$address}}</td>
+ 		<td>{{$user->lastName}} {{$user->firstName}}</td>
+ 		<td>{{$user->email}}</td>
+ 		<td>{{$user->phone}}</td>
+ 		<td>{{$user->shippingAddress->toString()}}</td>
  	</tr>
  </table>
  

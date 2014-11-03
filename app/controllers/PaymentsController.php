@@ -16,6 +16,14 @@ class PaymentsController extends Controller {
     	return View::make('payments.payment_process', array('step' => $step));
     }
 
+    public function showPaymentSummary() {
+        return View::make('payments.summary', array('step' => 5));
+    }
+
+    public function showShippingOptions() {
+        return View::make('payments.shipping_options', array('step' => 4));
+    }
+
     public function showGuestUserForm() {
         return View::make('payments.user_and_address', array('step' => 2));
     }
@@ -27,17 +35,45 @@ class PaymentsController extends Controller {
     public function processUserData() {
         $address = new Address(Input::get('city'), Input::get('address'), Input::get('postcode'));
         $billing_address = null;
-        if(Input::get('shipping_billing_address') != null) {
+        if(Input::get('shipping_billing_address') == "check") {
             $billing_address = new Address(Input::get('billing_city'), Input::get('billing_address'), Input::get('billing_postcode'), Input::get('billing_company'));
         }
         $guestUser = new GuestUser(Input::get('firstname'),Input::get('lastname'),Input::get('email'),Input::get('phone'),$address, $billing_address);
-        Session::put("guest_user", $guestUser);
+        Session::put('guest_user', $guestUser);
 
         return Redirect::to('/Szemelyes-adatok-jovahagyas');
     }
 
+    private function sendOrderMails()
+    {
+        $guest_user = Session::get('guest_user');
+
+        $data = array();
+        $data['user']      = $guest_user;
+        $data['cartItems'] = SCart::getItems();
+
+        $admins = array('kornvollis@gmail.com', 'postmaster@smaragdut.hu');
+
+
+        Mail::send('emails.order', $data, function($message) use ($data)
+        {
+            $message->to('postmaster@smaragdut.hu', 'Smaragd.hu')->subject('Smragad vásrálás!');
+        });
+
+        Mail::send('emails.order_confirm', $data, function($message) use ($data)
+        {
+            $message->to($data['user']->email, 'www.Smaragdut.hu')->subject('Smaragdut.hu sikeres vásárlás!');
+        });
+
+        SCart::removeAll();
+
+        return Redirect::action('PaymentsController@orderSuccess');
+    }
+
     public function orderSuccess()
     {
+        $this->sendOrderMails();
+
     	return View::make('payments.order_success');
     }
 }

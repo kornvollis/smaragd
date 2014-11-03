@@ -8,7 +8,7 @@ class Address {
     public $city;
     public $companyName;
 
-    function __construct($city, $zipCode, $street, $companyName = null)
+    function __construct($city, $street, $zipCode, $companyName = null)
     {
         $this->city = $city;
         $this->zipCode = $zipCode;
@@ -16,5 +16,8 @@ class Address {
         $this->companyName = $companyName;
     }
 
+    public function toString() {
+        return $this->companyName + ", " + $this->city + ", " + $this->zipCode + ", " + $this->street;
+    }
 }
 ?>

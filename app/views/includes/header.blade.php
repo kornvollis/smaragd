@@ -9,7 +9,7 @@
                 <li><a href="{{URL::route('shippinginfo')}}">Szállítás/Fizetés</a></li>
                 <li><a href="{{URL::route('about')}}">Rólunk</a></li>
             </ul>
-            <a class="shop-cart-icon " href="{{URL::route('cart')}}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+            <a class="shop-cart-icon " href="{{URL::action('PaymentsController@order', array('step' => 1))}}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
             <form style="display: inline-block; float: right; margin-top: 8px;" action="{{ URL::route('search-results') }}" method="post" role="search">
             	<input id="ta" style="display:inline-block; width: 320px;" type="text" name="search" class="form-control" placeholder="Keresek egy ...">
 	            <button onclick="return validateSearch();" id="search-submit" type="submit" class="btn btn-default" style="height: 34px;"><span class="glyphicon glyphicon-search"></span></button>
@@ -49,7 +49,7 @@ var substringMatcher = function(strs) {
 var allProducts = {{Product::all()}} ;
 var products = new Array();
 for (var i = 0; i < allProducts.length; i++) { 
-    products.push(allProducts[i].name);
+    products.push(allProducts[i].name + " " + allProducts[i].code);
 }
 
 $('#ta').on("typeahead:selected", function() {

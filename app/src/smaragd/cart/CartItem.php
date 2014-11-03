@@ -40,6 +40,14 @@ class CartItem {
 		}
 		return $name;
 	}
+
+    public function description() {
+        if($this->product == null) {
+            return "";
+        }
+
+        return $this->product->description;
+    }
 	
 	public function equals($prod_id, $option_id) {
 		return ($this->product_id == $prod_id && $this->option_id == $option_id);

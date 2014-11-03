@@ -17,7 +17,7 @@
         @if ($step < 4)
             <span>3. Szállítási/Számlázási adatok</span>
         @else
-            <a href="{{URL::route('showGuestUserConfirmation')}}">3. Szállítási/Számlázási adatok</a>
+            <a href="{{URL::action('PaymentsController@showGuestUserConfirmation')}}">3. Szállítási/Számlázási adatok</a>
         @endif
     </li>
     <li id="step-bar-4" class="@if ($step == 4)step_current  @elseif ($step < 4) step_todo @else step_done @endif">
