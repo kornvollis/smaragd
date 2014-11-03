@@ -16,9 +16,17 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-		<script src="{{ URL::asset('js/jquery.validate.js') }}"></script>
+
+        <!-- VALIDATOR -->
+        <link rel="stylesheet" href="{{ URL::asset('css/validator/bootstrapValidator.css') }}" />
+        <script type="text/javascript" src="{{URL::asset('js/validator/bootstrapValidator.min.js')}}"></script>
+        <script type="text/javascript" src="{{URL::asset('js/validator/lang_hu.js')}}"></script>
+
 		<script src="{{ URL::asset('js/typeahead.min.js') }}"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+        @yield('imports')
+
 	</head>
     <body>
         @section('header')

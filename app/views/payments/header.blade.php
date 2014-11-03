@@ -10,14 +10,14 @@
         @if ($step < 3)
             <span>2. Adatok megadása</span>
         @else
-            <a href="{{URL::route('order', array('step' => 2))}}">2. Adatok megadása</a>
+            <a href="{{URL::route('showGuestUserForm')}}">2. Adatok megadása</a>
         @endif
     </li>
     <li id="step-bar-3" class="@if ($step == 3)step_current  @elseif ($step < 3) step_todo @else step_done @endif" style="width: 244px;">
         @if ($step < 4)
             <span>3. Szállítási/Számlázási adatok</span>
         @else
-            <a href="{{URL::route('order', array('step' => 3))}}">3. Szállítási/Számlázási adatok</a>
+            <a href="{{URL::route('showGuestUserConfirmation')}}">3. Szállítási/Számlázási adatok</a>
         @endif
     </li>
     <li id="step-bar-4" class="@if ($step == 4)step_current  @elseif ($step < 4) step_todo @else step_done @endif">

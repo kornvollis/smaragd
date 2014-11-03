@@ -114,7 +114,7 @@
 	</table>
 	<div class="cart_navigation">
 		<a href="/" class="autumn-button continue-shopping" title="Vásárlás folytatása">« Vásárlás folytatása</a>
-		<a href="{{URL::route('order', array('step' => 2))}}" class="smaragd-button"  style="float: right;">Tovább</a>
+		<a href="{{URL::action('PaymentsController@showGuestUserForm')}}" class="smaragd-button"  style="float: right;">Tovább</a>
 	</div>
 </div>
 

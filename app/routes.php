@@ -67,6 +67,9 @@ Route::post('/updateItem', array('as' => 'cart-updateItem', 'uses' => 'CartContr
 Route::get('/Penztar', array('as' => 'payments', 'uses' => 'PaymentsController@show'));
 Route::get('/Rendeles/{step?}', array('as' => 'order', 'uses' => 'PaymentsController@order'));
 Route::get('/SikeresRendeles', array('as' => 'order-success', 'uses' => 'PaymentsController@orderSuccess'));
+Route::get('/Szemelyes-adatok', array('as' => 'showGuestUserForm', 'uses' => 'PaymentsController@showGuestUserForm'));
+Route::get('/Szemelyes-adatok-jovahagyas', array('as' => 'showGuestUserConfirmation', 'uses' => 'PaymentsController@showGuestUserConfirmation'));
+
 Route::post('/processUserData', array('as' => 'processUserData', 'uses' => 'PaymentsController@processUserData'));
 
 /* ERRORS */
