@@ -41,7 +41,6 @@
                         <div class="address-column-right">{{$user->shippingAddress->street}}</div>
                     </li>
                 </ul>
-                <a class="address-edit" href="" title="Módosít">Adatok módosítása</a>
             </div>
 
             @if(isset($user->billingAddress))
@@ -65,14 +64,13 @@
                             <div class="address-column-right">{{$user->billingAddress->street}}</div>
                         </li>
                     </ul>
-                    <a class="address-edit" href="" title="Módosít">Adatok módosítása</a>
                 </div>
                 <p class="txt">Megjegyzés</p>
                 <p class="textarea"><textarea cols="60" rows="3" name="message"></textarea></p>
             @endif
         </div>
         <div class="order-navigation">
-            <a href="{{URL::route('order', array('step' => 2))}}" class="smaragd-button">vissza</a>
+            <a href="{{URL::action('PaymentsController@showGuestUserForm')}}" class="smaragd-button"  style="float: left;">Adatok módosítása</a>
             <a href="{{URL::action('PaymentsController@showShippingOptions')}}" class="smaragd-button"  style="float: right;">Tovább</a>
         </div>
     </div>

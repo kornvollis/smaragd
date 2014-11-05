@@ -11,7 +11,7 @@
 
     <form action="{{URL::action('PaymentsController@processUserData')}}" role="form" method="post" id="new_account_form" class="guest-form">
         <div class="form-group">
-            <label for="email">Add meg az E-mail címed!</label>
+            <label for="email">Add meg az E-mail címed! <sup>*</sup> </label>
             <input type="email" name="email" class="form-control" id="email" placeholder="">
         </div>
         <div class="form-group">

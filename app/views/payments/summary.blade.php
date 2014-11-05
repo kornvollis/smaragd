@@ -77,10 +77,6 @@
 		</div>
 		<a href="{{URL::action('PaymentsController@orderSuccess')}}" style="margin-top: 35px; float: right;" class="smaragd-button">A termék átvételekor fizetek, megrendelem!</a>
     </p>
-
-	<div class="cart_navigation">
-		<a href="{{URL::action('order', array('step' => 4))}}" class="smaragd-button" title="Tovább">vissza</a>
-	</div>
 </div>
 
 @stop

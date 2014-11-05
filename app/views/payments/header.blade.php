@@ -1,7 +1,7 @@
 <ul class="step group" id="order_step">
     <li id="step-bar-1" class="@if ($step == 1)step_current  @else step_done @endif">
         @if ($step == 1)
-            <span>1. Vásárlás összesítés</span>
+            <span>1. A kosár tartalma</span>
         @else
             <a href="{{URL::route('order', array('step' => 1))}}">1. Vásárlás összesítés</a>
         @endif
@@ -24,10 +24,10 @@
         @if ($step < 5)
             <span>4. Szállítás</span>
         @else
-            <a href="{{URL::route('order', array('step' => 4))}}">4. Szállítás</a>
+            <a href="{{URL::route('showShippingOptions')}}">4. Szállítás</a>
         @endif
     </li>
     <li id="step-bar-5" class="@if ($step == 5)step_current  @else step_todo @endif">
-        <span>5. Fizetés</span>
+        <span>5. Megrendelés</span>
     </li>
 </ul>
