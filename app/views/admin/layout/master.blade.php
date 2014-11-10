@@ -35,6 +35,7 @@
             <li><a href="{{ URL::action('AdminController@show')}}">TERMÉKEK</a></li>
             <li><a href="{{ URL::action('AdminController@showAddProduct')}}">ÚJ TERMÉK</a></li>
             <li><a href="{{ URL::action('AdminController@showCategoryManager')}}">KATEGÓRIÁK MÓDOSÍTÁSA</a></li>
+            <li><a href="{{ URL::action('DatabaseBackupController@show')}}">ADATBÁZIS</a></li>
         </ul>
     </div>
 </nav>

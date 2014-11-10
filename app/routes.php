@@ -22,6 +22,10 @@ Route::get('/admin/show-rename-category', array('uses' => 'AdminController@showR
 Route::post('/admin/renameCategories', array('uses' => 'AdminController@renameCategories'));
 Route::get('/admin/show-reorder-category', array('uses' => 'AdminController@showReorderCategory'));
 
+
+/* DB MANAGER */
+Route::get('/admin/database-manager', array('uses' => 'DatabaseBackupController@show'));
+
 Route::get('/admin/{id?}', array('before' => 'auth.basic', 'as' => 'admin-show', 'uses' => 'AdminController@show'));
 Route::post('add-category', array('uses' => 'AdminController@addCategory', 'files'=> true));
 Route::post('edit-category/{id}', array('uses' => 'AdminController@editCategory'));
@@ -35,11 +39,6 @@ Route::get('/admin/edit-product/{id}', array('uses' => 'AdminController@editProd
 Route::post('/admin/add-product-option', array('uses' => 'AdminController@addProductOption'));
 Route::post('/admin/edit-product-option', array('uses' => 'AdminController@editProductOption'));
 Route::post('/admin/delete-product-option', array('uses' => 'AdminController@deleteProductOption'));
-
-//{
-  //  return View::make('admin.product_edit', array("product" => Product::find($id)) );
-//});
-
 
 /* SEARCH RESULTS */
 Route::post('/Kereses', array('as' => 'search-results', 'uses' => 'SearchController@searchResults'));
@@ -61,7 +60,6 @@ Route::get('/cart-remove/{product_id}/{option_id?}', array('as' => 'cart-remove'
 Route::post('/updateItem', array('as' => 'cart-updateItem', 'uses' => 'CartController@updateItem'));
 
 /* PAYMENT */
-Route::get('/Penztar', array('as' => 'payments', 'uses' => 'PaymentsController@show'));
 Route::get('/Rendeles/{step?}', array('as' => 'order', 'uses' => 'PaymentsController@order'));
 Route::get('/SikeresRendeles', array('as' => 'orderSuccess', 'uses' => 'PaymentsController@orderSuccess'));
 Route::get('/Szemelyes-adatok', array('as' => 'showGuestUserForm', 'uses' => 'PaymentsController@showGuestUserForm'));
@@ -74,14 +72,5 @@ Route::post('/processUserData', array('as' => 'processUserData', 'uses' => 'Paym
 App::missing(function($exception)
 {
     return Response::view('errors.missing', array(), 404);
-});
-
-/* TEMP */
-Route::get('/Mail', function(){
-	Mail::send('emails.test', array('token'=>'SAMPLE'), function($message)
-	{
-	    $message->to('kornvollis@gmail.com', 'John Smith')->subject('Welcome!');
-	});
-	return "sija";
 });
 

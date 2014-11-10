@@ -1,4 +1,4 @@
-@extends('admin.layout.admin_layout')
+@extends('...layout.master')
 
 @section('content')
 <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
