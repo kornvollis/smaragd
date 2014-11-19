@@ -6,9 +6,11 @@
 		<a class="product-item-name" href="{{URL::action('info', array('id'=>$product->id))}}" title="{{ $product->name }}">
 			{{ $product->name }}
 		</a>
-		<a class="product-item-price" href="{{URL::action('info', array('id'=>$product->id))}}">
-			{{ HTML::priceFormat($product->lowestPrice()) }} Ft
-		</a>
+
+		<p class="product-item-price" href="{{URL::action('info', array('id'=>$product->id))}}">
+		    @if($product->hasDiscount())<span class="product-item-old-price">{{$product->old_price}} Ft</span>@endif
+			<a href="{{URL::action('info', array('id'=>$product->id))}}">{{HTML::priceFormat($product->lowestPrice())}} Ft </a>
+		</p>
 		<a href="{{URL::action('info', array('id'=>$product->id))}}"><button type="button" class="buy-it-link btn btn-success">KOSÁRBA</button></a>
 	</div>
 </div>

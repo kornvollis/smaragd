@@ -5,14 +5,15 @@
 <div class="row" style="margin-left: 19px;">
 	<div class="col-md-4">
 		<h2>{{$product->name}}</h2>
-		{{ Form::open(array('action' => 'AdminController@updateProduct')) }}
+		{{Form::open(array('action' => 'AdminController@updateProduct'))}}
 		    {{ Form::text('id', $product->id, array('style' => 'display:none', 'id'=>'product-id')) }}
 		    {{ Form::label('name', 'Név') }}      {{ Form::text('name', $product->name, array('class' => 'form-control')) }}
 		    {{ Form::label('code', 'Cikkszám') }} {{ Form::text('code', $product->code, array('class' => 'form-control')) }}
 		    {{ Form::label('description', 'Részletes leírás') }}
 		    <textarea class="form-control base-description" name="description" rows="3">{{$product->description}}</textarea>
+		    {{ Form::label('old_price', 'Régi Ár') }} {{ Form::text('old_price', $product->old_price, array('class' => 'form-control')) }}
 		    {{ Form::label('price', 'Ár') }} {{ Form::text('price', $product->price, array('class' => 'form-control')) }}
-		    {{ Form::label('profit_key', 'Profit kulcs') }} {{ Form::text('profit_key', $product->profit_key, array('class' => 'form-control')) }}
+		    {{ Form::label('profit_key', 'Profit kulcs') }} {{ Form::text('profit_key', number_format($product->profit_key,2), array('class' => 'form-control')) }}
 		    {{ Form::label('category_id', 'Kategória') }}
 		    {{ Form::select('category_id', Menu::selectArray(false), $product->category->id,  array('class' => 'form-control')) }}
 		    {{ Form::submit('Módosít!', array('class' => 'btn btn-default')) }}
@@ -68,11 +69,17 @@
 		@endif
 		
 		<h2>Új kép feltöltése</h2>
-		{{ Form::open(array('action' => 'AdminController@uploadProductImage', 'files' => true))  }}
-			{{ Form::text('id', $product->id, array('style' => 'display:none')) }}
-			{{ Form::file('image') }}
-			{{ Form::submit('Feltölt!') }}	
-		{{ Form::close() }}
+		{{Form::open(array('action' => 'AdminController@uploadProductImage', 'files' => true, 'id' => 'fileUploadForm'))}}
+			<div class="form-group">
+                <label class="control-label">Új kép</label>
+                <div>
+                    <input id="imageFile" class="form-control" name="image" type="file">
+                </div>
+            </div>
+            <div class="form-group">
+                <input id="uploadImageButton" class="btn btn-primary btn-upload" style="" type="submit" value="Feltölt!" disabled="disabled">
+            </div>
+		{{Form::close()}}
 		</div>
 	</div>
 </div>
@@ -94,6 +101,38 @@
 </div>
 
 <script>
+$("document").ready(function() {
+    /*
+    $('#imageFile').change(function() {
+        if($('#imageFile').val() == "" ) {
+            $('#uploadImageButton').hide();
+        } else {
+            $('#uploadImageButton').show();
+        }
+    });
+    */
+
+    $('#fileUploadForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            image: {
+                validators: {
+                    file: {
+                        extension: 'jpeg,jpg,png',
+                        type: 'image/jpeg,image/jpg,image/png',
+                        maxSize: 2097152,   // 2048 * 1024
+                        message: 'Csak .jpeg/.jpg vagy .png képek feltöltése lehetséges!'
+                    }
+                }
+            }
+        }
+    });
+
+});
 
 modal = {};
 

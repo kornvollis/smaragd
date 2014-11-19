@@ -113,3 +113,8 @@ ol li {
 .navbar {
     margin-bottom: 5px;
 }
+
+.btn-upload {
+    width: 100%;
+    margin-top: 10px;
+}

@@ -59,10 +59,9 @@
 	display: block;
 }
 
-.product-item-price, .product-item-price:hover {
-	color: #919191;
+.product-item-price a, .product-item-price a:hover {
+	color: #da3b44;
 	font-size: 20px;
-	display: block;
 	margin: 7px 0px;
 }
 
@@ -93,4 +92,11 @@
     text-align: center;
     font-weight: bold;
     font-size: 14px;
+}
+
+.product-item-old-price {
+    color: black;
+    text-decoration: line-through;
+    font-size: 15px;
+    margin-right: 20px;
 }

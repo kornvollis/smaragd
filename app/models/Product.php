@@ -2,7 +2,7 @@
 
 class Product extends Eloquent {
     public $timestamps = true;
-	protected $fillable = array('id', 'code', 'name', 'description', 'netto_price', 'price', 'profit_key', 'category_id', 'isFeatured');
+	protected $fillable = array('id', 'code', 'name', 'description', 'price', 'old_price', 'profit_key', 'category_id', 'isFeatured');
     
 	public function category()
     {
@@ -25,6 +25,10 @@ class Product extends Eloquent {
     	} else {
     		return false;
     	}
+    }
+
+    public function hasDiscount() {
+        return isset($this->old_price);
     }
 
     public function displayedPrice($option_id = null) {
