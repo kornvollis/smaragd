@@ -70,6 +70,7 @@
 		
 		<h2>Új kép feltöltése</h2>
 		{{Form::open(array('action' => 'AdminController@uploadProductImage', 'files' => true, 'id' => 'fileUploadForm'))}}
+		    <input name="id" type="text" style="display: none" value="{{$product->id}}">
 			<div class="form-group">
                 <label class="control-label">Új kép</label>
                 <div>

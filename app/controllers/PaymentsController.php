@@ -25,7 +25,14 @@ class PaymentsController extends Controller {
     }
 
     public function showGuestUserForm() {
-        return View::make('payments.user_and_address', array('step' => 2));
+
+        $guest_user = new GuestUser("","","","",null, null);
+
+        if(Session::get('guest_user') != null ) {
+            $guest_user = Session::get('guest_user');
+        }
+
+        return View::make('payments.user_and_address', array('user' => $guest_user, 'step' => 2));
     }
 
     public function showGuestUserConfirmation() {
@@ -73,6 +80,8 @@ class PaymentsController extends Controller {
     public function orderSuccess()
     {
         $this->sendOrderMails();
+
+
 
     	return View::make('payments.order_success');
     }

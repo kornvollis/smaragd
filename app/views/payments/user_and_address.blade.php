@@ -12,34 +12,34 @@
     <form action="{{URL::action('PaymentsController@processUserData')}}" role="form" method="post" id="new_account_form" class="guest-form">
         <div class="form-group">
             <label for="email">Add meg az E-mail címed! <sup>*</sup> </label>
-            <input type="email" name="email" class="form-control" id="email" placeholder="">
+            <input type="email" name="email" class="form-control" id="email" placeholder="" value="{{$user->email}}">
         </div>
         <div class="form-group">
             <label for="firstname">Keresztnév <sup>*</sup> </label>
-            <input type="text" name="firstname" class="form-control" id="firstname" placeholder="">
+            <input type="text" name="firstname" class="form-control" id="firstname" placeholder="" value="{{$user->firstName}}">
         </div>
         <div class="form-group">
             <label for="lastname">Vezetéknév <sup>*</sup> </label>
-            <input type="text" name="lastname" class="form-control" id="lastname" placeholder="">
+            <input type="text" name="lastname" class="form-control" id="lastname" placeholder="" value="{{$user->lastName}}">
         </div>
         <div class="form-group">
             <label for="phone">Telefonszám <sup>*</sup> </label>
-            <input type="text" name="phone" class="form-control" id="phone" placeholder="">
+            <input type="text" name="phone" class="form-control" id="phone" placeholder="" value="{{$user->phone}}">
         </div>
 
         <h4 class="subtitle">Szállítási cím megadása</h4>
 
         <div class="form-group">
             <label for="city">Város <sup>*</sup> </label>
-            <input type="text" name="city" class="form-control" id="city" placeholder="">
+            <input type="text" name="city" class="form-control" id="city" placeholder="" value="{{$user->shippingAddress->city}}">
         </div>
         <div class="form-group">
             <label for="postcode">Irányítószám <sup>*</sup> </label>
-            <input type="text" name="postcode" class="form-control" id="postcode" placeholder="">
+            <input type="text" name="postcode" class="form-control" id="postcode" placeholder="" value="{{$user->shippingAddress->zipCode}}">
         </div>
         <div class="form-group">
             <label for="address">Utca, házszám <sup>*</sup> </label>
-            <input type="text" name="address" class="form-control" id="address" placeholder="">
+            <input type="text" name="address" class="form-control" id="address" placeholder="" value="{{$user->shippingAddress->street}}">
         </div>
 
         <div class="form-group">
@@ -49,19 +49,19 @@
         <div id="billing-address" style="display: none;">
             <div class="form-group">
                 <label for="billing_company">Cégnév / név</label>
-                <input type="text" name="billing_company" class="form-control" id="company" placeholder="">
+                <input type="text" name="billing_company" class="form-control" id="company" placeholder="" value="{{$user->billingAddress->companyName}}">
             </div>
             <div class="form-group">
                 <label for="billing_city">Város <sup>*</sup> </label>
-                <input type="text" name="billing_city" class="form-control" id="city" placeholder="">
+                <input type="text" name="billing_city" class="form-control" id="city" placeholder="" value="{{$user->billingAddress->city}}">
             </div>
             <div class="form-group">
                 <label for="billing_postcode">Irányítószám <sup>*</sup> </label>
-                <input type="text" name="billing_postcode" class="form-control" id="postcode" placeholder="">
+                <input type="text" name="billing_postcode" class="form-control" id="postcode" placeholder="" value="{{$user->billingAddress->zipCode}}">
             </div>
             <div class="form-group">
                 <label for="billing_address">Utca, házszám <sup>*</sup> </label>
-                <input type="text" name="billing_address" class="form-control" id="address" placeholder="">
+                <input type="text" name="billing_address" class="form-control" id="address" placeholder="" value="{{$user->billingAddress->street}}">
             </div>
         </div>
 

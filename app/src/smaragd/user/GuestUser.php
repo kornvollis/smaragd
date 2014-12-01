@@ -1,6 +1,8 @@
 <?php
 namespace smaragd\user;
 
+use smaragd\address\Address;
+
 class GuestUser {
     public $firstName;
     public $lastName;
@@ -14,8 +16,15 @@ class GuestUser {
         $this->lastName = $lastName;
         $this->email = $email;
         $this->phone = $phone;
+
         $this->shippingAddress = $shippingAddress;
+        if($shippingAddress == null) {
+            $this->shippingAddress = new Address("", "", "", "");
+        }
         $this->billingAddress = $billingAddress;
+        if($billingAddress == null) {
+            $this->billingAddress = new Address("", "", "", "");
+        }
     }
 }
 ?>
