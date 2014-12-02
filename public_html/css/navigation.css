@@ -1,0 +1,30 @@
+ol.left-navigation {
+    margin  : 0px;
+    margin-top: 25px;
+    padding : 0px;
+}
+
+ol.left-navigation li {
+    font-size: 14px;
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+ol.left-navigation li li {
+    font-size: 14px;
+    list-style-type: none;
+    margin-bottom: 0px;
+}
+
+ol.left-navigation li > a, ol.left-navigation li > a:hover {
+    color: #cb2b57;
+}
+
+.left-navigation ol {
+    padding-left: 15px;
+}
+
+.left-navigation ol li a, .left-navigation ol li a:hover {
+    color: #000000;
+    font-size: 14px;
+}

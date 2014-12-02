@@ -1,0 +1,23 @@
+.option-image {
+	cursor: pointer;
+}
+
+.option-image.selected {
+	border: 1px solid #078A21;
+}
+
+.uploaded-image {
+	display: inline-block;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.uploaded-image img {
+	border-radius: 5px;	
+}
+
+.uploaded-image-delete {
+	display: block;
+	color: red;
+	cursor: pointer;
+}
