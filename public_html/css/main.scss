@@ -1,192 +1,247 @@
+@import 'constans';
+
 /* Type ahead */
+
 .twitter-typeahead {
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
-  margin-bottom: 0; }
-
+  margin-bottom: 0;
+}
 .tt-dropdown-menu {
   background-color: #fff;
-  border: 1px solid #ccc; }
+  border: 1px solid #ccc;
+}
 
 .tt-suggestion {
   display: block;
   padding: 3px 20px;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .tt-suggestion.tt-cursor {
-  color: #fff;
-  background-color: #009421; }
+  color: $color_white;
+  background-color: $color_dark_green;
+}
 
 .tt-suggestion.tt-is-under-cursor a {
-  color: #fff; }
+  color: $color_white;
+}
 
 .tt-suggestion p {
-  margin: 0; }
+  margin: 0;
+}
 
 /*
 	GREEN-COLOR: #009421;
 	BORDER-GRAY: #D8D8D8;
 */
+
 html, body {
   padding: 0px;
   margin: 0px 0px 100px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: $font_global;
   background: url(../images/smaragdut_blur.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+}
 
 body {
   margin-left: auto !important;
   margin-right: auto !important;
   background-color: #fff;
-  width: 960px; }
+  width: $pageWidth;
+}
 
 .header1-title {
   height: 37px;
   font-size: 24px;
   margin-bottom: 2px;
-  border-bottom: 3px solid #009421; }
+  border-bottom: 3px solid #009421;
+}
 
 .header1-title.with-margin {
   margin-bottom: 40px;
-  margin-top: 40px; }
+  margin-top: 40px;
+}
 
 .smaragd-container {
   background-color: white;
-  padding: 10px 10px 50px; }
+  padding: 10px 10px 50px;
+}
 
 #header-logo {
-  background-size: 960px 135px;
+  background-size:960px 135px;
   height: 135px;
-  background: #FFF url(../images/cimsor_tavasz.png); }
+  background: #FFF url(../images/cimsor_tavasz.png);
+}
 
 .smaragd-container {
-  margin-left: auto;
-  margin-right: auto; }
+  margin-left:auto;
+  margin-right:auto;
+}
 
 .smaragd-button {
-  background-color: #009421;
+  background-color: rgb(0, 148, 33);
   border: 0px;
   color: white;
-  padding: 10px; }
+  padding: 10px;
+}
 
 a.smaragd-button, a.smaragd-button:hover {
   display: inline-block;
-  color: white !important; }
+  color: white !important;
+}
 
 .smaragd-button-empty {
   background-color: white;
   border: 1px solid grey;
-  padding: 10px; }
+  padding: 10px;
+}
 
 /* CARUSSEL */
+
 #carousel {
   /* height: 360px; */
-  background-color: #099; }
+  background-color:#099;
+}
 
 #content {
   min-height: 600px;
-  background-color: #ffffff; }
+  background-color: #ffffff;
+}
 
 a {
   color: #009421;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 a:hover, a:focus {
   color: #2DA827;
-  text-decoration: underline; }
+  text-decoration: underline;
+}
 
 /* CART */
 #cart_info {
-  margin: 0px 30px; }
+  margin: 0px 30px;
+}
 
 /* CASHIER */
 #cashier {
-  margin: 30px 30px; }
+  margin: 30px 30px;
+}
 
 #cashier .table-wrapper {
-  display: inline-block;
+  display:inline-block;
   width: 550px;
   vertical-align: top;
   margin-left: 30px;
-  margin-top: 25px; }
+  margin-top: 25px;
+}
 
 #buyForm {
-  display: inline-block;
-  width: 280px; }
+  display:inline-block;
+  width: 280px;
+}
 
 /* ORDER SUCCESS */
+
 #success-order {
   width: 500px;
   display: inline-block;
   margin-top: 15px;
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 /* SEARCH RESULT */
+
+#searchresult {
+
+}
+
 #searchresult a {
-  display: block;
-  text-align: center; }
+  display:block;
+  text-align: center;
+}
 
 #searchresult div {
-  display: inline-block; }
+  display: inline-block;
+}
 
 #searchresult div.searchresult-name {
-  width: 200px; }
+  width: 200px;
+}
 
 #searchresult div.searchresult-description {
-  width: 200px; }
+  width: 200px;
+}
 
 #searchresult div.searchresult-price {
-  width: 200px; }
+  width: 200px;
+}
 
 /* BREAD CRUMBS */
 .bread-crumbs {
-  background-color: #f7faf7;
-  border: 1px solid #d8d8d8;
+  background-color: rgba(247, 250, 247, 1);
+  border: 1px solid rgba(216, 216, 216, 1);
   padding: 4px;
   border-radius: 4px;
   color: #939393;
   font-weight: normal;
-  font-size: 12px; }
+  font-size: 12px;
+}
 
 .bread-crumbs a:hover {
   color: #006a1b;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 /* CART INFO */
+
 #cart-info {
-  margin-top: 20px; }
+  margin-top: 20px;
+}
+
+#cart-info .cart-info-item {
+
+}
 
 /* PRODUCTS */
 .a-col {
-  display: inline-block;
+  display:inline-block;
   width: 200px;
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 .a-col .header {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 14px;
-  color: #404040;
-  font-weight: bold; }
+  color: rgb(64, 64, 64);
+  font-weight: bold;
+}
 
 .b-col {
-  display: inline-block;
+  display:inline-block;
   width: 736px;
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 .b-col.products-margin {
-  margin-top: 14px; }
+  margin-top: 14px;
+}
 
 .b-col.products-margin .product-item {
-  margin-left: 32px; }
+  margin-left: 32px;
+}
 
 .b-col.products-margin .product-item:nth-child(3n-2) {
   margin-left: 0px;
-  /* background: red; */ }
+  /* background: red; */
+}
 
 .product-item {
   display: inline-block;
@@ -197,37 +252,48 @@ a:hover, a:focus {
   margin-bottom: 20px;
   border: 1px solid #D8D8D8;
   overflow: hidden;
-  border-radius: 3px; }
+  border-radius: 3px;
+}
 
 .product-item.home-item {
-  margin-left: 8px; }
+  margin-left: 8px;
+}
 
 .product-item-image {
   max-width: 210px;
-  max-height: 210px; }
+  max-height: 210px;
+}
 
 .product-item-imageBorder {
   width: 220px;
   height: 220px;
   display: table-cell;
   vertical-align: middle;
-  text-align: center; }
+  text-align: center;
+}
+
+.product-item-image {
+
+}
 
 .product-item-info {
   position: relative;
   height: 98px;
   padding-left: 7px;
   border-top: 1px solid #D8D8D8;
-  background-color: #FAFAFA; }
+  background-color: #FAFAFA;
+}
 
 .product-item-name {
-  padding-top: 7px; }
+  padding-top: 7px;
+}
 
 .product-item-price {
   position: absolute;
   font-size: 20px;
   bottom: -8px;
-  left: 9px; }
+  left: 9px;
+}
 
 .details-link {
   position: absolute;
@@ -236,6 +302,5 @@ a:hover, a:focus {
   padding: 2px 12px;
   color: #fff;
   background-color: #009321;
-  border: none; }
-
-/*# sourceMappingURL=main.css.map */
+  border: none;
+}

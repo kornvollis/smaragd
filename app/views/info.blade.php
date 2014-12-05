@@ -12,7 +12,7 @@
         <h4 class="modal-title">Beraktuk a kosaradba!</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Folytatom a vásárlást</button>
+        <button type="button" class="smaragd-button-empty" data-dismiss="modal">Folytatom a vásárlást</button>
         <button id="pay-button" type="button" class="smaragd-button">Fizetés/kosár megtekintése</button>
       </div>
     </div><!-- /.modal-content -->

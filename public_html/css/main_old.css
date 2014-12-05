@@ -1,0 +1,226 @@
+.twitter-typeahead {
+    vertical-align: top;
+}
+
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+    margin-bottom: 0;
+}
+.tt-dropdown-menu {
+    min-width: 160px;
+    margin-top: 2px;
+    padding: 5px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.2);
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    width:100%;
+}
+
+.tt-suggestion {
+    display: block;
+    padding: 3px 20px;
+    cursor: pointer;
+}
+
+.tt-suggestion.tt-cursor {
+    color: #fff;
+    background-color: #009421;
+}
+
+.tt-suggestion.tt-is-under-cursor a {
+    color: #fff;
+}
+
+.tt-suggestion p {
+    margin: 0;
+}
+
+/*
+	GREEN-COLOR: #009421; 
+	BORDER-GRAY: #D8D8D8;
+*/
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(../images/smaragdut_blur.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-bottom: 200px;
+}
+
+body {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background-color: #fff;
+    width: 960px;
+}
+
+.header1-title {
+    height: 37px;
+    font-size: 24px;
+    margin-bottom: 2px;
+    border-bottom: 3px solid #009421;
+}
+
+.header1-title.with-margin {
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.smaragd-container {
+    background-color: white;
+    padding: 10px;
+    padding-bottom: 50px;
+}
+
+#header-logo {
+    background-image: url(../images/cimsor_tavasz.png);
+    background-size:960px 135px;
+    height: 135px;
+    background-color: #FFF;
+}
+
+.smaragd-container {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.smaragd-button {
+    background-color: rgb(0, 148, 33);
+    border: 0px;
+    color: white;
+    padding: 10px;
+}
+
+a.smaragd-button, a.smaragd-button:hover {
+    display: block;
+    color: white !important;
+}
+
+.smaragd-button-empty {
+    background-color: white;
+    border: 1px solid grey;
+    padding: 10px;
+}
+
+/* CARUSSEL */
+
+#carousel {
+    /* height: 360px; */
+    background-color:#099;
+}
+
+#content {
+    min-height: 600px;
+    background-color: #ffffff;
+}
+
+a {
+    color: #009421;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #2DA827;
+    text-decoration: underline;
+}
+
+/* CART */
+#cart_info {
+    margin: 0px 30px;
+}
+
+/* CASHIER */
+#cashier {
+    margin: 30px 30px;
+}
+
+#cashier .table-wrapper {
+    display:inline-block;
+    width: 550px;
+    vertical-align: top;
+    margin-left: 30px;
+    margin-top: 25px;
+}
+
+#buyForm {
+    display:inline-block;
+    width: 280px;
+}
+
+/* ORDER SUCCESS */
+
+#success-order {
+    width: 500px;
+    display: inline-block;
+    margin-top: 15px;
+    vertical-align: top;
+}
+
+/* SEARCH RESULT */
+
+#searchresult {
+
+}
+
+#searchresult a {
+    display:block;
+    text-align: center;
+}
+
+#searchresult div {
+    display: inline-block;
+}
+
+#searchresult div.searchresult-name {
+    width: 200px;
+}
+
+#searchresult div.searchresult-description {
+    width: 200px;
+}
+
+#searchresult div.searchresult-price {
+    width: 200px;
+}
+
+/* BREAD CRUMBS */
+.bread-crumbs {
+    background-color: rgba(247, 250, 247, 1);
+    border: 1px solid rgba(216, 216, 216, 1);
+    padding: 4px;
+    border-radius: 4px;
+    color: #939393;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.bread-crumbs a:hover {
+    color: #006a1b;
+    text-decoration: none;
+}
+
+/* CART INFO */
+
+#cart-info {
+    margin-top: 20px;
+}
+
+#cart-info .cart-info-item {
+
+}

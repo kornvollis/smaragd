@@ -23,7 +23,9 @@
         <script type="text/javascript" src="{{URL::asset('js/validator/lang_hu.js')}}"></script>
 
 		<script src="{{ URL::asset('js/typeahead.min.js') }}"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+		<!-- JQUERY UI -->
+		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
         @yield('imports')
 

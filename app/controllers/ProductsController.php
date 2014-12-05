@@ -23,6 +23,10 @@ class ProductsController extends Controller {
         {
             $data['breadCrumbs'] = array(
                 array(
+                    'name' => "Termékek",
+                    'url'  => URL::action('products')
+                ),
+                array(
                     'name' => $category->name,
                     'url'  => URL::action('products', array('id' => $category_id))
                 )
