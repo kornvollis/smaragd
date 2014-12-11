@@ -23,6 +23,16 @@ Route::post('/admin/renameCategories', array('uses' => 'AdminController@renameCa
 Route::get('/admin/show-reorder-category', array('uses' => 'AdminController@showReorderCategory'));
 
 
+/* USER */
+Route::get('/regisztracio', array('as' => 'registration', 'uses' => 'UserController@viewRegisterForm'));
+Route::post('/action_register', array('as' => 'action_register', 'uses' => 'UserController@register'));
+Route::post('/action_login', array('as' => 'action_login', 'uses' => 'UserController@login'));
+Route::get('/login', array('as' => 'viewLogin', 'uses' => 'UserController@viewLogin'));
+
+/* Reminder */
+Route::controller('reminders', 'RemindersController');
+
+
 /* DB MANAGER */
 Route::get('/admin/database-manager', array('uses' => 'DatabaseBackupController@show'));
 

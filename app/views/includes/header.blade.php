@@ -1,4 +1,7 @@
 <div id="header">
+
+    <div id="login"><a href="{{URL::route('viewLogin')}}">Belépés</a> / <a href="{{URL::route('registration')}}">regisztráció</a></div>
+
 	<div id="header-logo"></div>
     
     <nav class="navbar navbar-default" role="navigation">
