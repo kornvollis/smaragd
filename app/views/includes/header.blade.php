@@ -1,6 +1,15 @@
-<div id="header">
+<div id="login">
+    @if(Auth::check())
+        <a href="{{action('UserController@getPersonalPage')}}">Üdvözlünk, {{Auth::user()->name}}</a> |
+        <a href="{{action('UserController@getSignOff')}}">Kilépés</a>
 
-    <div id="login"><a href="{{URL::route('viewLogin')}}">Belépés</a> / <a href="{{URL::route('registration')}}">regisztráció</a></div>
+    @else
+        <a href="{{action('UserController@getViewLogin')}}">Belépés</a> |
+        <a href="{{action('UserController@getViewRegisterForm')}}">Regisztráció</a>
+    @endif
+</div>
+
+<div id="header">
 
 	<div id="header-logo"></div>
     

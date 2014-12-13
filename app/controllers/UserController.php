@@ -2,25 +2,34 @@
 
 class UserController extends Controller {
 
-    public function viewRegisterForm()
+    public function getPersonalPage() {
+        return "personal page";
+    }
+
+    public function getSignOff() {
+        Auth::logout();
+        Redirect::back();
+    }
+
+    public function getViewRegisterForm()
     {
         return View::make('user.registration');
     }
 
-    public function login() {
+    public function postLogin() {
         if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
         {
-            return "sikeres bejelentkezés";
+            return Redirect::back();
         } else {
             return "sikertelen";
         }
     }
 
-    public function viewLogin() {
+    public function getViewLogin() {
         return View::make('user.login');
     }
 
-    public function register() {
+    public function postRegister() {
 
         $validator = Validator::make(Input::all(), array(
             'name' => 'required',

@@ -51,10 +51,20 @@ html, body {
 }
 
 body {
+  text-align: center;
+}
+
+#login {
+  float:right;
+}
+
+#smaragd {
+  text-align: left;
+  display: inline-block;
+  width: $pageWidth;
+  background-color: #fff;
   margin-left: auto !important;
   margin-right: auto !important;
-  background-color: #fff;
-  width: $pageWidth;
 }
 
 .header1-title {

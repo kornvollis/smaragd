@@ -31,26 +31,28 @@
 
 	</head>
     <body>
-        @section('header')
-            @include('includes/header')
-        @show		
-		
-        <div class="smaragd-container">
-            @yield('content')
-        </div>
-        
-        <div id="footer">
-	    	<div>
-		        <a href="{{URL::route('home')}}">Főoldal</a> |
-                <a href="{{URL::route('products')}}">Termékek</a> |
-                <a href="{{URL::route('shippinginfo')}}">Szállítás/Fizetés</a> |
-                <a href="{{URL::route('about')}}">Rólunk</a>
-	        </div>
-	        <div class="footer-bottomline">2014 Smaragd Út webshop - Minden jog fentartva.</div>
-		</div> <!-- /FOOTER -->
-		
-		@yield('end')
-		
-		@include('includes/google_analytics')
+        <div id="smaragd">
+            @section('header')
+                @include('includes/header')
+            @show
+
+            <div class="smaragd-container">
+                @yield('content')
+            </div>
+
+            <div id="footer">
+                <div>
+                    <a href="{{URL::route('home')}}">Főoldal</a> |
+                    <a href="{{URL::route('products')}}">Termékek</a> |
+                    <a href="{{URL::route('shippinginfo')}}">Szállítás/Fizetés</a> |
+                    <a href="{{URL::route('about')}}">Rólunk</a>
+                </div>
+                <div class="footer-bottomline">2014 Smaragd Út webshop - Minden jog fentartva.</div>
+            </div> <!-- /FOOTER -->
+
+            @yield('end')
+
+            @include('includes/google_analytics')
+		</div>
     </body>
 </html>
