@@ -59,6 +59,7 @@ class AdminController extends Controller {
 
 	public function addCategory() {
 		$name = Input::get('name');
+		$kakas = "kakas";
 		$parent_id = Input::get('parent_id');
 		if($parent_id == -1) $pranet_id = null;
 
